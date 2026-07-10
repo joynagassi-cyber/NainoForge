@@ -1,0 +1,18 @@
+# bmad-prd custom overrides
+# Vide = tous les defaults du skill sont utilisés.
+# Décommenter pour surcharger un champ précis.
+
+[workflow]
+# prd_output_path = "_bmad/prd"
+# run_folder_pattern = "{project_name}-{date}"
+# activation_steps_prepend = []
+# activation_steps_append = []
+# external_handoffs = []
+
+[workflow.persistent_facts]
+# Entrées fichier (glob relatif à la racine projet)
+# files = ["docs/decisions.md"]
+
+[prd]
+# template = "essential_spine"
+# validation = true

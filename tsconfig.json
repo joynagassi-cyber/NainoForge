@@ -1,0 +1,41 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./packages/core"
+    },
+    {
+      "path": "./packages/shared"
+    },
+    {
+      "path": "./packages/ai"
+    },
+    {
+      "path": "./packages/imprint"
+    },
+    {
+      "path": "./packages/fsrs"
+    },
+    {
+      "path": "./packages/student-ai"
+    },
+    {
+      "path": "./packages/cosmos"
+    },
+    {
+      "path": "./packages/vector"
+    },
+    {
+      "path": "./packages/bundle"
+    },
+    {
+      "path": "./packages/extract"
+    },
+    {
+      "path": "./packages/api"
+    },
+    {
+      "path": "./packages/extension"
+    }
+  ]
+}

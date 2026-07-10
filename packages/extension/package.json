@@ -1,0 +1,16 @@
+{
+  "name": "@nainoforge/extension",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@nainoforge/core": "workspace:*",
+    "@nainoforge/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.268"
+  }
+}

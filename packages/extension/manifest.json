@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "NainoForge",
+  "version": "0.1.0",
+  "description": "Forge cognitive et répétition espacée",
+  "permissions": [
+    "activeTab",
+    "sidePanel",
+    "storage",
+    "offscreen"
+  ],
+  "background": {
+    "service_worker": "dist/background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.youtube.com/*",
+        "<all_urls>"
+      ],
+      "js": [
+        "dist/content.js"
+      ]
+    }
+  ],
+  "side_panel": {
+    "default_path": "src/sidepanel/sidepanel.html"
+  }
+}
