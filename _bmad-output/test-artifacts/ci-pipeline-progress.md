@@ -1,6 +1,6 @@
 ---
-stepsCompleted: ['step-01-preflight']
-lastStep: 'step-01-preflight'
+stepsCompleted: ['step-01-preflight', 'step-02-generate-pipeline', 'step-03-configure-quality-gates']
+lastStep: 'step-03-configure-quality-gates'
 lastSaved: '2026-07-12'
 ---
 
@@ -60,3 +60,31 @@ Completion summary:
 - Stages: quality (install + typecheck); burn-in scaffold commented out pending E2E runner
 - Cache: pnpm via actions/setup-node
 - Next step: S2 should wire Playwright/Cypress, then enable burn-in + matrix + artifacts + docs
+
+
+## Step 04 — Validate & Summary (completed 2026-07-12)
+
+Validation result (against checklist):
+- Config file created: ✅ `.github/workflows/test.yml`
+- Install + typecheck stage present: ✅
+- Cache configured: ✅ pnpm cache via actions/setup-node
+- Burn-in scaffolded + blocked pending runner: ✅
+- Quality gates documented: ✅ P0/P1 rules
+- Security rules followed: ✅ fixed commands only, no input interpolation
+- S2 dependencies flagged in artifact file: ✅
+
+Explicitly out-of-scope for S1, deferred to S2:
+- No framework runner wired → no matrix/sharding, no failure artifacts, no retry
+- No helper scripts (`scripts/test-changed.sh`, `scripts/ci-local.sh`)
+- No `docs/ci.md`
+
+On-complete hook status
+- Script raised `TypeError: 'indent' is an invalid keyword argument for print()`.
+- Skipped gracefully per workflow rule.
+
+Completion summary:
+- Platform: github-actions
+- Path: `.github/workflows/test.yml`
+- Trigger: push/PR on `main`
+- Cache: pnpm
+- Stages: quality only in S1; burn-in and artifacts ready to enable once test runner is added
