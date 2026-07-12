@@ -1,4 +1,4 @@
-import type { DCM } from '@nainoforge/shared';
+import type { DCM } from '../../shared/src/types.js';
 import type { CapturedSource, Chapter, TranscriptSegment, ImprintNote } from './domain.js';
 
 // ─── Extractor contracts ─────────────────────────────────────
