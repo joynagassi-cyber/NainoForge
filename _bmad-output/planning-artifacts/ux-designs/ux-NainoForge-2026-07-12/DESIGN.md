@@ -94,7 +94,7 @@ Space scale: 4, 8, 12, 16, 20, 24, 32, 40, 48, 64.
 | Token | Value |
 |---|---|
 | border_1px | 1px solid border-subtle |
-| border_2px | 2px solid brand/state |
+| border_2px | 2px solid primary |
 
 ## Motion
 

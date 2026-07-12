@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>UJ-1 — Article capture (mock)</title>
+<style>
+  /* ─── Host-page simulation ─── */
+  .host-article { max-width: 720px; margin: 0 auto; padding: 80px 24px 40px; font: 14px/1.6 system-ui, sans-serif; color: #b8b8c0; }
+  .host-article h1 { font-size: 28px; font-weight: 700; color: #f0f2f5; margin-bottom: 16px; }
+  .host-article p { margin-bottom: 14px; }
+
+  /* ─── Badge tokens copied from DESIGN.md / forge-badge.ts ─── */
+  :root {
+    --nf-primary: #7C3AED;
+    --nf-primary-dark: #6D28D9;
+    --nf-primary-darkest: #5B21B6;
+    --nf-surface-base: #13111C;
+    --nf-text-primary: #FFFFFF;
+    --nf-radius-lg: 14px;
+    --nf-space-3: 12px;
+    --nf-space-4: 16px;
+    --nf-space-2: 8px;
+    --nf-touch: 44px;
+    --nf-duration-fast: 120ms;
+    --nf-ease: ease;
+  }
+
+  #nf-forge-badge {
+    position: fixed;
+    top: 60px;
+    right: 16px;
+    z-index: 2147483647;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, sans-serif;
+  }
+
+  .nf-forge-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--nf-space-2);
+    height: var(--nf-touch);
+    padding: var(--nf-space-3) var(--nf-space-4);
+    border-radius: var(--nf-radius-lg);
+    border: none;
+    background: var(--nf-primary);
+    color: var(--nf-text-primary);
+    font: 500 14px/1 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, sans-serif;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    box-shadow: none;
+    transition: background-color var(--nf-duration-fast) var(--nf-ease), transform var(--nf-duration-fast) var(--nf-ease), box-shadow var(--nf-duration-fast) var(--nf-ease);
+    min-width: 140px;
+  }
+  .nf-forge-btn:hover:not(:disabled):not(.nf-forge-btn--loading) {
+    background: var(--nf-primary-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  }
+  .nf-forge-btn:active:not(:disabled):not(.nf-forge-btn--loading) {
+    background: var(--nf-primary-darkest);
+    transform: translateY(0);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
+  }
+  .nf-forge-btn.nf-forge-btn--loading,
+  .nf-forge-btn:disabled {
+    background: var(--nf-primary-dark);
+    color: var(--nf-text-primary);
+    cursor: not-allowed;
+    opacity: 0.85;
+  }
+  .nf-forge-btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--nf-primary), 0 0 0 4px var(--nf-surface-base);
+  }
+
+  .nf-forge-spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255,255,255,0.25);
+    border-top-color: var(--nf-text-primary);
+    border-radius: 50%;
+    animation: nf-spin 600ms linear infinite;
+    flex-shrink: 0;
+  }
+  @keyframes nf-spin { to { transform: rotate(360deg); } }
+
+  .nf-label { white-space: nowrap; }
+
+  /* ─── Mock controls ─── */
+  .mock-controls { position: fixed; bottom: 16px; right: 16px; display: flex; gap: 8px; z-index: 9999; }
+  .mock-controls button { background: #1A1726; color: #F0F2F5; border: 1px solid rgba(255,255,255,0.14); border-radius: 8px; padding: 8px 12px; cursor: pointer; }
+  .mock-controls button:hover { background: #201D2E; }
+</style>
+</head>
+<body>
+
+<article class="host-article">
+  <h1>L’art de la forge cognitive</h1>
+  <p>La capture d’information est le premier rituel. Le forgeron ne travaille pas le métal froid : il le choisit, le nettoie, l’imprime avant de penser à l’outil.</p>
+  <p>Dans NainoForge, chaque source capturée devient un bloc <strong>DCM</strong> prêt pour l’empreinte cognitive. La redondance est tuée par un hash SHA-256 avant même l’insertion.</p>
+</article>
+
+<div id="nf-forge-badge">
+  <button class="nf-forge-btn" type="button" aria-label="Forger cette page">
+    <span class="nf-label">Forger cette page</span>
+  </button>
+</div>
+
+<div class="mock-controls">
+  <button onclick="setLoading(true)">Loading</button>
+  <button onclick="setLoading(false)">Default</button>
+  <button onclick="setError()">Error</button>
+</div>
+
+<script>
+  const btn = document.querySelector('.nf-forge-btn');
+  const label = document.querySelector('.nf-label');
+  const root = document.getElementById('nf-forge-badge');
+
+  function setLoading(on) {
+    if (on) {
+      btn.disabled = true;
+      btn.classList.add('nf-forge-btn--loading');
+      btn.setAttribute('aria-busy', 'true');
+      const original = label.textContent;
+      label.dataset.original = original;
+      label.textContent = 'Forging…';
+      const s = document.createElement('span');
+      s.className = 'nf-forge-spinner';
+      s.setAttribute('aria-hidden', 'true');
+      root.insertBefore(s, btn.firstChild);
+    } else {
+      btn.disabled = false;
+      btn.classList.remove('nf-forge-btn--loading');
+      btn.removeAttribute('aria-busy');
+      const s = btn.querySelector('.nf-forge-spinner');
+      if (s) s.remove();
+      label.textContent = label.dataset.original || 'Forger cette page';
+    }
+  }
+  function setError() {
+    setLoading(false);
+    console.debug('[nf-badge] capture failed');
+  }
+</script>
+
+</body>
+</html>
