@@ -26,8 +26,24 @@ jobs:
           cache: pnpm
 
       - name: Install dependencies
-        # Security: no user input used here; fixed command only
+        # Security: fixed command, no user input
         run: pnpm install --frozen-lockfile
 
       - name: Typecheck
         run: pnpm run typecheck
+
+  # Burn-in scaffold: frontend stack expects burn-in to detect flakiness.
+  # BLOCKED: no Playwright/Cypress runner installed in S1, so no iterative loop to execute yet.
+  # Gate rationale:
+  # - P0 pass rate = 100% on typecheck/build
+  # - P1 pass rate = >= 95% once a Playwright/Cypress suite is wired
+  # - CI fails on typecheck/build failure before burn-in can enter.
+  # Uncomment/add burn-in job when an E2E runner is added (see bmad-testarch-ci workflow).
+
+  # notify:
+  #   name: Notifications
+  #   needs: [quality, burn-in]
+  #   if: always() && (failure() || cancelled())
+  #   steps:
+  #     - name: Notify failure
+  #       run: echo "TODO: wire Slack/email notification"
