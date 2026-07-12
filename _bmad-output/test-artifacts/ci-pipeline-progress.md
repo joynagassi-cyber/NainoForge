@@ -36,3 +36,27 @@ lastSaved: '2026-07-12'
   - P1 pass rate: >= 95% once Playwright/Cypress is wired
 - Notifications: scaffolded, wired to failure/cancelled state, actual Slack/email integration TODO
 - Contract testing: skipped (tea_use_pactjs_utils=false)
+
+
+## Step 04 — Validate & Summary (2026-07-12)
+
+Validation status: PARTIAL
+
+Gaps vs checklist:
+- No test framework wired yet (no Playwright/Cypress/Vitest). CI gates only typecheck/build.
+- No sharding/matrix configured because no test suite.
+- No failure artifacts (HTML report / traces / JUnit) because no test runner.
+- No helper scripts (`scripts/test-changed.sh`, `scripts/ci-local.sh`).
+- No docs/ci.md created.
+
+Decided:
+- Baseline pipeline is valid and safe.
+- Full gates/artifacts are explicitly blocked until S2 test runner is added.
+- Notifications scaffolded but not wired to external hook.
+
+Completion summary:
+- Platform: github-actions
+- Config: .github/workflows/test.yml
+- Stages: quality (install + typecheck); burn-in scaffold commented out pending E2E runner
+- Cache: pnpm via actions/setup-node
+- Next step: S2 should wire Playwright/Cypress, then enable burn-in + matrix + artifacts + docs
