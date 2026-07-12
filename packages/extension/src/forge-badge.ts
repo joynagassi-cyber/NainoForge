@@ -112,6 +112,7 @@ export function injectForgeBadge(doc: Document): void {
   const btn = createButton('Forger cette page', async () => {
     btn.disabled = true;
     btn.classList.add('nf-forge-btn--loading');
+    btn.setAttribute('aria-busy', 'true');
 
     const content = btn.querySelector('.nf-forge-btn-label');
     if (content) {
@@ -132,6 +133,7 @@ export function injectForgeBadge(doc: Document): void {
       if (content) content.textContent = (content.getAttribute('data-original') ?? 'Forger cette page');
       btn.classList.remove('nf-forge-btn--loading');
       btn.disabled = false;
+      btn.removeAttribute('aria-busy');
     }
   });
 
@@ -157,6 +159,7 @@ export function injectYouTubeBadge(doc: Document): void {
   const btn = createButton('Forger cette vidéo', async () => {
     btn.disabled = true;
     btn.classList.add('nf-forge-btn--loading');
+    btn.setAttribute('aria-busy', 'true');
 
     const content = btn.querySelector('.nf-forge-btn-label');
     if (content) {
@@ -181,6 +184,7 @@ export function injectYouTubeBadge(doc: Document): void {
       if (content) content.textContent = (content.getAttribute('data-original') ?? 'Forger cette vidéo');
       btn.classList.remove('nf-forge-btn--loading');
       btn.disabled = false;
+      btn.removeAttribute('aria-busy');
     }
   });
 
