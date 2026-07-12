@@ -7,10 +7,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      pdfjs-dist:
-        specifier: ^6.1.200
-        version: 6.1.200
     devDependencies:
       '@typescript-eslint/eslint-plugin':
         specifier: ^7.0.0
