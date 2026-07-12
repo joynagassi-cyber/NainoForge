@@ -7,6 +7,8 @@
     "build": "tsc",
     "typecheck": "tsc --noEmit"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@nainoforge/shared": "workspace:*"
+  },
   "devDependencies": {}
 }
