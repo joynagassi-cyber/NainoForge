@@ -138,3 +138,52 @@ export function injectForgeBadge(doc: Document): void {
   root.appendChild(btn);
   (doc.body ?? doc.documentElement).appendChild(root);
 }
+
+// --- Minimal typed shapes for YouTube player response (shared with extract/youtube.ts) ---
+
+interface YtInitialPlayerResponse {
+  player_response: { videoDetails?: { videoId?: string } };
+}
+
+// ─── YouTube Badge (same tokens, distinct label) ─────────────
+
+export function injectYouTubeBadge(doc: Document): void {
+  if (doc.getElementById(BADGE_ID)) return;
+  injectStyle();
+
+  const root = doc.createElement('div');
+  root.id = BADGE_ID;
+
+  const btn = createButton('Forger cette vidéo', async () => {
+    btn.disabled = true;
+    btn.classList.add('nf-forge-btn--loading');
+
+    const content = btn.querySelector('.nf-forge-btn-label');
+    if (content) {
+      content.setAttribute('data-original', content.textContent ?? '');
+      content.textContent = 'Forging…';
+    }
+    btn.prepend(createSpinner());
+
+    try {
+      const raw = (window as unknown as Record<string, unknown>).ytInitialPlayerResponse;
+      const api = raw as YtInitialPlayerResponse | undefined;
+      if (!api?.player_response?.videoDetails?.videoId) {
+        throw new Error('MISSING_PLAYER_RESPONSE');
+      }
+      console.log('[nf-badge] youtube transcript fetched');
+      const evt = new CustomEvent('nf:youtube:captured', { detail: api, bubbles: true });
+      doc.dispatchEvent(evt);
+    } catch (err) {
+      console.debug('[nf-badge] youtube capture failed', err);
+    } finally {
+      btn.removeChild(btn.firstElementChild as HTMLElement);
+      if (content) content.textContent = (content.getAttribute('data-original') ?? 'Forger cette vidéo');
+      btn.classList.remove('nf-forge-btn--loading');
+      btn.disabled = false;
+    }
+  });
+
+  root.appendChild(btn);
+  (doc.body ?? doc.documentElement).appendChild(root);
+}
