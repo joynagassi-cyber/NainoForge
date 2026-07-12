@@ -30,6 +30,9 @@ jobs:
         # Security: fixed command, no user input
         run: pnpm install --frozen-lockfile
 
+      - name: Build dependencies
+        run: pnpm -r run build
+
       - name: Typecheck
         run: pnpm run typecheck
 
