@@ -17,8 +17,8 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 10.x
-          run_cache_ttl: 60
+          cache: true
+          cache_dependency_path: 'pnpm-lock.yaml'
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
