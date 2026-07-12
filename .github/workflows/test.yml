@@ -30,6 +30,9 @@ jobs:
         # Security: fixed command, no user input
         run: pnpm install --frozen-lockfile
 
+      - name: Clean incremental build state
+        run: find packages -name 'tsconfig.tsbuildinfo' -delete
+
       - name: Build dependencies
         env:
           PNPM_WORKSPACE_CONCURRENCY: '1'
