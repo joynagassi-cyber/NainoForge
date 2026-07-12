@@ -17,19 +17,22 @@ export function uuidv7(): string {
   const now = Date.now();
   const bytes = new Uint8Array(16);
 
-  // 48-bit timestamp
+  // 48-bit timestamp big-endian dans bytes[0..5]
   for (let i = 0; i < 6; i++) {
     bytes[i] = (now / Math.pow(2, 40 - i * 8)) & 0xff;
   }
 
-  // version 7 in high nibble of byte 6
-  bytes[6] = 0x70 | (bytes[6] & 0x0f);
+  // 12 bits aléatoires (rand_a)
+  const randA = crypto.getRandomValues(new Uint8Array(2));
+  // byte 6: version 0x7 en nibble haut | rand_a[11:8] en nibble bas
+  bytes[6] = 0x70 | (randA[0] & 0x0f);
+  // byte 7: rand_a[7:0]
+  bytes[7] = randA[1];
 
-  // remaining timestamp-prefixed byte
-  bytes[7] = (now / Math.pow(2, 0)) & 0xff;
-
-  // variant RFC 4122 => 10xx xxxx
+  // reste aléatoire (bytes 8..15)
   crypto.getRandomValues(bytes.subarray(8, 16));
+
+  // variant RFC 4122 => 10xx xxxx sur byte 8
   bytes[8] = 0x80 | (bytes[8] & 0x3f);
 
   return [

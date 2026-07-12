@@ -41,6 +41,7 @@ export class SourceRepository {
     const record: CapturedSource = {
       ...source,
       id: crypto.randomUUID(),
+      content_hash: hash,
       created_at: Date.now(),
     };
     return new Promise((resolve, reject) => {

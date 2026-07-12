@@ -25,15 +25,25 @@ export interface TranscriptSegment {
   chapter_title?: string;
 }
 
+export type CranLevel = 1 | 2 | 3 | 4 | 5;
+
+export type BloomLevel =
+  | 'remember'
+  | 'understand'
+  | 'apply'
+  | 'analyze'
+  | 'synthesize'
+  | 'evaluate';
+
 export interface ImprintNote {
   id: string;
   source_id: string;
   concept_id: string;
   content: string;
   word_count: number;
-  cran_level: number; // 1-5
+  cran_level: CranLevel;
   quality_score: number; // 0-100 IQS
-  bloom_level?: string;
-  concept_coverage_pct?: number;
+  bloom_level?: BloomLevel;
+  concept_coverage_pct?: number; // 0-100
   created_at: number;
 }

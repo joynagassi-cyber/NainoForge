@@ -30,7 +30,11 @@ importers:
 
   packages/bundle: {}
 
-  packages/core: {}
+  packages/core:
+    dependencies:
+      '@nainoforge/shared':
+        specifier: workspace:*
+        version: link:../shared
 
   packages/cosmos: {}
 

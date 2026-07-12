@@ -28,7 +28,9 @@ export class EventBus {
     const set = this.listeners.get(event);
     if (!set) return;
     for (const handler of set) {
-      try { handler(payload); } catch { /* ignore handler errors */ }
+      try { handler(payload); } catch (err) {
+        console.debug('[nf-bus] handler error', err);
+      }
     }
   }
 

@@ -8,6 +8,7 @@ export interface CapturedSource {
   title: string;
   url?: string;
   content_markdown: string;
+  content_hash: string; // SHA-256 hex — used for dedup index
   metadata: Record<string, unknown>;
   privacy_level: 'public' | 'personal' | 'enterprise';
   status: SourceStatus;
