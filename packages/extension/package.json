@@ -10,6 +10,7 @@
     "@mozilla/readability": "^0.6.0",
     "@nainoforge/core": "workspace:*",
     "@nainoforge/shared": "workspace:*",
+    "pdfjs-dist": "^6.1.200",
     "turndown": "^7.2.4"
   },
   "devDependencies": {
