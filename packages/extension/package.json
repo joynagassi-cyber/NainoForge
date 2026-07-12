@@ -7,10 +7,14 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@mozilla/readability": "^0.6.0",
     "@nainoforge/core": "workspace:*",
-    "@nainoforge/shared": "workspace:*"
+    "@nainoforge/shared": "workspace:*",
+    "turndown": "^7.2.4"
   },
   "devDependencies": {
-    "@types/chrome": "^0.0.268"
+    "@types/chrome": "^0.0.268",
+    "jsdom": "^29.1.1",
+    "tsx": "^4.23.0"
   }
 }
