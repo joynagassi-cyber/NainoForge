@@ -1,7 +1,8 @@
 ---
-stepsCompleted: ['step-01-preflight', 'step-02-generate-pipeline', 'step-03-configure-quality-gates']
-lastStep: 'step-03-configure-quality-gates'
-lastSaved: '2026-07-12'
+stepsCompleted: ['step-01-preflight', 'step-02-generate-pipeline', 'step-03-configure-quality-gates', 'step-04-validate-summary', 'step-05-s1-close']
+lastStep: 'step-05-s1-close'
+lastSaved: '2026-07-13'
+status: closed
 ---
 
 # CI Pipeline — Progress
@@ -88,3 +89,32 @@ Completion summary:
 - Trigger: push/PR on `main`
 - Cache: pnpm
 - Stages: quality only in S1; burn-in and artifacts ready to enable once test runner is added
+
+---
+
+## Step 05 — S1 Close (2026-07-13)
+
+S1 is closed. Baseline CI quality pipeline is operational and sufficient for the shipped frontend surface.
+
+Confirmed S1 deliverables:
+- `.github/workflows/test.yml` — quality job: checkout, pnpm setup, install, clean tsbuildinfo, build, typecheck
+- QA fixes applied: `packages/shared/src/db-schema.ts` added, `aria-busy` added on forge badges
+- UX spines finalized: DESIGN.md + EXPERIENCE.md restored and completed
+- UX SA audit passed: 0 BLOCAGE, 1 minor fix (`border_2px` token)
+- UX mocks shipped: UJ-1 article badge, UJ-2 YouTube badge, Side Panel empty state
+
+Known S1 gaps (accepted, not blockers):
+- No test framework runner in CI (no Playwright/Cypress/Vitest)
+- No test matrix/sharding, no failure artifacts, no helper scripts, no docs/ci.md
+- Burn-in scaffold commented out in `test.yml` pending S2 runner
+
+S1 closure criteria met:
+- P0: typecheck/build green in CI ✅
+- P1: >= 95% targeted for S2 when runner is wired ⏳ S2
+- Security: fixed commands only, no input interpolation ✅
+
+S2 prerequisites flagged:
+- Wire Playwright/Cypress or Vitest
+- Uncomment/enable burn-in stage
+- Add matrix/sharding if suite grows
+- Add failure artifacts + helper scripts + docs/ci.md
