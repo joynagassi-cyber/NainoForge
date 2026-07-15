@@ -1,10 +1,28 @@
-import type { IImprintEngine } from '@nainoforge/core/src/contracts.js';
-import type { CapturedSource } from '@nainoforge/core/src/domain.js';
 import type { CrankEvaluation } from './contracts.js';
 import { evaluateCrank } from './contracts.js';
 
-export class ImprintEngine implements IImprintEngine {
-  async generateImprint(source: CapturedSource, content: string): Promise<ImprintNote> {
+// ponytail: minimal SourceLike — avoids cross-package import at build time.
+// Matches CapturedSource fields used by generateImprint.
+interface SourceLike {
+  id: string;
+  title?: string;
+}
+
+export interface ImprintNote {
+  id: string;
+  source_id: string;
+  concept_id: string;
+  content: string;
+  word_count: number;
+  cran_level: number; // 1-5
+  quality_score: number; // 0-100
+  bloom_level?: string;
+  concept_coverage_pct?: number;
+  created_at: number;
+}
+
+export class ImprintEngine {
+  async generateImprint(source: SourceLike, content: string): Promise<ImprintNote> {
     const evaluation = evaluateCrank({ content, conceptCount: 1 });
     const word_count = content.split(/\s+/).filter(Boolean).length;
 

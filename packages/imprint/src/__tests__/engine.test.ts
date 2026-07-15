@@ -1,13 +1,25 @@
 import { describe, it, expect } from 'vitest';
 import { ImprintEngine, evaluateCrank } from '../index.js';
-import type { CapturedSource } from '@nainoforge/core/src/domain.js';
 
-const source: CapturedSource = {
+// Minimal inline shape matching CapturedSource — avoids cross-package type import at build time.
+interface FakeSource {
+  id: string;
+  source_type: 'web_article' | 'youtube' | 'pdf';
+  title: string;
+  url?: string;
+  content_markdown: string;
+  metadata: Record<string, unknown>;
+  privacy_level: 'public' | 'personal' | 'enterprise';
+  status: string;
+  created_at: number;
+}
+
+const source: FakeSource = {
   id: 'src-1',
   source_type: 'web_article',
   title: 'Test Article',
   url: 'https://example.com/test',
-  content_markdown: '# Test content\n\nBody here.',
+  content_markdown: '# Test content',
   metadata: {},
   privacy_level: 'public',
   status: 'ready',
@@ -17,7 +29,7 @@ const source: CapturedSource = {
 const engine = new ImprintEngine();
 
 describe('ImprintEngine.generateImprint', () => {
-  it('returns ImprintNote with cran level derived from content depth', async () => {
+  it('returns note with cran level derived from content', async () => {
     const content = 'This is a topic. Because it connects ideas. For example, code demonstrates it. Such as tests.';
     const note = await engine.generateImprint(source, content);
     expect(note.source_id).toBe('src-1');
@@ -27,25 +39,23 @@ describe('ImprintEngine.generateImprint', () => {
     expect(note.quality_score).toBeLessThanOrEqual(100);
   });
 
-  it('returns blossom level when taxonomy signal detected', async () => {
+  it('detects bloom taxonomy signal', async () => {
     const content = 'We apply the function to solve real problems. We analyze the results.';
     const note = await engine.generateImprint(source, content);
     expect(note.bloom_level).toBe('analyze');
   });
 
-  it('evaluateCrank marks has_example when example connectors present', async () => {
-    const content = 'For instance, consider the following test case.';
-    const evaluation = evaluateCrank({ content });
+  it('marks has_example via evaluateCrank', async () => {
+    const evaluation = evaluateCrank({ content: 'For instance, consider the following test case.' });
     expect(evaluation.has_example).toBe(true);
   });
 
-  it('evaluateCrank marks has_analogy when analogy markers present', async () => {
-    const content = 'A function is like a machine that transforms input to output.';
-    const evaluation = evaluateCrank({ content });
+  it('marks has_analogy via evaluateCrank', async () => {
+    const evaluation = evaluateCrank({ content: 'A function is like a machine that transforms input to output.' });
     expect(evaluation.has_analogy).toBe(true);
   });
 
-  it('word_count reflects actual word count', async () => {
+  it('word_count reflects actual count', async () => {
     const content = 'one two three four five six seven eight nine ten';
     const note = await engine.generateImprint(source, content);
     expect(note.word_count).toBe(10);

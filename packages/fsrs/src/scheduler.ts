@@ -1,7 +1,7 @@
 // ponytail: simplified FSRS-4 scheduling in pure TypeScript.
 // WASM migration deferred until real review data justifies calibration.
 
-import type { ReviewRating } from '@nainoforge/shared/src/types.js';
+import type { ReviewRating } from '../../shared/src/types.js';
 
 export interface Card {
   id: string;
