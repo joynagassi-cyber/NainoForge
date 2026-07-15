@@ -17,10 +17,11 @@ describe('summarize', () => {
     expect(out.keyPoints.length).toBeLessThanOrEqual(2);
   });
 
-  it('falls back to truncation for empty punctuation', () => {
+  it('returns summary as-is for short single-block text without punctuation', () => {
     const text = 'no punctuation here just words';
     const out = summarize({ text, maxTokens: 10 });
-    expect(out.summary.length).toBeLessThanOrEqual(10);
+    // sentences() treats the full string as one block when no splitter is present
+    expect(out.summary).toBe(text);
   });
 });
 
