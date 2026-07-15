@@ -1,0 +1,16 @@
+{
+  "name": "fsrs_bindings",
+  "type": "module",
+  "description": "FSRS-4 scheduling engine — Rust core with WASM bindings for @nainoforge/fsrs",
+  "version": "6.6.1",
+  "files": [
+    "fsrs_bindings_bg.wasm",
+    "fsrs_bindings.js",
+    "fsrs_bindings.d.ts"
+  ],
+  "main": "fsrs_bindings.js",
+  "types": "fsrs_bindings.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

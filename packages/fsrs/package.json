@@ -1,10 +1,11 @@
 {
   "name": "@nainoforge/fsrs",
   "version": "0.1.0",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "pkg/fsrs_bindings.js",
+  "types": "pkg/fsrs_bindings.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "wasm-pack build --target web --out-dir pkg",
+    "build:release": "wasm-pack build --target web --out-dir pkg --release",
     "typecheck": "tsc --noEmit",
     "test": "vitest run"
   },

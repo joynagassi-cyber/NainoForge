@@ -1,0 +1,33 @@
+/* tslint:disable */
+/* eslint-disable */
+export const memory: WebAssembly.Memory;
+export function __wbg_fsrscard_free(a: number): void;
+export function fsrscard_id(a: number, b: number): void;
+export function fsrscard_stability(a: number): number;
+export function fsrscard_difficulty(a: number): number;
+export function fsrscard_last_review_at(a: number): number;
+export function fsrscard_next_review_at(a: number): number;
+export function fsrscard_reps(a: number): number;
+export function fsrscard_last_rating(a: number, b: number): void;
+export function defaults(): number;
+export function set_defaults(a: number): void;
+export function __wbg_reviewlogentry_free(a: number): void;
+export function reviewlogentry_card_id(a: number, b: number): void;
+export function reviewlogentry_rating(a: number, b: number): void;
+export function reviewlogentry_interval_after(a: number): number;
+export function __wbg_fsrsscheduler_free(a: number): void;
+export function fsrsscheduler_new(): number;
+export function fsrsscheduler_create_card(a: number, b: number, c: number, d: number): number;
+export function fsrsscheduler_review_card(a: number, b: number, c: number, d: number, e: number): number;
+export function fsrsscheduler_retrievability(a: number, b: number): number;
+export function fsrsscheduler_get_due(a: number, b: number, c: number): void;
+export function fsrsscheduler_all_cards(a: number, b: number): void;
+export function reviewlogentry_reviewed_at(a: number): number;
+export function reviewlogentry_stability_before(a: number): number;
+export function reviewlogentry_stability_after(a: number): number;
+export function reviewlogentry_interval_before(a: number): number;
+export function __wbindgen_add_to_stack_pointer(a: number): number;
+export function __wbindgen_free(a: number, b: number, c: number): void;
+export function __wbindgen_malloc(a: number, b: number): number;
+export function __wbindgen_realloc(a: number, b: number, c: number, d: number): number;
+export function __wbindgen_exn_store(a: number): void;

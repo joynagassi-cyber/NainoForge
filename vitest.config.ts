@@ -14,5 +14,11 @@ export default defineConfig({
       include: ['packages/*/src/**/*.ts'],
       exclude: ['**/dist/**', '**/*.test.ts', '**/*.spec.ts'],
     },
+    resolve: {
+      alias: {
+        // fsrs: ../pkg/fsrs_bindings -> packages/fsrs/src/pkg/fsrs_bindings (wasm artifacts)
+        '../pkg/fsrs_bindings': new URL('packages/fsrs/src/pkg/fsrs_bindings', import.meta.url).pathname,
+      },
+    },
   },
 });

@@ -1,0 +1,21 @@
+[package]
+name = "fsrs_bindings"
+version = "6.6.1"
+edition = "2021"
+description = "FSRS-4 scheduling engine — Rust core with WASM bindings for @nainoforge/fsrs"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+wasm-bindgen = "=0.2.92"
+js-sys = "=0.3.69"
+serde = { version = "=1.0.193", features = ["derive"] }
+serde-wasm-bindgen = "=0.5.0"
+
+[package.metadata.wasm-pack]
+wasm-opt = false
+
+[profile.release]
+opt-level = 3
+lto = true
