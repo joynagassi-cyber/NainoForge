@@ -1,1 +1,4 @@
-// TODO: stub
+// ─── API public API ────────────────────────────────────────────
+
+export * from './contracts.js';
+export { ApiClient } from './engine.js';
