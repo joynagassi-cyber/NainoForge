@@ -6,8 +6,10 @@
   "scripts": {
     "build": "tsc",
     "typecheck": "tsc --noEmit",
-    "test": "echo 'no tests yet' > /dev/null"
+    "test": "vitest run"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@nainoforge/core": "workspace:*"
+  },
   "devDependencies": {}
 }

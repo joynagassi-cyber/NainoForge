@@ -3,7 +3,7 @@
   "private": true,
   "packageManager": "pnpm@10.33.2",
   "scripts": {
-    "build": "pnpm -r run build",
+    "build": "tsc --build tsconfig.json",
     "lint": "eslint . --ext .ts,.tsx",
     "typecheck": "tsc --build tsconfig.json",
     "test": "vitest run",

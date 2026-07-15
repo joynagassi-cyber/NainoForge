@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "ESNext",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
@@ -9,6 +10,19 @@
     "skipLibCheck": true,
     "declaration": true,
     "composite": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "paths": {
+      "@nainoforge/core/*": ["packages/core/src/*"],
+      "@nainoforge/shared/*": ["packages/shared/src/*"],
+      "@nainoforge/ai/*": ["packages/ai/src/*"],
+      "@nainoforge/imprint/*": ["packages/imprint/src/*"],
+      "@nainoforge/fsrs/*": ["packages/fsrs/src/*"],
+      "@nainoforge/student-ai/*": ["packages/student-ai/src/*"],
+      "@nainoforge/cosmos/*": ["packages/cosmos/src/*"],
+      "@nainoforge/vector/*": ["packages/vector/src/*"],
+      "@nainoforge/bundle/*": ["packages/bundle/src/*"],
+      "@nainoforge/extract/*": ["packages/extract/src/*"],
+      "@nainoforge/api/*": ["packages/api/src/*"]
+    }
   }
 }
