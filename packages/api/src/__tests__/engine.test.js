@@ -1,0 +1,86 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const vitest_1 = require("vitest");
+// ponytail: manual mock for Supabase client factory.
+// Patching module-level export avoids timing issues with vi.mock hoisting.
+const mockFrom = vitest_1.vi.fn(() => ({
+    insert: vitest_1.vi.fn(() => ({
+        select: vitest_1.vi.fn(() => ({
+            single: vitest_1.vi.fn(),
+        })),
+    })),
+    select: vitest_1.vi.fn(() => ({
+        order: vitest_1.vi.fn(),
+    })),
+}));
+vitest_1.vi.mock('../supabase.js', () => ({
+    createSupabaseClient: () => ({
+        from: mockFrom,
+    }),
+}));
+const SAMPLE = {
+    title: 't',
+    content_markdown: 'md',
+    source_type: 'web_article',
+    metadata: {},
+};
+(0, vitest_1.describe)('ApiClient', () => {
+    (0, vitest_1.it)('pushSource delegates to supabase from("nf_sources").insert().select().single()', async () => {
+        const { ApiClient } = await import('../engine.js');
+        const client = new ApiClient({ url: 'http://localhost', anonKey: 'x' });
+        mockFrom.mockReturnValue({
+            insert: () => ({
+                select: () => ({
+                    single: () => Promise.resolve({ data: { id: 'remote-1' }, error: null }),
+                }),
+            }),
+        });
+        const id = await client.pushSource(SAMPLE);
+        (0, vitest_1.expect)(id).toBe('remote-1');
+    });
+    (0, vitest_1.it)('pullSources maps rows to SourcePayload[]', async () => {
+        const { ApiClient } = await import('../engine.js');
+        const client = new ApiClient({ url: 'http://localhost', anonKey: 'x' });
+        mockFrom.mockReturnValueOnce({
+            select: () => ({
+                order: () => Promise.resolve({
+                    data: [{ id: 'r1', title: 't', raw_text: 'md', source_type: 'web_article', url: null, created_at: '2026-01-01T00:00:00Z' }],
+                    error: null,
+                }),
+            }),
+        });
+        const rows = await client.pullSources();
+        (0, vitest_1.expect)(rows).toHaveLength(1);
+        (0, vitest_1.expect)(rows[0].title).toBe('t');
+    });
+    (0, vitest_1.it)('sync pushes all queued items and reports conflicts', async () => {
+        const { ApiClient } = await import('../engine.js');
+        const client = new ApiClient({ url: 'http://localhost', anonKey: 'x' });
+        mockFrom.mockReturnValue({
+            insert: () => ({
+                select: () => ({
+                    single: () => Promise.resolve({ data: { id: 'remote-1' }, error: null }),
+                }),
+            }),
+        });
+        const result = await client.sync([SAMPLE, SAMPLE]);
+        (0, vitest_1.expect)(result.synced).toEqual(['remote-1', 'remote-1']);
+        (0, vitest_1.expect)(result.conflicts).toEqual([]);
+    });
+    (0, vitest_1.it)('sync reports conflicts when pushSource throws', async () => {
+        const { ApiClient } = await import('../engine.js');
+        const client = new ApiClient({ url: 'http://localhost', anonKey: 'x' });
+        mockFrom.mockReturnValue({
+            insert: () => ({
+                select: () => ({
+                    single: () => Promise.resolve({ data: null, error: { message: 'conflict' } }),
+                }),
+            }),
+        });
+        const result = await client.sync([SAMPLE]);
+        (0, vitest_1.expect)(result.synced).toEqual([]);
+        (0, vitest_1.expect)(result.conflicts).toHaveLength(1);
+        (0, vitest_1.expect)(result.conflicts[0]).toEqual({ local_id: 't', remote_id: 'unknown' });
+    });
+});
+//# sourceMappingURL=engine.test.js.map
