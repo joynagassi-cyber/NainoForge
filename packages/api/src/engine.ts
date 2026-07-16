@@ -40,6 +40,8 @@ export class ApiClient implements IApiClient {
       .order('created_at', { ascending: false });
 
     if (error) throw new Error(`pullSources failed: ${error.message}`);
+    // ponytail: debug — remove once CI green.
+    console.log('[pullSources debug] result=', JSON.stringify({ typeof_data: typeof data, is_array: Array.isArray(data) }), 'url was a GET');
     return (data ?? []).map((row) => ({
       title: row.title,
       content_markdown: row.raw_text ?? '',

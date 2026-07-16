@@ -15,6 +15,7 @@ export default defineConfig({
       exclude: ['**/dist/**', '**/*.test.ts', '**/*.spec.ts'],
     },
     exclude: ['**/dist/**'],
+    setupFiles: ['packages/api/src/__tests__/setup-fetch-mock.ts'],
     resolve: {
       alias: {
         '../pkg/fsrs_bindings': new URL('packages/fsrs/src/pkg/fsrs_bindings', import.meta.url).pathname,
