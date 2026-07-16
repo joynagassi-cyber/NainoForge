@@ -8,6 +8,8 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run"
   },
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+    "mammoth": "^1.6.0",
+    "pdfjs-dist": "4.0.379"
+  }
 }

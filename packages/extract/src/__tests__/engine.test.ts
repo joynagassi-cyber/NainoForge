@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { FormatDetector, TextExtractor } from '../engine.js';
 
 describe('FormatDetector', () => {
@@ -27,9 +27,23 @@ describe('TextExtractor', () => {
     expect(result.text).toBe('hello world');
   });
 
-  it('returns stub for unsupported format', async () => {
-    const blob = new Blob(['x'], { type: 'application/pdf' });
-    const result = await ex.extract(blob, 'pdf');
+  it('extracts text from md File', async () => {
+    const file = new File(['# Title\n\nbody'], 'a.md', { type: 'text/markdown' });
+    const result = await ex.extract(file, 'md');
+    expect(result.format).toBe('md');
+    expect(result.text).toContain('Title');
+  });
+
+  it('returns explicit stub for unsupported format', async () => {
+    const blob = new Blob(['x'], { type: 'application/epub+zip' });
+    const result = await ex.extract(blob, 'epub');
     expect((result.metadata as any).stub).toBe(true);
+  });
+
+  it('pdf extraction falls back gracefully on failure', async () => {
+    const bad = new Blob(['not-a-pdf'], { type: 'application/pdf' });
+    const result = await ex.extract(bad, 'pdf');
+    expect(result.format).toBe('pdf');
+    expect(result.text).toContain('[pdf extraction failed');
   });
 });

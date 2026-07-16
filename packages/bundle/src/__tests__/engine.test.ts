@@ -41,4 +41,20 @@ describe('BundleExporter', () => {
     const out = exporter.render(bundle);
     expect(out.startsWith('# NainoForge Export')).toBe(true);
   });
+
+  it('render anki returns TSV-like card format', () => {
+    const bundle = exporter.build([SOURCE], [NOTE]);
+    bundle.format = 'anki';
+    const out = exporter.render(bundle);
+    expect(out).toContain('Front\tBack\tTags');
+    expect(out).toContain('nainoforge');
+  });
+
+  it('render pdf returns structured JSON placeholder', () => {
+    const bundle = exporter.build([SOURCE], [NOTE]);
+    bundle.format = 'pdf';
+    const out = exporter.render(bundle);
+    expect(() => JSON.parse(out)).not.toThrow();
+    expect(JSON.parse(out).format).toBe('pdf');
+  });
 });

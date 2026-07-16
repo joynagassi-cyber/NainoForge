@@ -9,7 +9,7 @@
       "source_file": "scaffold.js",
       "source_location": "L1",
       "id": "scaffold_js",
-      "community": 2,
+      "community": 4,
       "norm_label": "scaffold.js"
     },
     {
@@ -18,7 +18,7 @@
       "source_file": "scaffold.js",
       "source_location": "L6",
       "id": "scaffold_write",
-      "community": 2,
+      "community": 4,
       "norm_label": "write()"
     },
     {
@@ -144,7 +144,7 @@
       "source_file": "packages\\api\\src\\contracts.ts",
       "source_location": "L1",
       "id": "packages_api_src_contracts_ts",
-      "community": 13,
+      "community": 11,
       "norm_label": "contracts.ts"
     },
     {
@@ -153,52 +153,61 @@
       "source_file": "packages\\api\\src\\engine.ts",
       "source_location": "L1",
       "id": "packages_api_src_engine_ts",
-      "community": 13,
+      "community": 11,
       "norm_label": "engine.ts"
     },
     {
       "label": "ApiClient",
       "file_type": "code",
       "source_file": "packages\\api\\src\\engine.ts",
-      "source_location": "L6",
+      "source_location": "L7",
       "id": "engine_apiclient",
-      "community": 13,
+      "community": 11,
       "norm_label": "apiclient"
     },
     {
       "label": ".constructor()",
       "file_type": "code",
       "source_file": "packages\\api\\src\\engine.ts",
-      "source_location": "L7",
+      "source_location": "L8",
       "id": "engine_apiclient_constructor",
-      "community": 13,
+      "community": 11,
       "norm_label": ".constructor()"
+    },
+    {
+      "label": ".#client()",
+      "file_type": "code",
+      "source_file": "packages\\api\\src\\engine.ts",
+      "source_location": "L10",
+      "id": "engine_apiclient_client",
+      "community": 11,
+      "norm_label": ".#client()"
     },
     {
       "label": ".pushSource()",
       "file_type": "code",
       "source_file": "packages\\api\\src\\engine.ts",
-      "source_location": "L9",
+      "source_location": "L14",
       "id": "engine_apiclient_pushsource",
-      "community": 13,
+      "community": 11,
       "norm_label": ".pushsource()"
     },
     {
       "label": ".pullSources()",
       "file_type": "code",
       "source_file": "packages\\api\\src\\engine.ts",
-      "source_location": "L13",
+      "source_location": "L35",
       "id": "engine_apiclient_pullsources",
-      "community": 13,
+      "community": 11,
       "norm_label": ".pullsources()"
     },
     {
       "label": ".sync()",
       "file_type": "code",
       "source_file": "packages\\api\\src\\engine.ts",
-      "source_location": "L17",
+      "source_location": "L52",
       "id": "engine_apiclient_sync",
-      "community": 13,
+      "community": 11,
       "norm_label": ".sync()"
     },
     {
@@ -211,12 +220,30 @@
       "norm_label": "index.ts"
     },
     {
+      "label": "supabase.ts",
+      "file_type": "code",
+      "source_file": "packages\\api\\src\\supabase.ts",
+      "source_location": "L1",
+      "id": "packages_api_src_supabase_ts",
+      "community": 11,
+      "norm_label": "supabase.ts"
+    },
+    {
+      "label": "createSupabaseClient()",
+      "file_type": "code",
+      "source_file": "packages\\api\\src\\supabase.ts",
+      "source_location": "L6",
+      "id": "supabase_createsupabaseclient",
+      "community": 11,
+      "norm_label": "createsupabaseclient()"
+    },
+    {
       "label": "engine.test.ts",
       "file_type": "code",
       "source_file": "packages\\api\\src\\__tests__\\engine.test.ts",
       "source_location": "L1",
       "id": "packages_api_src_tests_engine_test_ts",
-      "community": 13,
+      "community": 27,
       "norm_label": "engine.test.ts"
     },
     {
@@ -225,7 +252,7 @@
       "source_file": "packages\\bundle\\src\\contracts.ts",
       "source_location": "L1",
       "id": "packages_bundle_src_contracts_ts",
-      "community": 15,
+      "community": 13,
       "norm_label": "contracts.ts"
     },
     {
@@ -234,44 +261,62 @@
       "source_file": "packages\\bundle\\src\\engine.ts",
       "source_location": "L1",
       "id": "packages_bundle_src_engine_ts",
-      "community": 15,
+      "community": 13,
       "norm_label": "engine.ts"
     },
     {
       "label": "BundleExporter",
       "file_type": "code",
       "source_file": "packages\\bundle\\src\\engine.ts",
-      "source_location": "L5",
+      "source_location": "L6",
       "id": "engine_bundleexporter",
-      "community": 15,
+      "community": 13,
       "norm_label": "bundleexporter"
     },
     {
       "label": ".build()",
       "file_type": "code",
       "source_file": "packages\\bundle\\src\\engine.ts",
-      "source_location": "L6",
+      "source_location": "L7",
       "id": "engine_bundleexporter_build",
-      "community": 15,
+      "community": 13,
       "norm_label": ".build()"
     },
     {
       "label": ".render()",
       "file_type": "code",
       "source_file": "packages\\bundle\\src\\engine.ts",
-      "source_location": "L15",
+      "source_location": "L16",
       "id": "engine_bundleexporter_render",
-      "community": 15,
+      "community": 13,
       "norm_label": ".render()"
     },
     {
       "label": ".renderMarkdown()",
       "file_type": "code",
       "source_file": "packages\\bundle\\src\\engine.ts",
-      "source_location": "L27",
+      "source_location": "L31",
       "id": "engine_bundleexporter_rendermarkdown",
-      "community": 15,
+      "community": 13,
       "norm_label": ".rendermarkdown()"
+    },
+    {
+      "label": ".renderAnki()",
+      "file_type": "code",
+      "source_file": "packages\\bundle\\src\\engine.ts",
+      "source_location": "L47",
+      "id": "engine_bundleexporter_renderanki",
+      "community": 13,
+      "norm_label": ".renderanki()"
+    },
+    {
+      "label": ".renderPdfPlaceholder()",
+      "file_type": "code",
+      "source_file": "packages\\bundle\\src\\engine.ts",
+      "source_location": "L67",
+      "id": "engine_bundleexporter_renderpdfplaceholder",
+      "community": 13,
+      "norm_label": ".renderpdfplaceholder()"
     },
     {
       "label": "index.ts",
@@ -279,7 +324,7 @@
       "source_file": "packages\\bundle\\src\\index.ts",
       "source_location": "L1",
       "id": "packages_bundle_src_index_ts",
-      "community": 27,
+      "community": 28,
       "norm_label": "index.ts"
     },
     {
@@ -288,7 +333,7 @@
       "source_file": "packages\\bundle\\src\\__tests__\\engine.test.ts",
       "source_location": "L1",
       "id": "packages_bundle_src_tests_engine_test_ts",
-      "community": 15,
+      "community": 13,
       "norm_label": "engine.test.ts"
     },
     {
@@ -306,7 +351,7 @@
       "source_file": "packages\\core\\src\\domain.d.ts",
       "source_location": "L1",
       "id": "packages_core_src_domain_d_ts",
-      "community": 28,
+      "community": 29,
       "norm_label": "domain.d.ts"
     },
     {
@@ -315,7 +360,7 @@
       "source_file": "packages\\core\\src\\domain.js",
       "source_location": "L1",
       "id": "packages_core_src_domain_js",
-      "community": 29,
+      "community": 30,
       "norm_label": "domain.js"
     },
     {
@@ -333,7 +378,7 @@
       "source_file": "packages\\core\\src\\index.ts",
       "source_location": "L1",
       "id": "packages_core_src_index_ts",
-      "community": 30,
+      "community": 31,
       "norm_label": "index.ts"
     },
     {
@@ -342,7 +387,7 @@
       "source_file": "packages\\cosmos\\src\\contracts.ts",
       "source_location": "L1",
       "id": "packages_cosmos_src_contracts_ts",
-      "community": 11,
+      "community": 12,
       "norm_label": "contracts.ts"
     },
     {
@@ -351,7 +396,7 @@
       "source_file": "packages\\cosmos\\src\\engine.ts",
       "source_location": "L1",
       "id": "packages_cosmos_src_engine_ts",
-      "community": 11,
+      "community": 12,
       "norm_label": "engine.ts"
     },
     {
@@ -360,7 +405,7 @@
       "source_file": "packages\\cosmos\\src\\engine.ts",
       "source_location": "L5",
       "id": "engine_conceptgraph",
-      "community": 11,
+      "community": 12,
       "norm_label": "conceptgraph"
     },
     {
@@ -369,7 +414,7 @@
       "source_file": "packages\\cosmos\\src\\engine.ts",
       "source_location": "L10",
       "id": "engine_conceptgraph_addconcept",
-      "community": 11,
+      "community": 12,
       "norm_label": ".addconcept()"
     },
     {
@@ -378,7 +423,7 @@
       "source_file": "packages\\cosmos\\src\\engine.ts",
       "source_location": "L15",
       "id": "engine_conceptgraph_addrelation",
-      "community": 11,
+      "community": 12,
       "norm_label": ".addrelation()"
     },
     {
@@ -387,7 +432,7 @@
       "source_file": "packages\\cosmos\\src\\engine.ts",
       "source_location": "L22",
       "id": "engine_conceptgraph_getconcept",
-      "community": 11,
+      "community": 12,
       "norm_label": ".getconcept()"
     },
     {
@@ -396,7 +441,7 @@
       "source_file": "packages\\cosmos\\src\\engine.ts",
       "source_location": "L26",
       "id": "engine_conceptgraph_getrelations",
-      "community": 11,
+      "community": 12,
       "norm_label": ".getrelations()"
     },
     {
@@ -405,7 +450,7 @@
       "source_file": "packages\\cosmos\\src\\engine.ts",
       "source_location": "L30",
       "id": "engine_conceptgraph_neighbors",
-      "community": 11,
+      "community": 12,
       "norm_label": ".neighbors()"
     },
     {
@@ -414,7 +459,7 @@
       "source_file": "packages\\cosmos\\src\\engine.ts",
       "source_location": "L36",
       "id": "engine_conceptgraph_topologicalsort",
-      "community": 11,
+      "community": 12,
       "norm_label": ".topologicalsort()"
     },
     {
@@ -423,7 +468,7 @@
       "source_file": "packages\\cosmos\\src\\index.ts",
       "source_location": "L1",
       "id": "packages_cosmos_src_index_ts",
-      "community": 31,
+      "community": 32,
       "norm_label": "index.ts"
     },
     {
@@ -432,7 +477,7 @@
       "source_file": "packages\\cosmos\\src\\__tests__\\engine.test.ts",
       "source_location": "L1",
       "id": "packages_cosmos_src_tests_engine_test_ts",
-      "community": 11,
+      "community": 12,
       "norm_label": "engine.test.ts"
     },
     {
@@ -441,7 +486,7 @@
       "source_file": "packages\\extension\\src\\background.ts",
       "source_location": "L1",
       "id": "packages_extension_src_background_ts",
-      "community": 32,
+      "community": 33,
       "norm_label": "background.ts"
     },
     {
@@ -450,7 +495,7 @@
       "source_file": "packages\\extension\\src\\content.ts",
       "source_location": "L1",
       "id": "packages_extension_src_content_ts",
-      "community": 3,
+      "community": 2,
       "norm_label": "content.ts"
     },
     {
@@ -459,7 +504,7 @@
       "source_file": "packages\\extension\\src\\content.ts",
       "source_location": "L6",
       "id": "content_init",
-      "community": 3,
+      "community": 2,
       "norm_label": "init()"
     },
     {
@@ -468,7 +513,7 @@
       "source_file": "packages\\extension\\src\\content.ts",
       "source_location": "L14",
       "id": "content_onready",
-      "community": 3,
+      "community": 2,
       "norm_label": "onready()"
     },
     {
@@ -477,7 +522,7 @@
       "source_file": "packages\\extension\\src\\content.ts",
       "source_location": "L33",
       "id": "content_extractvideoid",
-      "community": 3,
+      "community": 2,
       "norm_label": "extractvideoid()"
     },
     {
@@ -486,7 +531,7 @@
       "source_file": "packages\\extension\\src\\content.ts",
       "source_location": "L38",
       "id": "content_isyoutubewatchpage",
-      "community": 3,
+      "community": 2,
       "norm_label": "isyoutubewatchpage()"
     },
     {
@@ -495,7 +540,7 @@
       "source_file": "packages\\extension\\src\\content.ts",
       "source_location": "L43",
       "id": "content_waitforplayerresponse",
-      "community": 3,
+      "community": 2,
       "norm_label": "waitforplayerresponse()"
     },
     {
@@ -504,7 +549,7 @@
       "source_file": "packages\\extension\\src\\content.ts",
       "source_location": "L57",
       "id": "content_youtubeautocapture",
-      "community": 3,
+      "community": 2,
       "norm_label": "youtubeautocapture"
     },
     {
@@ -513,7 +558,7 @@
       "source_file": "packages\\extension\\src\\content.ts",
       "source_location": "L61",
       "id": "content_youtubeautocapture_constructor",
-      "community": 3,
+      "community": 2,
       "norm_label": ".constructor()"
     },
     {
@@ -522,7 +567,7 @@
       "source_file": "packages\\extension\\src\\content.ts",
       "source_location": "L65",
       "id": "content_youtubeautocapture_start",
-      "community": 3,
+      "community": 2,
       "norm_label": ".start()"
     },
     {
@@ -531,7 +576,7 @@
       "source_file": "packages\\extension\\src\\content.ts",
       "source_location": "L75",
       "id": "content_youtubeautocapture_onmutation",
-      "community": 3,
+      "community": 2,
       "norm_label": ".onmutation()"
     },
     {
@@ -540,7 +585,7 @@
       "source_file": "packages\\extension\\src\\content.ts",
       "source_location": "L84",
       "id": "content_youtubeautocapture_inject",
-      "community": 3,
+      "community": 2,
       "norm_label": ".inject()"
     },
     {
@@ -549,7 +594,7 @@
       "source_file": "packages\\extension\\src\\forge-badge.ts",
       "source_location": "L1",
       "id": "packages_extension_src_forge_badge_ts",
-      "community": 3,
+      "community": 2,
       "norm_label": "forge-badge.ts"
     },
     {
@@ -558,7 +603,7 @@
       "source_file": "packages\\extension\\src\\forge-badge.ts",
       "source_location": "L75",
       "id": "forge_badge_injectstyle",
-      "community": 3,
+      "community": 2,
       "norm_label": "injectstyle()"
     },
     {
@@ -567,7 +612,7 @@
       "source_file": "packages\\extension\\src\\forge-badge.ts",
       "source_location": "L83",
       "id": "forge_badge_createspinner",
-      "community": 3,
+      "community": 2,
       "norm_label": "createspinner()"
     },
     {
@@ -576,7 +621,7 @@
       "source_file": "packages\\extension\\src\\forge-badge.ts",
       "source_location": "L90",
       "id": "forge_badge_createbutton",
-      "community": 3,
+      "community": 2,
       "norm_label": "createbutton()"
     },
     {
@@ -585,7 +630,7 @@
       "source_file": "packages\\extension\\src\\forge-badge.ts",
       "source_location": "L105",
       "id": "forge_badge_injectforgebadge",
-      "community": 3,
+      "community": 2,
       "norm_label": "injectforgebadge()"
     },
     {
@@ -594,7 +639,7 @@
       "source_file": "packages\\extension\\src\\forge-badge.ts",
       "source_location": "L152",
       "id": "forge_badge_injectyoutubebadge",
-      "community": 3,
+      "community": 2,
       "norm_label": "injectyoutubebadge()"
     },
     {
@@ -603,7 +648,7 @@
       "source_file": "packages\\extension\\src\\types.d.ts",
       "source_location": "L1",
       "id": "packages_extension_src_types_d_ts",
-      "community": 33,
+      "community": 34,
       "norm_label": "types.d.ts"
     },
     {
@@ -612,7 +657,7 @@
       "source_file": "packages\\extension\\src\\extract\\article-detector.ts",
       "source_location": "L1",
       "id": "packages_extension_src_extract_article_detector_ts",
-      "community": 3,
+      "community": 2,
       "norm_label": "article-detector.ts"
     },
     {
@@ -621,7 +666,7 @@
       "source_file": "packages\\extension\\src\\extract\\article-detector.ts",
       "source_location": "L4",
       "id": "article_detector_counttextdepth",
-      "community": 3,
+      "community": 2,
       "norm_label": "counttextdepth()"
     },
     {
@@ -630,7 +675,7 @@
       "source_file": "packages\\extension\\src\\extract\\article-detector.ts",
       "source_location": "L15",
       "id": "article_detector_hasogbtypearticle",
-      "community": 3,
+      "community": 2,
       "norm_label": "hasogbtypearticle()"
     },
     {
@@ -639,7 +684,7 @@
       "source_file": "packages\\extension\\src\\extract\\article-detector.ts",
       "source_location": "L21",
       "id": "article_detector_isarticlepage",
-      "community": 3,
+      "community": 2,
       "norm_label": "isarticlepage()"
     },
     {
@@ -729,7 +774,7 @@
       "source_file": "packages\\extension\\src\\extract\\readability.ts",
       "source_location": "L1",
       "id": "packages_extension_src_extract_readability_ts",
-      "community": 3,
+      "community": 1,
       "norm_label": "readability.ts"
     },
     {
@@ -738,7 +783,7 @@
       "source_file": "packages\\extension\\src\\extract\\readability.ts",
       "source_location": "L21",
       "id": "readability_estimatewordcount",
-      "community": 3,
+      "community": 1,
       "norm_label": "estimatewordcount()"
     },
     {
@@ -747,7 +792,7 @@
       "source_file": "packages\\extension\\src\\extract\\readability.ts",
       "source_location": "L26",
       "id": "readability_extractarticle",
-      "community": 3,
+      "community": 1,
       "norm_label": "extractarticle()"
     },
     {
@@ -846,7 +891,7 @@
       "source_file": "packages\\extension\\src\\sidepanel\\sidepanel.ts",
       "source_location": "L1",
       "id": "packages_extension_src_sidepanel_sidepanel_ts",
-      "community": 34,
+      "community": 35,
       "norm_label": "sidepanel.ts"
     },
     {
@@ -855,7 +900,7 @@
       "source_file": "packages\\extension\\src\\__tests__\\article-detector.spec.ts",
       "source_location": "L1",
       "id": "packages_extension_src_tests_article_detector_spec_ts",
-      "community": 3,
+      "community": 2,
       "norm_label": "article-detector.spec.ts"
     },
     {
@@ -864,7 +909,7 @@
       "source_file": "packages\\extension\\src\\__tests__\\article-detector.spec.ts",
       "source_location": "L5",
       "id": "article_detector_spec_doc",
-      "community": 3,
+      "community": 2,
       "norm_label": "doc()"
     },
     {
@@ -882,7 +927,7 @@
       "source_file": "packages\\extension\\src\\__tests__\\forge-badge.spec.ts",
       "source_location": "L1",
       "id": "packages_extension_src_tests_forge_badge_spec_ts",
-      "community": 3,
+      "community": 2,
       "norm_label": "forge-badge.spec.ts"
     },
     {
@@ -891,7 +936,7 @@
       "source_file": "packages\\extract\\src\\contracts.ts",
       "source_location": "L1",
       "id": "packages_extract_src_contracts_ts",
-      "community": 14,
+      "community": 5,
       "norm_label": "contracts.ts"
     },
     {
@@ -900,53 +945,71 @@
       "source_file": "packages\\extract\\src\\engine.ts",
       "source_location": "L1",
       "id": "packages_extract_src_engine_ts",
-      "community": 14,
+      "community": 5,
       "norm_label": "engine.ts"
     },
     {
       "label": "FormatDetector",
       "file_type": "code",
       "source_file": "packages\\extract\\src\\engine.ts",
-      "source_location": "L22",
+      "source_location": "L23",
       "id": "engine_formatdetector",
-      "community": 14,
+      "community": 5,
       "norm_label": "formatdetector"
     },
     {
       "label": ".detectFromExtension()",
       "file_type": "code",
       "source_file": "packages\\extract\\src\\engine.ts",
-      "source_location": "L23",
+      "source_location": "L24",
       "id": "engine_formatdetector_detectfromextension",
-      "community": 14,
+      "community": 5,
       "norm_label": ".detectfromextension()"
     },
     {
       "label": ".detectFromMime()",
       "file_type": "code",
       "source_file": "packages\\extract\\src\\engine.ts",
-      "source_location": "L28",
+      "source_location": "L29",
       "id": "engine_formatdetector_detectfrommime",
-      "community": 14,
+      "community": 5,
       "norm_label": ".detectfrommime()"
     },
     {
       "label": "TextExtractor",
       "file_type": "code",
       "source_file": "packages\\extract\\src\\engine.ts",
-      "source_location": "L33",
+      "source_location": "L34",
       "id": "engine_textextractor",
-      "community": 14,
+      "community": 5,
       "norm_label": "textextractor"
     },
     {
       "label": ".extract()",
       "file_type": "code",
       "source_file": "packages\\extract\\src\\engine.ts",
-      "source_location": "L34",
+      "source_location": "L35",
       "id": "engine_textextractor_extract",
-      "community": 14,
+      "community": 5,
       "norm_label": ".extract()"
+    },
+    {
+      "label": ".#extractPdf()",
+      "file_type": "code",
+      "source_file": "packages\\extract\\src\\engine.ts",
+      "source_location": "L54",
+      "id": "engine_textextractor_extractpdf",
+      "community": 5,
+      "norm_label": ".#extractpdf()"
+    },
+    {
+      "label": ".#extractDocx()",
+      "file_type": "code",
+      "source_file": "packages\\extract\\src\\engine.ts",
+      "source_location": "L90",
+      "id": "engine_textextractor_extractdocx",
+      "community": 5,
+      "norm_label": ".#extractdocx()"
     },
     {
       "label": "index.ts",
@@ -954,7 +1017,7 @@
       "source_file": "packages\\extract\\src\\index.ts",
       "source_location": "L1",
       "id": "packages_extract_src_index_ts",
-      "community": 35,
+      "community": 36,
       "norm_label": "index.ts"
     },
     {
@@ -963,7 +1026,7 @@
       "source_file": "packages\\extract\\src\\__tests__\\engine.test.ts",
       "source_location": "L1",
       "id": "packages_extract_src_tests_engine_test_ts",
-      "community": 14,
+      "community": 5,
       "norm_label": "engine.test.ts"
     },
     {
@@ -1494,7 +1557,7 @@
       "source_file": "packages\\fsrs\\pkg\\fsrs_bindings_bg.wasm.d.ts",
       "source_location": "L1",
       "id": "packages_fsrs_pkg_fsrs_bindings_bg_wasm_d_ts",
-      "community": 36,
+      "community": 37,
       "norm_label": "fsrs_bindings_bg.wasm.d.ts"
     },
     {
@@ -1521,7 +1584,7 @@
       "source_file": "packages\\fsrs\\pkg\\index.js",
       "source_location": "L1",
       "id": "packages_fsrs_pkg_index_js",
-      "community": 8,
+      "community": 5,
       "norm_label": "index.js"
     },
     {
@@ -1530,7 +1593,7 @@
       "source_file": "packages\\fsrs\\src\\index.ts",
       "source_location": "L13",
       "id": "index_ensureloaded",
-      "community": 8,
+      "community": 5,
       "norm_label": "ensureloaded()"
     },
     {
@@ -1539,7 +1602,7 @@
       "source_file": "packages\\fsrs\\src\\index.ts",
       "source_location": "L30",
       "id": "index_parserating",
-      "community": 8,
+      "community": 5,
       "norm_label": "parserating()"
     },
     {
@@ -1548,7 +1611,7 @@
       "source_file": "packages\\fsrs\\src\\index.ts",
       "source_location": "L47",
       "id": "index_scheduler",
-      "community": 8,
+      "community": 5,
       "norm_label": "scheduler"
     },
     {
@@ -1557,7 +1620,7 @@
       "source_file": "packages\\fsrs\\src\\index.ts",
       "source_location": "L50",
       "id": "index_scheduler_constructor",
-      "community": 8,
+      "community": 5,
       "norm_label": ".constructor()"
     },
     {
@@ -1566,7 +1629,7 @@
       "source_file": "packages\\fsrs\\src\\index.ts",
       "source_location": "L54",
       "id": "index_scheduler_createcard",
-      "community": 8,
+      "community": 5,
       "norm_label": ".createcard()"
     },
     {
@@ -1575,7 +1638,7 @@
       "source_file": "packages\\fsrs\\src\\index.ts",
       "source_location": "L59",
       "id": "index_scheduler_reviewcard",
-      "community": 8,
+      "community": 5,
       "norm_label": ".reviewcard()"
     },
     {
@@ -1584,7 +1647,7 @@
       "source_file": "packages\\fsrs\\src\\index.ts",
       "source_location": "L64",
       "id": "index_scheduler_retrievability",
-      "community": 8,
+      "community": 5,
       "norm_label": ".retrievability()"
     },
     {
@@ -1593,7 +1656,7 @@
       "source_file": "packages\\fsrs\\src\\index.ts",
       "source_location": "L69",
       "id": "index_scheduler_due",
-      "community": 8,
+      "community": 5,
       "norm_label": ".due()"
     },
     {
@@ -1602,7 +1665,7 @@
       "source_file": "packages\\fsrs\\src\\index.ts",
       "source_location": "L74",
       "id": "index_scheduler_all",
-      "community": 8,
+      "community": 5,
       "norm_label": ".all()"
     },
     {
@@ -1611,7 +1674,7 @@
       "source_file": "packages\\fsrs\\src\\index.ts",
       "source_location": "L80",
       "id": "index_getscheduler",
-      "community": 8,
+      "community": 5,
       "norm_label": "getscheduler()"
     },
     {
@@ -1620,7 +1683,7 @@
       "source_file": "packages\\fsrs\\src\\index.ts",
       "source_location": "L1",
       "id": "packages_fsrs_src_index_ts",
-      "community": 8,
+      "community": 5,
       "norm_label": "index.ts"
     },
     {
@@ -1890,7 +1953,7 @@
       "source_file": "packages\\fsrs\\src\\lib.rs",
       "source_location": "L306",
       "id": "lib_fsrsscheduler_get_due",
-      "community": 5,
+      "community": 3,
       "norm_label": ".get_due()"
     },
     {
@@ -1926,7 +1989,7 @@
       "source_file": "packages\\fsrs\\src\\pkg\\fsrs_bindings_bg.wasm.d.ts",
       "source_location": "L1",
       "id": "packages_fsrs_src_pkg_fsrs_bindings_bg_wasm_d_ts",
-      "community": 37,
+      "community": 38,
       "norm_label": "fsrs_bindings_bg.wasm.d.ts"
     },
     {
@@ -1971,7 +2034,7 @@
       "source_file": "packages\\fsrs\\src\\__wasm__\\fsrs_bindings_bg.wasm.d.ts",
       "source_location": "L1",
       "id": "packages_fsrs_src_wasm_fsrs_bindings_bg_wasm_d_ts",
-      "community": 38,
+      "community": 39,
       "norm_label": "fsrs_bindings_bg.wasm.d.ts"
     },
     {
@@ -2079,7 +2142,7 @@
       "source_file": "packages\\shared\\src\\db-schema.ts",
       "source_location": "L1",
       "id": "packages_shared_src_db_schema_ts",
-      "community": 39,
+      "community": 40,
       "norm_label": "db-schema.ts"
     },
     {
@@ -2151,7 +2214,7 @@
       "source_file": "packages\\shared\\src\\index.ts",
       "source_location": "L1",
       "id": "packages_shared_src_index_ts",
-      "community": 40,
+      "community": 41,
       "norm_label": "index.ts"
     },
     {
@@ -2277,7 +2340,7 @@
       "source_file": "packages\\student-ai\\src\\contracts.ts",
       "source_location": "L1",
       "id": "packages_student_ai_src_contracts_ts",
-      "community": 5,
+      "community": 3,
       "norm_label": "contracts.ts"
     },
     {
@@ -2286,7 +2349,7 @@
       "source_file": "packages\\student-ai\\src\\engine.ts",
       "source_location": "L1",
       "id": "packages_student_ai_src_engine_ts",
-      "community": 5,
+      "community": 3,
       "norm_label": "engine.ts"
     },
     {
@@ -2295,7 +2358,7 @@
       "source_file": "packages\\student-ai\\src\\engine.ts",
       "source_location": "L25",
       "id": "engine_relationalstateengine",
-      "community": 5,
+      "community": 3,
       "norm_label": "relationalstateengine"
     },
     {
@@ -2304,7 +2367,7 @@
       "source_file": "packages\\student-ai\\src\\engine.ts",
       "source_location": "L28",
       "id": "engine_relationalstateengine_key",
-      "community": 5,
+      "community": 3,
       "norm_label": ".key()"
     },
     {
@@ -2313,7 +2376,7 @@
       "source_file": "packages\\student-ai\\src\\engine.ts",
       "source_location": "L32",
       "id": "engine_relationalstateengine_upsert",
-      "community": 5,
+      "community": 3,
       "norm_label": ".upsert()"
     },
     {
@@ -2322,7 +2385,7 @@
       "source_file": "packages\\student-ai\\src\\engine.ts",
       "source_location": "L36",
       "id": "engine_relationalstateengine_getmastery",
-      "community": 5,
+      "community": 3,
       "norm_label": ".getmastery()"
     },
     {
@@ -2331,7 +2394,7 @@
       "source_file": "packages\\student-ai\\src\\engine.ts",
       "source_location": "L41",
       "id": "engine_relationalstateengine_decayall",
-      "community": 5,
+      "community": 3,
       "norm_label": ".decayall()"
     },
     {
@@ -2340,7 +2403,7 @@
       "source_file": "packages\\student-ai\\src\\engine.ts",
       "source_location": "L51",
       "id": "engine_turninterruptionengine",
-      "community": 5,
+      "community": 3,
       "norm_label": "turninterruptionengine"
     },
     {
@@ -2349,7 +2412,7 @@
       "source_file": "packages\\student-ai\\src\\engine.ts",
       "source_location": "L52",
       "id": "engine_turninterruptionengine_evaluate",
-      "community": 5,
+      "community": 3,
       "norm_label": ".evaluate()"
     },
     {
@@ -2358,7 +2421,7 @@
       "source_file": "packages\\student-ai\\src\\engine.ts",
       "source_location": "L65",
       "id": "engine_learnerevidencepack",
-      "community": 5,
+      "community": 3,
       "norm_label": "learnerevidencepack"
     },
     {
@@ -2367,7 +2430,7 @@
       "source_file": "packages\\student-ai\\src\\engine.ts",
       "source_location": "L66",
       "id": "engine_learnerevidencepack_collect",
-      "community": 5,
+      "community": 3,
       "norm_label": ".collect()"
     },
     {
@@ -2376,7 +2439,7 @@
       "source_file": "packages\\student-ai\\src\\engine.ts",
       "source_location": "L78",
       "id": "engine_learnerevidencepack_summary",
-      "community": 5,
+      "community": 3,
       "norm_label": ".summary()"
     },
     {
@@ -2385,7 +2448,7 @@
       "source_file": "packages\\student-ai\\src\\engine.ts",
       "source_location": "L87",
       "id": "engine_assessmentengine",
-      "community": 5,
+      "community": 3,
       "norm_label": "assessmentengine"
     },
     {
@@ -2394,7 +2457,7 @@
       "source_file": "packages\\student-ai\\src\\engine.ts",
       "source_location": "L88",
       "id": "engine_assessmentengine_generate",
-      "community": 5,
+      "community": 3,
       "norm_label": ".generate()"
     },
     {
@@ -2403,7 +2466,7 @@
       "source_file": "packages\\student-ai\\src\\engine.ts",
       "source_location": "L108",
       "id": "engine_assessmentengine_grade",
-      "community": 5,
+      "community": 3,
       "norm_label": ".grade()"
     },
     {
@@ -2412,7 +2475,7 @@
       "source_file": "packages\\student-ai\\src\\engine.ts",
       "source_location": "L116",
       "id": "engine_sessionarcengine",
-      "community": 5,
+      "community": 3,
       "norm_label": "sessionarcengine"
     },
     {
@@ -2421,7 +2484,7 @@
       "source_file": "packages\\student-ai\\src\\engine.ts",
       "source_location": "L117",
       "id": "engine_sessionarcengine_start",
-      "community": 5,
+      "community": 3,
       "norm_label": ".start()"
     },
     {
@@ -2430,7 +2493,7 @@
       "source_file": "packages\\student-ai\\src\\engine.ts",
       "source_location": "L126",
       "id": "engine_sessionarcengine_advance",
-      "community": 5,
+      "community": 3,
       "norm_label": ".advance()"
     },
     {
@@ -2439,7 +2502,7 @@
       "source_file": "packages\\student-ai\\src\\engine.ts",
       "source_location": "L136",
       "id": "engine_sessionarcengine_complete",
-      "community": 5,
+      "community": 3,
       "norm_label": ".complete()"
     },
     {
@@ -2448,7 +2511,7 @@
       "source_file": "packages\\student-ai\\src\\engine.ts",
       "source_location": "L143",
       "id": "engine_anticopymoat",
-      "community": 5,
+      "community": 3,
       "norm_label": "anticopymoat"
     },
     {
@@ -2457,7 +2520,7 @@
       "source_file": "packages\\student-ai\\src\\engine.ts",
       "source_location": "L146",
       "id": "engine_anticopymoat_sid",
-      "community": 5,
+      "community": 3,
       "norm_label": ".sid()"
     },
     {
@@ -2466,7 +2529,7 @@
       "source_file": "packages\\student-ai\\src\\engine.ts",
       "source_location": "L150",
       "id": "engine_anticopymoat_record",
-      "community": 5,
+      "community": 3,
       "norm_label": ".record()"
     },
     {
@@ -2475,7 +2538,7 @@
       "source_file": "packages\\student-ai\\src\\engine.ts",
       "source_location": "L156",
       "id": "engine_anticopymoat_evaluate",
-      "community": 5,
+      "community": 3,
       "norm_label": ".evaluate()"
     },
     {
@@ -2583,7 +2646,7 @@
       "source_file": "packages\\vector\\src\\index.ts",
       "source_location": "L1",
       "id": "packages_vector_src_index_ts",
-      "community": 41,
+      "community": 42,
       "norm_label": "index.ts"
     },
     {
@@ -2601,7 +2664,7 @@
       "source_file": "_bmad\\scripts\\memlog.py",
       "source_location": "L1",
       "id": "bmad_scripts_memlog_py",
-      "community": 4,
+      "community": 7,
       "norm_label": "memlog.py"
     },
     {
@@ -2610,7 +2673,7 @@
       "source_file": "_bmad\\scripts\\memlog.py",
       "source_location": "L21",
       "id": "memlog_now_iso",
-      "community": 4,
+      "community": 7,
       "norm_label": "_now_iso()"
     },
     {
@@ -2619,7 +2682,7 @@
       "source_file": "_bmad\\scripts\\memlog.py",
       "source_location": "L25",
       "id": "memlog_init",
-      "community": 4,
+      "community": 7,
       "norm_label": "init()"
     },
     {
@@ -2628,7 +2691,7 @@
       "source_file": "_bmad\\scripts\\memlog.py",
       "source_location": "L43",
       "id": "memlog_append",
-      "community": 4,
+      "community": 7,
       "norm_label": "append()"
     },
     {
@@ -2637,7 +2700,7 @@
       "source_file": "_bmad\\scripts\\memlog.py",
       "source_location": "L55",
       "id": "memlog_read",
-      "community": 4,
+      "community": 7,
       "norm_label": "read()"
     },
     {
@@ -2646,7 +2709,7 @@
       "source_file": "_bmad\\scripts\\memlog.py",
       "source_location": "L63",
       "id": "memlog_main",
-      "community": 4,
+      "community": 7,
       "norm_label": "main()"
     },
     {
@@ -2654,7 +2717,7 @@
       "file_type": "rationale",
       "source_file": "_bmad\\scripts\\memlog.py",
       "source_location": "L1",
-      "community": 4,
+      "community": 7,
       "norm_label": "append-only memory log for bmad runs.  usage:   uv run {project-root}/_bmad/scri",
       "id": "memlog_rationale_1"
     },
@@ -2664,7 +2727,7 @@
       "source_file": "_bmad\\scripts\\resolve_config.py",
       "source_location": "L1",
       "id": "bmad_scripts_resolve_config_py",
-      "community": 4,
+      "community": 15,
       "norm_label": "resolve_config.py"
     },
     {
@@ -2673,7 +2736,7 @@
       "source_file": "_bmad\\scripts\\resolve_config.py",
       "source_location": "L47",
       "id": "resolve_config_load_toml",
-      "community": 4,
+      "community": 15,
       "norm_label": "load_toml()"
     },
     {
@@ -2682,7 +2745,7 @@
       "source_file": "_bmad\\scripts\\resolve_config.py",
       "source_location": "L73",
       "id": "resolve_config_detect_keyed_merge_field",
-      "community": 4,
+      "community": 15,
       "norm_label": "_detect_keyed_merge_field()"
     },
     {
@@ -2691,7 +2754,7 @@
       "source_file": "_bmad\\scripts\\resolve_config.py",
       "source_location": "L82",
       "id": "resolve_config_merge_by_key",
-      "community": 4,
+      "community": 15,
       "norm_label": "_merge_by_key()"
     },
     {
@@ -2700,7 +2763,7 @@
       "source_file": "_bmad\\scripts\\resolve_config.py",
       "source_location": "L105",
       "id": "resolve_config_merge_arrays",
-      "community": 4,
+      "community": 15,
       "norm_label": "_merge_arrays()"
     },
     {
@@ -2709,7 +2772,7 @@
       "source_file": "_bmad\\scripts\\resolve_config.py",
       "source_location": "L114",
       "id": "resolve_config_deep_merge",
-      "community": 4,
+      "community": 15,
       "norm_label": "deep_merge()"
     },
     {
@@ -2718,7 +2781,7 @@
       "source_file": "_bmad\\scripts\\resolve_config.py",
       "source_location": "L128",
       "id": "resolve_config_extract_key",
-      "community": 4,
+      "community": 15,
       "norm_label": "extract_key()"
     },
     {
@@ -2727,7 +2790,7 @@
       "source_file": "_bmad\\scripts\\resolve_config.py",
       "source_location": "L139",
       "id": "resolve_config_main",
-      "community": 4,
+      "community": 15,
       "norm_label": "main()"
     },
     {
@@ -2736,7 +2799,7 @@
       "source_file": "_bmad\\scripts\\resolve_customization.py",
       "source_location": "L1",
       "id": "bmad_scripts_resolve_customization_py",
-      "community": 4,
+      "community": 8,
       "norm_label": "resolve_customization.py"
     },
     {
@@ -2745,7 +2808,7 @@
       "source_file": "_bmad\\scripts\\resolve_customization.py",
       "source_location": "L24",
       "id": "resolve_customization_load_toml",
-      "community": 4,
+      "community": 8,
       "norm_label": "load_toml()"
     },
     {
@@ -2754,7 +2817,7 @@
       "source_file": "_bmad\\scripts\\resolve_customization.py",
       "source_location": "L32",
       "id": "resolve_customization_scalar",
-      "community": 4,
+      "community": 8,
       "norm_label": "_scalar()"
     },
     {
@@ -2763,7 +2826,7 @@
       "source_file": "_bmad\\scripts\\resolve_customization.py",
       "source_location": "L36",
       "id": "resolve_customization_deep_merge",
-      "community": 4,
+      "community": 8,
       "norm_label": "_deep_merge()"
     },
     {
@@ -2772,7 +2835,7 @@
       "source_file": "_bmad\\scripts\\resolve_customization.py",
       "source_location": "L46",
       "id": "resolve_customization_list_merge",
-      "community": 4,
+      "community": 8,
       "norm_label": "_list_merge()"
     },
     {
@@ -2781,7 +2844,7 @@
       "source_file": "_bmad\\scripts\\resolve_customization.py",
       "source_location": "L77",
       "id": "resolve_customization_merge",
-      "community": 4,
+      "community": 8,
       "norm_label": "merge()"
     },
     {
@@ -2790,7 +2853,7 @@
       "source_file": "_bmad\\scripts\\resolve_customization.py",
       "source_location": "L92",
       "id": "resolve_customization_resolve",
-      "community": 4,
+      "community": 8,
       "norm_label": "resolve()"
     },
     {
@@ -2799,7 +2862,7 @@
       "source_file": "_bmad\\scripts\\resolve_customization.py",
       "source_location": "L106",
       "id": "resolve_customization_main",
-      "community": 4,
+      "community": 8,
       "norm_label": "main()"
     },
     {
@@ -2807,7 +2870,7 @@
       "file_type": "rationale",
       "source_file": "_bmad\\scripts\\resolve_customization.py",
       "source_location": "L1",
-      "community": 4,
+      "community": 8,
       "norm_label": "resolve bmad customization: merge base/team/user toml layers and emit json for t",
       "id": "resolve_customization_rationale_1"
     },
@@ -2816,7 +2879,7 @@
       "file_type": "rationale",
       "source_file": "_bmad\\scripts\\resolve_customization.py",
       "source_location": "L25",
-      "community": 4,
+      "community": 8,
       "norm_label": "load a toml file, return empty dict if missing.",
       "id": "resolve_customization_rationale_25"
     },
@@ -2825,7 +2888,7 @@
       "file_type": "rationale",
       "source_file": "_bmad\\scripts\\resolve_customization.py",
       "source_location": "L47",
-      "community": 4,
+      "community": 8,
       "norm_label": "merge two lists.     - arrays of tables keyed by `code`/`id`: replace matching,",
       "id": "resolve_customization_rationale_47"
     },
@@ -2835,7 +2898,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-add-object.js",
       "source_location": "L1",
       "id": "bmad_wds_scripts_wds_add_object_js",
-      "community": 12,
+      "community": 14,
       "norm_label": "wds-add-object.js"
     },
     {
@@ -2844,7 +2907,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-add-object.js",
       "source_location": "L11",
       "id": "wds_add_object_parseargs",
-      "community": 12,
+      "community": 14,
       "norm_label": "parseargs()"
     },
     {
@@ -2853,7 +2916,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-add-object.js",
       "source_location": "L24",
       "id": "wds_add_object_toslug",
-      "community": 12,
+      "community": 14,
       "norm_label": "toslug()"
     },
     {
@@ -2862,7 +2925,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-add-object.js",
       "source_location": "L28",
       "id": "wds_add_object_printusage",
-      "community": 12,
+      "community": 14,
       "norm_label": "printusage()"
     },
     {
@@ -2871,7 +2934,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-add-object.js",
       "source_location": "L51",
       "id": "wds_add_object_pageslugfrompath",
-      "community": 12,
+      "community": 14,
       "norm_label": "pageslugfrompath()"
     },
     {
@@ -2880,7 +2943,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-add-object.js",
       "source_location": "L58",
       "id": "wds_add_object_deriveobjectid",
-      "community": 12,
+      "community": 14,
       "norm_label": "deriveobjectid()"
     },
     {
@@ -2889,7 +2952,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-add-object.js",
       "source_location": "L68",
       "id": "wds_add_object_buildobjectblock",
-      "community": 12,
+      "community": 14,
       "norm_label": "buildobjectblock()"
     },
     {
@@ -2898,7 +2961,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-add-object.js",
       "source_location": "L90",
       "id": "wds_add_object_insertundersection",
-      "community": 12,
+      "community": 14,
       "norm_label": "insertundersection()"
     },
     {
@@ -2907,7 +2970,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-add-object.js",
       "source_location": "L137",
       "id": "wds_add_object_main",
-      "community": 12,
+      "community": 14,
       "norm_label": "main()"
     },
     {
@@ -2916,7 +2979,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-add-spacing.js",
       "source_location": "L1",
       "id": "bmad_wds_scripts_wds_add_spacing_js",
-      "community": 2,
+      "community": 8,
       "norm_label": "wds-add-spacing.js"
     },
     {
@@ -2925,7 +2988,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-add-spacing.js",
       "source_location": "L10",
       "id": "wds_add_spacing_parseargs",
-      "community": 2,
+      "community": 8,
       "norm_label": "parseargs()"
     },
     {
@@ -2934,7 +2997,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-add-spacing.js",
       "source_location": "L23",
       "id": "wds_add_spacing_printusage",
-      "community": 2,
+      "community": 8,
       "norm_label": "printusage()"
     },
     {
@@ -2943,7 +3006,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-add-spacing.js",
       "source_location": "L50",
       "id": "wds_add_spacing_pageprefix",
-      "community": 2,
+      "community": 8,
       "norm_label": "pageprefix()"
     },
     {
@@ -2952,7 +3015,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-add-spacing.js",
       "source_location": "L55",
       "id": "wds_add_spacing_pageslugfrompath",
-      "community": 2,
+      "community": 8,
       "norm_label": "pageslugfrompath()"
     },
     {
@@ -2961,7 +3024,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-add-spacing.js",
       "source_location": "L59",
       "id": "wds_add_spacing_buildspacingblock",
-      "community": 2,
+      "community": 8,
       "norm_label": "buildspacingblock()"
     },
     {
@@ -2970,7 +3033,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-add-spacing.js",
       "source_location": "L65",
       "id": "wds_add_spacing_appendtospacingsection",
-      "community": 2,
+      "community": 8,
       "norm_label": "appendtospacingsection()"
     },
     {
@@ -2979,7 +3042,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-add-spacing.js",
       "source_location": "L88",
       "id": "wds_add_spacing_main",
-      "community": 2,
+      "community": 8,
       "norm_label": "main()"
     },
     {
@@ -2988,7 +3051,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-init-page.js",
       "source_location": "L1",
       "id": "bmad_wds_scripts_wds_init_page_js",
-      "community": 2,
+      "community": 4,
       "norm_label": "wds-init-page.js"
     },
     {
@@ -2997,7 +3060,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-init-page.js",
       "source_location": "L9",
       "id": "wds_init_page_parseargs",
-      "community": 2,
+      "community": 4,
       "norm_label": "parseargs()"
     },
     {
@@ -3006,7 +3069,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-init-page.js",
       "source_location": "L22",
       "id": "wds_init_page_toslug",
-      "community": 2,
+      "community": 4,
       "norm_label": "toslug()"
     },
     {
@@ -3015,7 +3078,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-init-page.js",
       "source_location": "L26",
       "id": "wds_init_page_printusage",
-      "community": 2,
+      "community": 4,
       "norm_label": "printusage()"
     },
     {
@@ -3024,7 +3087,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-init-page.js",
       "source_location": "L44",
       "id": "wds_init_page_buildtemplate",
-      "community": 2,
+      "community": 4,
       "norm_label": "buildtemplate()"
     },
     {
@@ -3033,7 +3096,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-init-page.js",
       "source_location": "L180",
       "id": "wds_init_page_main",
-      "community": 2,
+      "community": 4,
       "norm_label": "main()"
     },
     {
@@ -3042,7 +3105,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-init-scenario.js",
       "source_location": "L1",
       "id": "bmad_wds_scripts_wds_init_scenario_js",
-      "community": 2,
+      "community": 4,
       "norm_label": "wds-init-scenario.js"
     },
     {
@@ -3051,7 +3114,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-init-scenario.js",
       "source_location": "L9",
       "id": "wds_init_scenario_parseargs",
-      "community": 2,
+      "community": 4,
       "norm_label": "parseargs()"
     },
     {
@@ -3060,7 +3123,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-init-scenario.js",
       "source_location": "L22",
       "id": "wds_init_scenario_toslug",
-      "community": 2,
+      "community": 4,
       "norm_label": "toslug()"
     },
     {
@@ -3069,7 +3132,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-init-scenario.js",
       "source_location": "L26",
       "id": "wds_init_scenario_printusage",
-      "community": 2,
+      "community": 4,
       "norm_label": "printusage()"
     },
     {
@@ -3078,7 +3141,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-init-scenario.js",
       "source_location": "L42",
       "id": "wds_init_scenario_buildreadme",
-      "community": 2,
+      "community": 4,
       "norm_label": "buildreadme()"
     },
     {
@@ -3087,7 +3150,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-init-scenario.js",
       "source_location": "L72",
       "id": "wds_init_scenario_main",
-      "community": 2,
+      "community": 4,
       "norm_label": "main()"
     },
     {
@@ -3096,7 +3159,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-nav.js",
       "source_location": "L1",
       "id": "bmad_wds_scripts_wds_nav_js",
-      "community": 2,
+      "community": 4,
       "norm_label": "wds-nav.js"
     },
     {
@@ -3105,7 +3168,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-nav.js",
       "source_location": "L10",
       "id": "wds_nav_parseargs",
-      "community": 2,
+      "community": 4,
       "norm_label": "parseargs()"
     },
     {
@@ -3114,7 +3177,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-nav.js",
       "source_location": "L23",
       "id": "wds_nav_toslug",
-      "community": 2,
+      "community": 4,
       "norm_label": "toslug()"
     },
     {
@@ -3123,7 +3186,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-nav.js",
       "source_location": "L27",
       "id": "wds_nav_printusage",
-      "community": 2,
+      "community": 4,
       "norm_label": "printusage()"
     },
     {
@@ -3132,7 +3195,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-nav.js",
       "source_location": "L44",
       "id": "wds_nav_slugtolabel",
-      "community": 2,
+      "community": 4,
       "norm_label": "slugtolabel()"
     },
     {
@@ -3141,7 +3204,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-nav.js",
       "source_location": "L51",
       "id": "wds_nav_buildnavrow",
-      "community": 2,
+      "community": 4,
       "norm_label": "buildnavrow()"
     },
     {
@@ -3150,7 +3213,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-nav.js",
       "source_location": "L60",
       "id": "wds_nav_updatenavincontent",
-      "community": 2,
+      "community": 4,
       "norm_label": "updatenavincontent()"
     },
     {
@@ -3159,7 +3222,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-nav.js",
       "source_location": "L79",
       "id": "wds_nav_getpagefolders",
-      "community": 2,
+      "community": 4,
       "norm_label": "getpagefolders()"
     },
     {
@@ -3168,7 +3231,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-nav.js",
       "source_location": "L98",
       "id": "wds_nav_processscenario",
-      "community": 2,
+      "community": 4,
       "norm_label": "processscenario()"
     },
     {
@@ -3177,7 +3240,7 @@
       "source_file": "_bmad\\wds\\scripts\\wds-nav.js",
       "source_location": "L148",
       "id": "wds_nav_main",
-      "community": 2,
+      "community": 4,
       "norm_label": "main()"
     },
     {
@@ -3699,10 +3762,34 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "packages\\api\\src\\supabase.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_src": "packages_api_src_supabase_ts",
+      "_tgt": "packages_api_src_contracts_ts",
+      "source": "packages_api_src_contracts_ts",
+      "target": "packages_api_src_supabase_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "packages\\api\\src\\engine.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_src": "packages_api_src_engine_ts",
+      "_tgt": "packages_api_src_supabase_ts",
+      "source": "packages_api_src_engine_ts",
+      "target": "packages_api_src_supabase_ts",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "packages\\api\\src\\engine.ts",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0,
       "_src": "packages_api_src_engine_ts",
       "_tgt": "engine_apiclient",
@@ -3711,22 +3798,10 @@
       "confidence_score": 1.0
     },
     {
-      "relation": "imports_from",
-      "confidence": "EXTRACTED",
-      "source_file": "packages\\api\\src\\__tests__\\engine.test.ts",
-      "source_location": "L2",
-      "weight": 1.0,
-      "_src": "packages_api_src_tests_engine_test_ts",
-      "_tgt": "packages_api_src_engine_ts",
-      "source": "packages_api_src_engine_ts",
-      "target": "packages_api_src_tests_engine_test_ts",
-      "confidence_score": 1.0
-    },
-    {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "packages\\api\\src\\engine.ts",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0,
       "_src": "engine_apiclient",
       "_tgt": "engine_apiclient_constructor",
@@ -3738,7 +3813,19 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "packages\\api\\src\\engine.ts",
-      "source_location": "L9",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_src": "engine_apiclient",
+      "_tgt": "engine_apiclient_client",
+      "source": "engine_apiclient",
+      "target": "engine_apiclient_client",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "packages\\api\\src\\engine.ts",
+      "source_location": "L14",
       "weight": 1.0,
       "_src": "engine_apiclient",
       "_tgt": "engine_apiclient_pushsource",
@@ -3750,7 +3837,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "packages\\api\\src\\engine.ts",
-      "source_location": "L13",
+      "source_location": "L35",
       "weight": 1.0,
       "_src": "engine_apiclient",
       "_tgt": "engine_apiclient_pullsources",
@@ -3762,7 +3849,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "packages\\api\\src\\engine.ts",
-      "source_location": "L17",
+      "source_location": "L52",
       "weight": 1.0,
       "_src": "engine_apiclient",
       "_tgt": "engine_apiclient_sync",
@@ -3771,10 +3858,82 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "packages\\api\\src\\engine.ts",
+      "source_location": "L15",
+      "weight": 1.0,
+      "_src": "engine_apiclient_pushsource",
+      "_tgt": "engine_apiclient_client",
+      "source": "engine_apiclient_client",
+      "target": "engine_apiclient_pushsource",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "packages\\api\\src\\engine.ts",
+      "source_location": "L36",
+      "weight": 1.0,
+      "_src": "engine_apiclient_pullsources",
+      "_tgt": "engine_apiclient_client",
+      "source": "engine_apiclient_client",
+      "target": "engine_apiclient_pullsources",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "packages\\api\\src\\engine.ts",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_src": "engine_apiclient_client",
+      "_tgt": "supabase_createsupabaseclient",
+      "source": "engine_apiclient_client",
+      "target": "supabase_createsupabaseclient"
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "packages\\api\\src\\engine.ts",
+      "source_location": "L58",
+      "weight": 1.0,
+      "_src": "engine_apiclient_sync",
+      "_tgt": "engine_apiclient_pushsource",
+      "source": "engine_apiclient_pushsource",
+      "target": "engine_apiclient_sync",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "packages\\api\\src\\engine.ts",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_src": "engine_apiclient_pushsource",
+      "_tgt": "repository_sourcerepository_insert",
+      "source": "engine_apiclient_pushsource",
+      "target": "repository_sourcerepository_insert"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "packages\\api\\src\\supabase.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_src": "packages_api_src_supabase_ts",
+      "_tgt": "supabase_createsupabaseclient",
+      "source": "packages_api_src_supabase_ts",
+      "target": "supabase_createsupabaseclient",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "imports_from",
       "confidence": "EXTRACTED",
       "source_file": "packages\\bundle\\src\\engine.ts",
-      "source_location": "L3",
+      "source_location": "L4",
       "weight": 1.0,
       "_src": "packages_bundle_src_engine_ts",
       "_tgt": "packages_bundle_src_contracts_ts",
@@ -3798,7 +3957,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "packages\\bundle\\src\\engine.ts",
-      "source_location": "L5",
+      "source_location": "L6",
       "weight": 1.0,
       "_src": "packages_bundle_src_engine_ts",
       "_tgt": "engine_bundleexporter",
@@ -3822,7 +3981,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "packages\\bundle\\src\\engine.ts",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0,
       "_src": "engine_bundleexporter",
       "_tgt": "engine_bundleexporter_build",
@@ -3834,7 +3993,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "packages\\bundle\\src\\engine.ts",
-      "source_location": "L15",
+      "source_location": "L16",
       "weight": 1.0,
       "_src": "engine_bundleexporter",
       "_tgt": "engine_bundleexporter_render",
@@ -3846,7 +4005,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "packages\\bundle\\src\\engine.ts",
-      "source_location": "L27",
+      "source_location": "L31",
       "weight": 1.0,
       "_src": "engine_bundleexporter",
       "_tgt": "engine_bundleexporter_rendermarkdown",
@@ -3855,15 +4014,63 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "packages\\bundle\\src\\engine.ts",
+      "source_location": "L47",
+      "weight": 1.0,
+      "_src": "engine_bundleexporter",
+      "_tgt": "engine_bundleexporter_renderanki",
+      "source": "engine_bundleexporter",
+      "target": "engine_bundleexporter_renderanki",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "packages\\bundle\\src\\engine.ts",
+      "source_location": "L67",
+      "weight": 1.0,
+      "_src": "engine_bundleexporter",
+      "_tgt": "engine_bundleexporter_renderpdfplaceholder",
+      "source": "engine_bundleexporter",
+      "target": "engine_bundleexporter_renderpdfplaceholder",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "calls",
       "confidence": "EXTRACTED",
       "source_file": "packages\\bundle\\src\\engine.ts",
-      "source_location": "L20",
+      "source_location": "L21",
       "weight": 1.0,
       "_src": "engine_bundleexporter_render",
       "_tgt": "engine_bundleexporter_rendermarkdown",
       "source": "engine_bundleexporter_render",
       "target": "engine_bundleexporter_rendermarkdown",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "packages\\bundle\\src\\engine.ts",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_src": "engine_bundleexporter_render",
+      "_tgt": "engine_bundleexporter_renderanki",
+      "source": "engine_bundleexporter_render",
+      "target": "engine_bundleexporter_renderanki",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "packages\\bundle\\src\\engine.ts",
+      "source_location": "L25",
+      "weight": 1.0,
+      "_src": "engine_bundleexporter_render",
+      "_tgt": "engine_bundleexporter_renderpdfplaceholder",
+      "source": "engine_bundleexporter_render",
+      "target": "engine_bundleexporter_renderpdfplaceholder",
       "confidence_score": 1.0
     },
     {
@@ -4842,7 +5049,7 @@
       "relation": "imports_from",
       "confidence": "EXTRACTED",
       "source_file": "packages\\extract\\src\\engine.ts",
-      "source_location": "L4",
+      "source_location": "L5",
       "weight": 1.0,
       "_src": "packages_extract_src_engine_ts",
       "_tgt": "packages_extract_src_contracts_ts",
@@ -4854,7 +5061,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "packages\\extract\\src\\engine.ts",
-      "source_location": "L22",
+      "source_location": "L23",
       "weight": 1.0,
       "_src": "packages_extract_src_engine_ts",
       "_tgt": "engine_formatdetector",
@@ -4866,7 +5073,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "packages\\extract\\src\\engine.ts",
-      "source_location": "L33",
+      "source_location": "L34",
       "weight": 1.0,
       "_src": "packages_extract_src_engine_ts",
       "_tgt": "engine_textextractor",
@@ -4890,7 +5097,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "packages\\extract\\src\\engine.ts",
-      "source_location": "L23",
+      "source_location": "L24",
       "weight": 1.0,
       "_src": "engine_formatdetector",
       "_tgt": "engine_formatdetector_detectfromextension",
@@ -4902,7 +5109,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "packages\\extract\\src\\engine.ts",
-      "source_location": "L28",
+      "source_location": "L29",
       "weight": 1.0,
       "_src": "engine_formatdetector",
       "_tgt": "engine_formatdetector_detectfrommime",
@@ -4914,13 +5121,73 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "packages\\extract\\src\\engine.ts",
-      "source_location": "L34",
+      "source_location": "L35",
       "weight": 1.0,
       "_src": "engine_textextractor",
       "_tgt": "engine_textextractor_extract",
       "source": "engine_textextractor",
       "target": "engine_textextractor_extract",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "packages\\extract\\src\\engine.ts",
+      "source_location": "L54",
+      "weight": 1.0,
+      "_src": "engine_textextractor",
+      "_tgt": "engine_textextractor_extractpdf",
+      "source": "engine_textextractor",
+      "target": "engine_textextractor_extractpdf",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "packages\\extract\\src\\engine.ts",
+      "source_location": "L90",
+      "weight": 1.0,
+      "_src": "engine_textextractor",
+      "_tgt": "engine_textextractor_extractdocx",
+      "source": "engine_textextractor",
+      "target": "engine_textextractor_extractdocx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "packages\\extract\\src\\engine.ts",
+      "source_location": "L43",
+      "weight": 1.0,
+      "_src": "engine_textextractor_extract",
+      "_tgt": "engine_textextractor_extractpdf",
+      "source": "engine_textextractor_extract",
+      "target": "engine_textextractor_extractpdf",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "packages\\extract\\src\\engine.ts",
+      "source_location": "L47",
+      "weight": 1.0,
+      "_src": "engine_textextractor_extract",
+      "_tgt": "engine_textextractor_extractdocx",
+      "source": "engine_textextractor_extract",
+      "target": "engine_textextractor_extractdocx",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "packages\\extract\\src\\engine.ts",
+      "source_location": "L56",
+      "weight": 1.0,
+      "_src": "engine_textextractor_extractpdf",
+      "_tgt": "index_scheduler_all",
+      "source": "engine_textextractor_extractpdf",
+      "target": "index_scheduler_all"
     },
     {
       "relation": "contains",
