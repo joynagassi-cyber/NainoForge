@@ -1,5 +1,4 @@
 // ponytail: minimal Student AI engines — feature-flagged, stdlib-only.
-// Cross-package types imported from @nainoforge/core/domain at runtime.
 
 import type {
   RelationalState,
@@ -16,10 +15,10 @@ import type {
   ISessionArcEngine,
   LearnerTrace,
   IAntiCopyMoat,
+  StudentAIFeatureFlag,
+  SourceLike,
+  NoteLike,
 } from './contracts.js';
-
-import type { ImprintNote } from '@nainoforge/core/domain.js';
-import type { CapturedSource } from '@nainoforge/core/domain.js';
 
 // ─── RelationalStateEngine ────────────────────────────────────
 
@@ -64,7 +63,7 @@ export class TurnInterruptionEngine implements ITurnInterruptionEngine {
 // ─── LearnerEvidencePack ───────────────────────────────────────
 
 export class LearnerEvidencePack implements ILearnerEvidencePack {
-  collect(source: CapturedSource, note: ImprintNote): EvidenceItem[] {
+  collect(source: SourceLike, note: NoteLike): EvidenceItem[] {
     const snippet = note.content.slice(0, 200);
     return [
       {
@@ -86,7 +85,7 @@ export class LearnerEvidencePack implements ILearnerEvidencePack {
 // ─── AssessmentEngine ──────────────────────────────────────────
 
 export class AssessmentEngine implements IAssessmentEngine {
-  generate(note: ImprintNote, format: AssessmentFormat): AssessmentItem {
+  generate(note: NoteLike, format: AssessmentFormat): AssessmentItem {
     const id = crypto.randomUUID();
     const answer = note.content.split(' ').slice(0, 3).join(' ');
 

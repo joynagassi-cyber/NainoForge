@@ -6,31 +6,27 @@ import {
   AssessmentEngine,
   SessionArcEngine,
   AntiCopyMoat,
+  type LearnerTrace,
+  type NoteLike,
+  type SourceLike,
 } from '../index.js';
 
-const FAKE_NOTE = {
+const FAKE_NOTE: NoteLike = {
   id: 'note-1',
   source_id: 'src-1',
   concept_id: 'c-1',
   content: 'Les fonctions trigonométriques reliant les angles aux côtés du triangle.',
   word_count: 12,
-  cran_level: 3 as const,
+  cran_level: 3,
   quality_score: 80,
   bloom_level: 'apply',
   concept_coverage_pct: 60,
   created_at: Date.now(),
 };
 
-const FAKE_SOURCE = {
+const FAKE_SOURCE: SourceLike = {
   id: 'src-1',
-  source_type: 'web_article' as const,
   title: 'Trigonométrie',
-  url: 'https://example.com/trig',
-  content_markdown: '# Trigonométrie\n\n...',
-  metadata: {},
-  privacy_level: 'public' as const,
-  status: 'ready' as const,
-  created_at: Date.now(),
 };
 
 describe('RelationalStateEngine', () => {
@@ -169,7 +165,6 @@ describe('AntiCopyMoat', () => {
 
   it('record stores traces per session', () => {
     moat.record({ session_id: 's-3', hintsRequested: 0, avgResponseTimeMs: 1000, copyPasteDetected: false, fg_fluency_score: 0.5 });
-    // no exception on duplicate
     moat.record({ session_id: 's-3', hintsRequested: 0, avgResponseTimeMs: 1000, copyPasteDetected: false, fg_fluency_score: 0.5 });
   });
 });

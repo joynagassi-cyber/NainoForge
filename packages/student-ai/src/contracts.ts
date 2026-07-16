@@ -1,16 +1,31 @@
 // ─── Student AI domain contracts ───────────────────────────────
 // Feature-flagged premium module. 6 engine contracts.
-
-import type { ImprintNote } from '@nainoforge/core/domain.js';
-import type { CapturedSource } from '@nainoforge/core/domain.js';
-
-// ─── Feature flag ──────────────────────────────────────────────
+// Local interfaces avoid cross-package build coupling (same pattern as imprint).
 
 export type StudentAIFeatureFlag = {
   enabled: boolean;
   tier: 'free' | 'premium';
   quota: number; // max sessions per day
 };
+
+// Minimal source/note shapes used by Student AI engines.
+export interface SourceLike {
+  id: string;
+  title?: string;
+}
+
+export interface NoteLike {
+  id: string;
+  source_id: string;
+  concept_id: string;
+  content: string;
+  word_count: number;
+  cran_level: number;
+  quality_score: number;
+  bloom_level?: string;
+  concept_coverage_pct?: number;
+  created_at: number;
+}
 
 // ─── RelationalStateEngine ─────────────────────────────────────
 
@@ -52,7 +67,7 @@ export interface EvidenceItem {
 }
 
 export interface ILearnerEvidencePack {
-  collect(source: CapturedSource, note: ImprintNote): EvidenceItem[];
+  collect(source: SourceLike, note: NoteLike): EvidenceItem[];
   summary(items: EvidenceItem[]): string;
 }
 
@@ -76,7 +91,7 @@ export interface AssessmentItem {
 }
 
 export interface IAssessmentEngine {
-  generate(note: ImprintNote, format: AssessmentFormat): AssessmentItem;
+  generate(note: NoteLike, format: AssessmentFormat): AssessmentItem;
   grade(item: AssessmentItem, response: string): { score: number; feedback: string };
 }
 

@@ -1,28 +1,21 @@
 import { describe, it, expect } from 'vitest';
 import { BundleExporter } from '../engine.js';
-import type { CapturedSource, ImprintNote } from '@nainoforge/core/domain.js';
+import type { SourceLike, NoteLike } from '../contracts.js';
 
-const SOURCE: CapturedSource = {
+const SOURCE: SourceLike = {
   id: 'src-1',
-  source_type: 'web_article',
   title: 'Test',
   content_markdown: '# Test',
-  content_hash: 'abc',
-  metadata: {},
-  privacy_level: 'personal',
-  status: 'ready',
-  created_at: Date.now(),
+  source_type: 'web_article',
 };
 
-const NOTE: ImprintNote = {
+const NOTE: NoteLike = {
   id: 'note-1',
   source_id: 'src-1',
   concept_id: 'c-1',
   content: 'contenu de la note',
-  word_count: 4,
   cran_level: 3,
   quality_score: 70,
-  created_at: Date.now(),
 };
 
 describe('BundleExporter', () => {

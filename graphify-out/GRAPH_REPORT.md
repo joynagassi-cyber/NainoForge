@@ -1,11 +1,11 @@
 # Graph Report - NainoForge  (2026-07-16)
 
 ## Corpus Check
-- 80 files · ~135,832 words
+- 84 files · ~140,586 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 360 nodes · 557 edges · 20 communities detected
+- 365 nodes · 563 edges · 21 communities detected
 - Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 38 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
@@ -30,6 +30,7 @@
 - [[_COMMUNITY_Community 17|Community 17]]
 - [[_COMMUNITY_Community 18|Community 18]]
 - [[_COMMUNITY_Community 20|Community 20]]
+- [[_COMMUNITY_Community 21|Community 21]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `write()` - 17 edges
@@ -67,31 +68,31 @@ Nodes (12): Defaults, FsrsCard, FsrsScheduler, Rating, ReviewLogEntry, set_defau
 
 ### Community 2 - "Community 2"
 Cohesion: 0.12
-Nodes (15): countTextDepth(), hasOgbTypeArticle(), isArticlePage(), extractVideoId(), init(), isYouTubeWatchPage(), onReady(), waitForPlayerResponse() (+7 more)
+Nodes (27): write(), appendToSpacingSection(), buildSpacingBlock(), main(), pagePrefix(), pageSlugFromPath(), parseArgs(), printUsage() (+19 more)
 
 ### Community 3 - "Community 3"
+Cohesion: 0.12
+Nodes (15): countTextDepth(), hasOgbTypeArticle(), isArticlePage(), extractVideoId(), init(), isYouTubeWatchPage(), onReady(), waitForPlayerResponse() (+7 more)
+
+### Community 4 - "Community 4"
+Cohesion: 0.13
+Nodes (21): append(), init(), main(), _now_iso(), Append-only memory log for BMad runs.  Usage:   uv run {project-root}/_bmad/scri, read(), deep_merge(), _detect_keyed_merge_field() (+13 more)
+
+### Community 5 - "Community 5"
 Cohesion: 0.09
 Nodes (6): AntiCopyMoat, AssessmentEngine, LearnerEvidencePack, RelationalStateEngine, SessionArcEngine, TurnInterruptionEngine
 
-### Community 4 - "Community 4"
-Cohesion: 0.16
-Nodes (20): write(), buildTemplate(), main(), parseArgs(), printUsage(), toSlug(), buildReadme(), main() (+12 more)
-
-### Community 5 - "Community 5"
+### Community 6 - "Community 6"
 Cohesion: 0.11
 Nodes (7): cleanHtml(), collapseWhitespace(), stripNodes(), dot(), norm(), VectorStore, EventBus
 
-### Community 6 - "Community 6"
-Cohesion: 0.14
-Nodes (10): hashMessage(), append(), init(), main(), _now_iso(), Append-only memory log for BMad runs.  Usage:   uv run {project-root}/_bmad/scri, read(), openDB() (+2 more)
-
 ### Community 7 - "Community 7"
-Cohesion: 0.17
-Nodes (9): ensureLoaded(), Scheduler, deep_merge(), _detect_keyed_merge_field(), extract_key(), load_toml(), main(), _merge_arrays() (+1 more)
+Cohesion: 0.19
+Nodes (4): hashMessage(), openDB(), SourceRepository, tx()
 
 ### Community 8 - "Community 8"
-Cohesion: 0.16
-Nodes (15): _list_merge(), load_toml(), main(), merge(), Resolve BMad customization: merge base/team/user TOML layers and emit JSON for t, Load a TOML file, return empty dict if missing., Merge two lists.     - Arrays of tables keyed by `code`/`id`: replace matching,, resolve() (+7 more)
+Cohesion: 0.29
+Nodes (4): ensureLoaded(), getScheduler(), parseRating(), Scheduler
 
 ### Community 9 - "Community 9"
 Cohesion: 0.32
@@ -118,7 +119,7 @@ Cohesion: 0.25
 Nodes (2): FormatDetector, TextExtractor
 
 ### Community 15 - "Community 15"
-Cohesion: 0.33
+Cohesion: 0.38
 Nodes (1): BundleExporter
 
 ### Community 16 - "Community 16"
@@ -137,8 +138,12 @@ Nodes (4): chunkText(), splitIntoChunks(), splitSections(), tokenCount()
 Cohesion: 1.0
 Nodes (2): byteToHex(), uuidv7()
 
+### Community 21 - "Community 21"
+Cohesion: 1.0
+Nodes (1): Scheduler
+
 ## Knowledge Gaps
-- **4 isolated node(s):** `Append-only memory log for BMad runs.  Usage:   uv run {project-root}/_bmad/scri`, `Resolve BMad customization: merge base/team/user TOML layers and emit JSON for t`, `Load a TOML file, return empty dict if missing.`, `Merge two lists.     - Arrays of tables keyed by `code`/`id`: replace matching,`
+- **5 isolated node(s):** `Scheduler`, `Append-only memory log for BMad runs.  Usage:   uv run {project-root}/_bmad/scri`, `Resolve BMad customization: merge base/team/user TOML layers and emit JSON for t`, `Load a TOML file, return empty dict if missing.`, `Merge two lists.     - Arrays of tables keyed by `code`/`id`: replace matching,`
   These have ≤1 connection - possible missing edges or undocumented components.
 - **Thin community `Community 11`** (10 nodes): `ConceptGraph`, `.addConcept()`, `.addRelation()`, `.getConcept()`, `.getRelations()`, `.neighbors()`, `.topologicalSort()`, `contracts.ts`, `engine.ts`, `engine.test.ts`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
@@ -150,21 +155,23 @@ Nodes (2): byteToHex(), uuidv7()
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 - **Thin community `Community 20`** (3 nodes): `uuid.ts`, `byteToHex()`, `uuidv7()`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
+- **Thin community `Community 21`** (2 nodes): `Scheduler`, `index.d.ts`
+  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `write()` connect `Community 4` to `Community 6`, `Community 7`, `Community 8`, `Community 9`, `Community 12`?**
-  _High betweenness centrality (0.087) - this node is a cross-community bridge._
-- **Why does `main()` connect `Community 7` to `Community 8`, `Community 4`?**
-  _High betweenness centrality (0.048) - this node is a cross-community bridge._
+- **Why does `_detect_keyed_merge_field()` connect `Community 4` to `Community 8`?**
+  _High betweenness centrality (0.097) - this node is a cross-community bridge._
+- **Why does `write()` connect `Community 2` to `Community 9`, `Community 4`, `Community 12`?**
+  _High betweenness centrality (0.085) - this node is a cross-community bridge._
+- **Why does `main()` connect `Community 4` to `Community 2`?**
+  _High betweenness centrality (0.047) - this node is a cross-community bridge._
 - **Are the 16 inferred relationships involving `write()` (e.g. with `append()` and `load_toml()`) actually correct?**
   _`write()` has 16 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `Append-only memory log for BMad runs.  Usage:   uv run {project-root}/_bmad/scri`, `Resolve BMad customization: merge base/team/user TOML layers and emit JSON for t`, `Load a TOML file, return empty dict if missing.` to the rest of the system?**
-  _4 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **What connects `Scheduler`, `Append-only memory log for BMad runs.  Usage:   uv run {project-root}/_bmad/scri`, `Resolve BMad customization: merge base/team/user TOML layers and emit JSON for t` to the rest of the system?**
+  _5 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.09 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
   _Cohesion score 0.07 - nodes in this community are weakly interconnected._
-- **Should `Community 2` be split into smaller, more focused modules?**
-  _Cohesion score 0.12 - nodes in this community are weakly interconnected._

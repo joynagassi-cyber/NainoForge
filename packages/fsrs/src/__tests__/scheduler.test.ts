@@ -2,7 +2,7 @@ import { describe, it, expect, beforeAll, beforeEach } from 'vitest';
 import { readFileSync } from 'fs';
 
 // WASM-backed FSRS-4 scheduler — tests run only when the native module is present.
-let WasmMod: typeof import('../__wasm__/fsrs_bindings') | null = null;
+let WasmMod: typeof import('../__wasm__/fsrs_bindings.js') | null = null;
 let ready = false;
 
 const WASM_PATH = [
@@ -11,7 +11,7 @@ const WASM_PATH = [
 
 beforeAll(async () => {
   try {
-    const mod = await import('../__wasm__/fsrs_bindings');
+    const mod = await import('../__wasm__/fsrs_bindings.js');
     const wasmBytes = readFileSync(WASM_PATH, { encoding: null });
     await mod.initSync(wasmBytes.buffer);
     WasmMod = mod;
