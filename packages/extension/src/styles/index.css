@@ -1,0 +1,8 @@
+@import "./globals.css";
+
+/**
+ * NainoForge — entry CSS used by the sidepanel HTML.
+ *
+ * Tailwind directives are injected by Vite/PnP during build;
+ * in dev, the PostCSS pipeline processes this file.
+ */

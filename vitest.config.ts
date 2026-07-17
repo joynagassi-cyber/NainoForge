@@ -2,7 +2,7 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   test: {
-    environment: 'jsdom',
+    environment: 'node',
     coverage: {
       provider: 'v8',
       thresholds: {
@@ -15,7 +15,6 @@ export default defineConfig({
       exclude: ['**/dist/**', '**/*.test.ts', '**/*.spec.ts'],
     },
     exclude: ['**/dist/**'],
-    setupFiles: ['packages/api/src/__tests__/setup-fetch-mock.ts'],
     resolve: {
       alias: {
         '../pkg/fsrs_bindings': new URL('packages/fsrs/src/pkg/fsrs_bindings', import.meta.url).pathname,

@@ -1,12 +1,24 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { stubFetch, clearFetchStubs } from './setup-fetch-mock.js';
+import { describe, it, expect, vi } from 'vitest';
 
-function json(body: unknown, status = 200): Response {
-  return new Response(JSON.stringify(body), {
-    status,
-    headers: { 'Content-Type': 'application/json', 'Prefer': 'return=representation' },
-  });
-}
+// ponytail: manual mock for Supabase client factory.
+// Patching module-level export avoids timing issues with vi.mock hoisting.
+const mockFrom = vi.fn(() => ({
+  insert: vi.fn(() => ({
+    select: vi.fn(() => ({
+      single: vi.fn(),
+    })),
+  })),
+  select: vi.fn(() => ({
+    order: vi.fn(),
+  })),
+}));
+
+vi.mock('../supabase.js', () => ({
+  createSupabaseClient: () => ({
+    from: mockFrom,
+    select: mockFrom,
+  }),
+}));
 
 const SAMPLE = {
   title: 't',
@@ -16,13 +28,14 @@ const SAMPLE = {
 };
 
 describe('ApiClient', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-    clearFetchStubs();
-  });
-
-  it('pushSource inserts and returns remote id', async () => {
-    stubFetch('/rest/v1/nf_sources', () => json({ id: 'remote-1' }));
+  it('pushSource returns remote id', async () => {
+    mockFrom.mockReturnValue({
+      insert: () => ({
+        select: () => ({
+          single: () => Promise.resolve({ data: { id: 'remote-1' }, error: null }),
+        }),
+      }),
+    });
 
     const { ApiClient } = await import('../engine.js');
     const client = new ApiClient({ url: 'http://localhost', anonKey: 'x' });
@@ -31,22 +44,31 @@ describe('ApiClient', () => {
   });
 
   it('pullSources maps rows to SourcePayload[]', async () => {
-    stubFetch('/rest/v1/nf_sources', () => json({
-      data: [
-        { id: 'r1', title: 't', raw_text: 'md', source_type: 'web_article', url: null, created_at: '2026-01-01T00:00:00Z' },
-      ],
-    }));
+    mockFrom.mockReturnValueOnce({
+      select: () => ({
+        order: () =>
+          Promise.resolve({
+            data: [{ id: 'r1', title: 't', raw_text: 'md', source_type: 'web_article', url: null, created_at: '2026-01-01T00:00:00Z' }],
+            error: null,
+          }),
+      }),
+    });
 
     const { ApiClient } = await import('../engine.js');
     const client = new ApiClient({ url: 'http://localhost', anonKey: 'x' });
     const rows = await client.pullSources();
-    console.log('rows=', rows, 'len=', rows?.length);
     expect(rows).toHaveLength(1);
     expect(rows[0].title).toBe('t');
   });
 
-  it('sync reports conflicts when push errors', async () => {
-    stubFetch('/rest/v1/nf_sources', () => json({ error: { message: 'conflict' } }, 400));
+  it('sync pushes queued items and aggregates conflicts', async () => {
+    mockFrom.mockReturnValue({
+      insert: () => ({
+        select: () => ({
+          single: () => Promise.resolve({ data: null, error: { message: 'conflict' } }),
+        }),
+      }),
+    });
 
     const { ApiClient } = await import('../engine.js');
     const client = new ApiClient({ url: 'http://localhost', anonKey: 'x' });

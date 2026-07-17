@@ -2,7 +2,7 @@
 // Offline-safe: requires config, surfaces backend errors, never silently drops.
 
 import type { ApiClientConfig, SourcePayload, SyncResult, IApiClient } from './contracts.js';
-import { createSupabaseClient } from './supabase.js';
+import { createSupabaseClient } from './supabase.ts';
 
 export class ApiClient implements IApiClient {
   constructor(private cfg: ApiClientConfig) {}
@@ -40,8 +40,6 @@ export class ApiClient implements IApiClient {
       .order('created_at', { ascending: false });
 
     if (error) throw new Error(`pullSources failed: ${error.message}`);
-    // ponytail: debug — remove once CI green.
-    console.log('[pullSources debug] result=', JSON.stringify({ typeof_data: typeof data, is_array: Array.isArray(data) }), 'url was a GET');
     return (data ?? []).map((row) => ({
       title: row.title,
       content_markdown: row.raw_text ?? '',
