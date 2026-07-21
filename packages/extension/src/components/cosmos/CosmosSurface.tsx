@@ -1,43 +1,40 @@
-import { Button } from "../ui/button";
-import { Skeleton } from "../ui/skeleton";
+import { useCosmos } from '../../hooks/use-cosmos.js';
+import type { CosmosNode } from '../../hooks/use-cosmos.js';
+
+const STATUS_COLOR: Record<CosmosNode['status'], string> = {
+  forged: 'bg-green-500/20 text-green-400',
+  partial: 'bg-yellow-500/20 text-yellow-400',
+  gap: 'bg-red-500/20 text-red-400',
+  'not-visited': 'bg-gray-500/20 text-gray-400',
+};
 
 export function CosmosSurface() {
+  const { nodes } = useCosmos();
+
   return (
-    <div className="flex h-full flex-col">
-      <div className="border-b border-border-subtle px-4 py-3">
-        <h2 className="text-h2 font-semibold text-text-primary">COSMOS</h2>
-        <p className="text-caption text-text-muted">
-          Cartographie vivante de ta compréhension
-        </p>
-      </div>
-
-      <div className="flex flex-1 items-center justify-center">
-        <div className="w-full max-w-md space-y-4 px-4">
-          <div className="card space-y-3 p-4">
-            <Skeleton className="h-4 w-3/4" />
-            <Skeleton className="h-4 w-1/2" />
-            <div className="flex gap-2 pt-2">
-              <Button variant="secondary" size="sm">
-                Vue globale
-              </Button>
-              <Button variant="ghost" size="sm">
-                Par concept
-              </Button>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-3 gap-2">
-            {["Forgé", "Partiel", "Lacune"].map((status) => (
-              <div key={status} className="card p-3 text-center">
-                <div className="text-h3 font-semibold text-text-primary">
-                  {status === "Forgé" ? "0" : status === "Partiel" ? "0" : "0"}
-                </div>
-                <div className="text-caption text-text-muted">{status}</div>
-              </div>
-            ))}
-          </div>
+    <div className="h-full w-full overflow-y-auto">
+      {nodes.length === 0 ? (
+        <div className="flex h-full items-center justify-center">
+          <p className="text-text-muted">Aucun concept forge. Capture un contenu pour commencer.</p>
         </div>
-      </div>
+      ) : (
+        <div className="grid gap-2 p-4">
+          {nodes.map((node) => (
+            <div key={node.id} className="rounded-md border border-border-subtle p-3">
+              <div className="flex items-center justify-between">
+                <span className="font-medium">{node.label}</span>
+                <span className="text-xs text-text-muted">SMI: {node.smi}%</span>
+              </div>
+              <div className="mt-1 flex gap-2">
+                <span className={`inline-block rounded px-1.5 py-0.5 text-xs ${STATUS_COLOR[node.status] ?? STATUS_COLOR['not-visited']}`}>
+                  {node.status}
+                </span>
+                <span className="text-xs text-text-muted">{node.bloom}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

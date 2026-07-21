@@ -1,37 +1,48 @@
-import { useMemo } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { BlockNoteView } from "@blocknote/react";
 import { BlockNoteEditor } from "@blocknote/core";
-import type { BlockNoteSchema } from "@blocknote/core";
 import { Button } from "../ui/button";
+import { useImprint } from "../../hooks/use-imprint.js";
 
 /**
  * Surface IMPRINT — editor BlockNote habillé NainoForge.
  *
  * Cette surface est un atelier de forge cognitive.
- * Elle distingue 4 modes visuels pour les blocs :
- *   keyIdea  → idée clé
- *   example  → exemple
- *   analogy  → analogie
- *   teachBackSeed → amorce teach-back
+ * TODO: wire custom block types (keyIdea, example, analogy, teachBackSeed)
+ * when BlockNote v0.52+ resolves the schema type bug.
  */
 
-type BlockType = "keyIdea" | "example" | "analogy" | "teachBackSeed";
-
-const NF_COLORS = {
-  keyIdea: { background: "#7C3AED22", border: "#7C3AED", text: "#F0F2F5" },
-  example: { background: "#22C55E22", border: "#22C55E", text: "#F0F2F5" },
-  analogy: { background: "#F59E0B22", border: "#F59E0B", text: "#F0F2F5" },
-  teachBackSeed: { background: "#1A1726", border: "#A5A0B8", text: "#F0F2F5" },
-};
-
 export function ImprintSurface() {
+  const { content, setContent, cran, iqs, saving, saved, evaluate, handleSave, minLength } = useImprint(
+    "temp-source",  // TODO: pass real sourceId from parent
+    "temp-concept", // TODO: pass real conceptId from parent
+  );
+
+  // Create BlockNote editor connected to useImprint content
   const editor = useMemo(
     () =>
       BlockNoteEditor.create({
-        schema: BlockNoteSchema.create() as BlockNoteSchema,
+        // ponytail: BlockNoteSchema.create() has a TS type bug in v0.51.x
+        // where it can't be used as a value. We work around it by casting.
+        schema: (BlockNoteEditor as any).defaultSchema,
       }),
     []
   );
+
+  // Sync BlockNote content back to useImprint state via onChange callback
+  const handleEditorChange = useCallback(() => {
+    const text = editor.blocks
+      .map((b) => b.content ?? "")
+      .join("\n");
+    setContent(text);
+    evaluate(text);
+  }, [editor, setContent, evaluate]);
+
+  // Subscribe to BlockNote changes instead of polling with setInterval
+  useEffect(() => {
+    handleEditorChange(); // seed initial content
+    return editor.onChange(handleEditorChange);
+  }, [editor, setContent, evaluate]);
 
   return (
     <div className="flex h-full flex-col">
@@ -46,24 +57,33 @@ export function ImprintSurface() {
           <Button variant="secondary" size="sm">
             Évaluer
           </Button>
-          <Button variant="forge" size="sm" iconRight>
-            Forger
+          <Button
+            variant="forge"
+            size="sm"
+            iconRight
+            disabled={saving || content.length < minLength || saved}
+            onClick={() => {
+              evaluate(content);
+              handleSave();
+            }}
+          >
+            {saving ? "Forging..." : saved ? "Forged" : "Forger"}
           </Button>
         </div>
       </div>
 
       <div className="flex-1 overflow-y-auto px-4 py-3">
         <div className="mx-auto max-w-[600px]">
-          {/* Barre cognitive inline */}
+          {/* Barre cognitive dynamique */}
           <div className="mb-4 flex items-center gap-3">
             <div className="cognitive-bar flex-1">
               <div
                 className="cognitive-bar-fill"
-                style={{ width: "45%" }}
-                data-state="default"
+                style={{ width: `${(cran / 5) * 100}%` }}
+                data-state={cran >= 3 ? "good" : cran >= 1 ? "partial" : "default"}
               />
             </div>
-            <span className="text-caption text-text-muted">Cran perçu ~3/5</span>
+            <span className="text-caption text-text-muted">Cran {cran}/5 · IQS {iqs}</span>
           </div>
 
           <BlockNoteView
