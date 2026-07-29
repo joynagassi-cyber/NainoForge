@@ -5,6 +5,7 @@ import { Flame, BookOpen, Sparkles, HelpCircle } from "lucide-react";
 import { Button } from "../ui/button";
 import { useImprint } from "../../hooks/use-imprint.js";
 import { nfCustomBlocks } from "./custom-blocks";
+import { ImprintCard } from "./ImprintCard";
 
 /**
  * Surface IMPRINT — editor BlockNote habillé NainoForge.
@@ -67,6 +68,19 @@ export function ImprintSurface() {
       // Insert the block at the current cursor position
       editorRef.current?.insertBlock(newBlock);
     }
+  };
+
+  // Mock source data for demonstration (would come from IndexedDB in production)
+  const mockSource = {
+    id: "src-1",
+    sourceType: "web_article" as const,
+    title: "L'importance du feedback cognitif dans l'apprentissage",
+    privacyLevel: "public" as const,
+    status: "forged" as const,
+    wordCount: 1245,
+    capturedAt: "28 juil. 2026, 14:30",
+    onForge: () => console.log("Forge clicked"),
+    onPreview: () => console.log("Preview clicked"),
   };
 
   // Subscribe to BlockNote changes instead of polling with setInterval
@@ -164,6 +178,14 @@ export function ImprintSurface() {
             className="min-h-[200px] rounded-md border border-border-subtle bg-surface-1 p-3"
             theme="dark"
           />
+
+          {/* Carte IMPRINT de démonstration */}
+          {content.length > 0 && (
+            <div className="mt-6">
+              <h3 className="text-h3 font-semibold text-text-primary mb-3">Source Impremée</h3>
+              <ImprintCard {...mockSource} />
+            </div>
+          )}
         </div>
       </div>
     </div>
