@@ -30,14 +30,14 @@ development_status:
   3-8-imprint-card-output: done
   epic-3-retrospective: optional
 
-  epic-4: in-progress
+  epic-4: done
   4-1-assistant-ui-integration: done
   4-2-ai-provider-bridge: done
   4-3-student-card-component: done
   4-4-interruption-bubble: done
   4-5-confidence-marker: done
   4-6-session-summary-card: done
-  4-7-cognitive-wording-mapping: backlog
+  4-7-cognitive-wording-mapping: done
   epic-4-retrospective: optional
 
   epic-5: backlog
