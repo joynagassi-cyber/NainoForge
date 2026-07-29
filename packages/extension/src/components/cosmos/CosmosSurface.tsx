@@ -1,40 +1,76 @@
-import { useCosmos } from '../../hooks/use-cosmos.js';
-import type { CosmosNode } from '../../hooks/use-cosmos.js';
+import { useState, useMemo } from "react";
+import {
+  ReactFlow,
+  Node,
+  Edge,
+  Background,
+  type NodeTypes,
+  MiniMap,
+  Controls,
+} from "@xyflow/react";
+import { Flame, Sparkles, HelpCircle, Book, Circle } from "lucide-react";
+import { cn } from "../../lib/utils";
+import {
+  ConceptNodeBase,
+  createForgedNode,
+  createPartialNode,
+  createGapNode,
+  createUnvisitedNode,
+  type ConceptNodeData,
+} from "./node-types";
 
-const STATUS_COLOR: Record<CosmosNode['status'], string> = {
-  forged: 'bg-green-500/20 text-green-400',
-  partial: 'bg-yellow-500/20 text-yellow-400',
-  gap: 'bg-red-500/20 text-red-400',
-  'not-visited': 'bg-gray-500/20 text-gray-400',
+// Définition des types de nœuds
+const nodeTypes: NodeTypes = {
+  concept: ConceptNodeBase,
 };
 
+// Données de demonstration (serait remplacée par use-cosmos dans la vraie app)
+const initialNodes: Node<ConceptNodeData>[] = [
+  createForgedNode("node1", "Algorithmes"),
+  createPartialNode("node2", "Complexité"),
+  createGapNode("node3", "Structures de données"),
+  createUnvisitedNode("node4", "Réseaux de neurones"),
+];
+
+// Positionnement simple pour le demo
+initialNodes.forEach((node, i) => {
+  node.position = { x: i * 200, y: 0 };
+});
+
+const initialEdges: Edge[] = [
+  { id: "edge1", source: "node1", target: "node2" },
+  { id: "edge2", source: "node1", target: "node3" },
+  { id: "edge3", source: "node2", target: "node4" },
+  { id: "edge4", source: "node3", target: "node4" },
+];
+
 export function CosmosSurface() {
-  const { nodes } = useCosmos();
+  const [nodes, setNodes] = useState<Node<ConceptNodeData>>(initialNodes);
+  const [edges, setEdges] = useState<Edge>(initialEdges);
 
   return (
-    <div className="h-full w-full overflow-y-auto">
-      {nodes.length === 0 ? (
-        <div className="flex h-full items-center justify-center">
-          <p className="text-text-muted">Aucun concept forge. Capture un contenu pour commencer.</p>
-        </div>
-      ) : (
-        <div className="grid gap-2 p-4">
-          {nodes.map((node) => (
-            <div key={node.id} className="rounded-md border border-border-subtle p-3">
-              <div className="flex items-center justify-between">
-                <span className="font-medium">{node.label}</span>
-                <span className="text-xs text-text-muted">SMI: {node.smi}%</span>
-              </div>
-              <div className="mt-1 flex gap-2">
-                <span className={`inline-block rounded px-1.5 py-0.5 text-xs ${STATUS_COLOR[node.status] ?? STATUS_COLOR['not-visited']}`}>
-                  {node.status}
-                </span>
-                <span className="text-xs text-text-muted">{node.bloom}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
+    <div className="h-full">
+      <div className="border-b border-border-subtle px-4 py-3">
+        <h2 className="text-h2 font-semibold text-text-primary">COSMOS</h2>
+        <p className="text-caption text-text-muted">Carte des concepts et relations</p>
+      </div>
+
+      <div className="h-full">
+        <ReactFlow
+          nodes={nodes}
+          edges={edges}
+          onNodesChange={(changes) => setNodes((nds) => nds)}
+          onEdgesChange={() => {}}
+          nodeTypes={nodeTypes}
+          fitView={true}
+          zoomable={true}
+          panable={true}
+        >
+          <Background variant="dots" gap={16} size={1} />
+          <MiniMap />
+          <Controls />
+        </ReactFlow>
+      </div>
     </div>
   );
 }
