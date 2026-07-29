@@ -155,12 +155,16 @@
   .cognitive-bar-fill {
     @apply h-full rounded-full bg-primary transition-all duration-slow;
   }
-  .cognitive-bar-fill[data-state="complete"] {
+  .cognitive-bar-fill[data-state="partial"] {
+    @apply bg-accent-warm;
+  }
+  .cognitive-bar-fill[data-state="good"] {
     @apply bg-state-forged;
   }
   .cognitive-bar-fill[data-state="error"] {
     @apply bg-state-leech;
   }
+
 
   /* Blocs BlockNote custom - NainoForge IMPRINT */
   .block-keyIdea {
