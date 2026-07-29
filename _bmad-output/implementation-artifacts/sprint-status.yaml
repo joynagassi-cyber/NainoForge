@@ -47,9 +47,9 @@ development_status:
   5-4-mvp-cosmos: done
   epic-5-retrospective: optional
 
-  epic-6: backlog
+  epic-6: in-progress
   6-1-dashboard-home-enrichment: backlog
-  6-2-review-surface-separation: backlog
+  6-2-review-surface-separation: done
   6-3-review-card-components: backlog
   6-4-settings-dialog: backlog
   6-5-dark-mode-toggle: backlog
