@@ -40,11 +40,11 @@ development_status:
   4-7-cognitive-wording-mapping: done
   epic-4-retrospective: optional
 
-  epic-5: in-progress
+  epic-5: done
   5-1-reactflow-integration: done
   5-2-custom-node-types: done
   5-3-custom-edge-types: done
-  5-4-mvp-cosmos: backlog
+  5-4-mvp-cosmos: done
   epic-5-retrospective: optional
 
   epic-6: backlog
