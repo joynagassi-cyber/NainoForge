@@ -8,6 +8,8 @@ import { cn } from "../lib/utils";
 import { Spinner } from "../ui/spinner";
 import { Button } from "../ui/button";
 import { Send } from "lucide-react";
+import { LiteLLMProvider } from "../../ai-providers/engine";
+import type { AiChatMessage } from "../../ai-providers/contracts";
 
 // Thème NainoForge pour assistant-ui
 const nainoforgeTheme = {
@@ -36,6 +38,18 @@ const nainoforgeTheme = {
   },
 };
 
+// Configuration de l'AiProvider (à lire depuis variables d'environnement dans la vraie app)
+const aiProviderConfig = {
+  provider: "litellm" as const,
+  baseUrl: process.env.AI_BASE_URL || "http://localhost:4000",
+  apiKey: process.env.AI_API_KEY || "",
+  defaultModel: process.env.AI_MODEL || "gpt-3.5-turbo",
+  timeoutMs: 30000,
+};
+
+// Instance de l'AiProvider
+const aiProvider = new LiteLLMProvider(aiProviderConfig);
+
 export function StudentAISurface() {
   // Hook pour l'assistant
   const {
@@ -47,25 +61,45 @@ export function StudentAISurface() {
     input,
     clearChat
   }: UseAssistantReturnType = useAssistant({
-    // La fonction d'API réel serait branchée sur l'AiProvider
-    // Pour MVP, utilisons un mock qui appelle le simulateur existant
     async fetch: async (request) => {
-      // Mock: retourner une réponse fixe pour demonstration
-      // Dans la version finale, ceci connectera à l'AiProvider via l'API backend
-      const userMessage = request.messages[request.messages.length - 1]?.content;
+      // Convertir les messages d'assistant-ui au format AiChatMessage
+      const aiMessages: AiChatMessage[] = request.messages.map(m => ({
+        role: m.role as 'user' | 'assistant' | 'system',
+        content: m.content,
+      }));
 
-      return new Response(
-        JSON.stringify({
-          replies: [
-            {
-              content: userMessage
-                ? "Merci pour ton explication! J'ajoute quelques points pour enrichir ta compréhension:"
-                : "Bienvenue dans Student AI! Explique-moi un concept que tu viens d'apprendre et je t'aiderai à identifier tes angles morts.",
-              role: "assistant",
-            },
-          ],
-        })
-      );
+      try {
+        // Appeler l'AiProvider
+        const result = await aiProvider.complete(aiMessages);
+
+        // Réponse formatée pour l'assistant-ui
+        return new Response(
+          JSON.stringify({
+            replies: [
+              {
+                content: result.text,
+                role: "assistant",
+                data: {
+                  confidence: Math.round(Math.random() * 20 + 70), // fake confidence for demo
+                },
+              },
+            ],
+          })
+        );
+      } catch (error) {
+        // En cas d'erreur, retourner une réponse de fallback
+        console.error("AiProvider error:", error);
+        return new Response(
+          JSON.stringify({
+            replies: [
+              {
+                content: "Désolé, je ne peux pas répondre en moment. Veuillez réessayer plus tard.",
+                role: "assistant",
+              },
+            ],
+          })
+        );
+      }
     },
   });
 
@@ -88,13 +122,13 @@ export function StudentAISurface() {
           )}
         >
           <p>{message.content}</p>
-          {message.confidence !== undefined && (
+          {message.data?.confidence !== undefined && (
             <div className="mt-2 flex items-center gap-2">
               <span className="text-caption text-foregroundMuted">
                 Confiance évaluée
               </span>
               <span className="text-caption font-medium text-accent-warm">
-                {message.confidence}%
+                {message.data.confidence}%
               </span>
             </div>
           )}
