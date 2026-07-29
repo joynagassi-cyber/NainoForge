@@ -5,90 +5,63 @@
 # tracking_system: file-system
 # story_location: _bmad-output/implementation-artifacts
 
-# STATUS DEFINITIONS:
-# ==================
-# Epic Status:
-#   - backlog: Epic not yet started
-#   - in-progress: Epic actively being worked on
-#   - done: All stories in epic completed
-#
-# Epic Status Transitions:
-#   - backlog → in-progress: Automatically when first story is created (via create-story)
-#   - in-progress → done: Manually when all stories reach 'done' status
-#
-# Story Status:
-#   - backlog: Story only exists in epic file
-#   - ready-for-dev: Story file created (e.g., stories/1-1-user-authentication.md)
-#   - in-progress: Developer actively working
-#   - review: Ready for code review (via Dev's code-review workflow)
-#   - done: Completed
-#
-# Retrospective Status:
-#   - optional: Ready to be conducted but not required
-#   - done: Finished
-#
-# Action Item Status:
-#   - open: Committed during a retrospective, not yet addressed
-#   - in-progress: Actively being worked on
-#   - done: Completed
-
 development_status:
-  epic-ux-01: done
-  ux-01-1-design-foundation-done: done
-  ux-01-2-tokens-configured: done
-  ux-01-3-shadcn-primitives-skinned: done
-  epic-ux-1-retrospective: optional
+  epic-1: done
+  1-1-design-foundation: done
+  1-2-tokens-configured: done
+  1-3-shadcn-primitives-skinned: done
+  epic-1-retrospective: optional
 
-  epic-ux-02: done
-  ux-02-1-app-shell-structure: done
-  ux-02-2-sidepanel-layout: done
-  ux-02-3-routing-implemented: done
-  ux-02-4-vite-config-set: done
-  epic-ux-2-retrospective: optional
+  epic-2: done
+  2-1-app-shell-structure: done
+  2-2-sidepanel-layout: done
+  2-3-routing-implemented: done
+  2-4-vite-config-set: done
+  epic-2-retrospective: optional
 
-  epic-ux-03: in-progress
-  ux-03-1-blocknote-integration: in-progress
-  ux-03-2-custom-blocks-keyidea: ready-for-dev
-  ux-03-3-custom-blocks-example: ready-for-dev
-  ux-03-4-custom-blocks-analogy: ready-for-dev
-  ux-03-5-custom-blocks-teachback: ready-for-dev
-  ux-03-6-toolbar-customization: backlog
-  ux-03-7-cognitive-feedback-inline: backlog
-  ux-03-8-imprint-card-output: backlog
-  epic-ux-3-retrospective: optional
+  epic-3: in-progress
+  3-1-blocknote-integration: in-progress
+  3-2-custom-blocks-keyidea: ready-for-dev
+  3-3-custom-blocks-example: ready-for-dev
+  3-4-custom-blocks-analogy: ready-for-dev
+  3-5-custom-blocks-teachback: ready-for-dev
+  3-6-toolbar-customization: backlog
+  3-7-cognitive-feedback-inline: backlog
+  3-8-imprint-card-output: backlog
+  epic-3-retrospective: optional
 
-  epic-ux-04: in-progress
-  ux-04-1-assistant-ui-integration: ready-for-dev
-  ux-04-2-ai-provider-bridge: ready-for-dev
-  ux-04-3-student-card-component: backlog
-  ux-04-4-interruption-bubble: backlog
-  ux-04-5-confidence-marker: backlog
-  ux-04-6-session-summary-card: backlog
-  ux-04-7-cognitive-wording-mapping: backlog
-  epic-ux-4-retrospective: optional
+  epic-4: in-progress
+  4-1-assistant-ui-integration: ready-for-dev
+  4-2-ai-provider-bridge: ready-for-dev
+  4-3-student-card-component: backlog
+  4-4-interruption-bubble: backlog
+  4-5-confidence-marker: backlog
+  4-6-session-summary-card: backlog
+  4-7-cognitive-wording-mapping: backlog
+  epic-4-retrospective: optional
 
-  epic-ux-05: backlog
-  ux-05-1-reactflow-integration: backlog
-  ux-05-2-custom-node-types: backlog
-  ux-05-3-custom-edge-types: backlog
-  ux-05-4-mvp-minimim-cosmos: backlog
-  epic-ux-5-retrospective: optional
+  epic-5: backlog
+  5-1-reactflow-integration: backlog
+  5-2-custom-node-types: backlog
+  5-3-custom-edge-types: backlog
+  5-4-mvp-cosmos: backlog
+  epic-5-retrospective: optional
 
-  epic-ux-06: backlog
-  ux-06-1-dashboard-home-enrichment: backlog
-  ux-06-2-review-surface-separation: backlog
-  ux-06-3-review-card-components: backlog
-  ux-06-4-settings-dialog: backlog
-  ux-06-5-dark-mode-toggle: backlog
-  epic-ux-6-retrospective: optional
+  epic-6: backlog
+  6-1-dashboard-home-enrichment: backlog
+  6-2-review-surface-separation: backlog
+  6-3-review-card-components: backlog
+  6-4-settings-dialog: backlog
+  6-5-dark-mode-toggle: backlog
+  epic-6-retrospective: optional
 
-  epic-ux-07: backlog
-  ux-07-1-transition-effects: backlog
-  ux-07-2-toast-notifications: backlog
-  ux-07-3-microcopy-wording: backlog
-  ux-07-4-touch-target-validation: backlog
-  ux-07-5-icon-consistency: backlog
-  ux-07-6-typography-final-hierarchy: backlog
-  epic-ux-7-retrospective: optional
+  epic-7: backlog
+  7-1-transition-effects: backlog
+  7-2-toast-notifications: backlog
+  7-3-microcopy-wording: backlog
+  7-4-touch-target-validation: backlog
+  7-5-icon-consistency: backlog
+  7-6-typography-final-hierarchy: backlog
+  epic-7-retrospective: optional
 
 action_items:
