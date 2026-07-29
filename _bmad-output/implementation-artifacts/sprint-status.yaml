@@ -31,7 +31,7 @@ development_status:
   epic-3-retrospective: optional
 
   epic-4: in-progress
-  4-1-assistant-ui-integration: ready-for-dev
+  4-1-assistant-ui-integration: done
   4-2-ai-provider-bridge: ready-for-dev
   4-3-student-card-component: backlog
   4-4-interruption-bubble: backlog
