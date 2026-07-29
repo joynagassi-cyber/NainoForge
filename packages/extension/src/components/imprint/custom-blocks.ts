@@ -1,4 +1,4 @@
-import { Flame, BookOpen } from "@/components/icons";
+import { Flame, BookOpen, Sparkles } from "lucide-react";
 import { BlockNoteBlock } from "@blocknote/core";
 
 /**
@@ -21,13 +21,13 @@ export const nfCustomBlocks = [
     icon: BookOpen,
     content: {},
   },
-  // Bloc "Analogie" — à implémenter (histoire 3-4)
-  // {
-  //   type: "analogy",
-  //   label: "Analogie",
-  //   icon: Sparkles,
-  //   content: {},
-  // },
+  // Bloc "Analogie" — histoire 3-4
+  {
+    type: "analogy",
+    label: "Analogie",
+    icon: Sparkles,
+    content: {},
+  },
   // Bloc "TeachBackSeed" — à implémenter (histoire 3-5)
   // {
   //   type: "teachBackSeed",
