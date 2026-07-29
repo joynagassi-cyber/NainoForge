@@ -12,6 +12,7 @@ import { LiteLLMProvider } from "../../ai-providers/engine";
 import type { AiChatMessage } from "../../ai-providers/contracts";
 import { StudentCard } from "./StudentCard";
 import { InterruptionBubble } from "./InterruptionBubble";
+import { SessionSummaryCard } from "./SessionSummaryCard";
 
 // Thème NainoForge pour assistant-ui
 const nainoforgeTheme = {
@@ -63,6 +64,7 @@ export function StudentAISurface() {
 
   const [interruptionOpen, setInterruptionOpen] = useState(false);
   const [interruptionQuestion, setInterruptionQuestion] = useState("");
+  const [showSummary, setShowSummary] = useState(false);
 
   const studentCards = [
     { conceptName: "Algorithmes de tri", status: "forged", progress: 95 },
@@ -88,6 +90,10 @@ export function StudentAISurface() {
     setInterruptionOpen(true);
   };
 
+  const generateSummary = () => {
+    setShowSummary(true);
+  };
+
   return (
     <div className="flex h-full flex-col">
       <div className="border-b border-border-subtle px-4 py-3 flex justify-between items-center">
@@ -95,12 +101,30 @@ export function StudentAISurface() {
           <h2 className="text-h2 font-semibold text-text-primary">Student AI</h2>
           <p className="text-caption text-text-muted">Boucle de teach-back et recalibration</p>
         </div>
-        <Button variant="secondary" size="sm" onClick={triggerInterruption}>
-          Test Interruption
-        </Button>
+        <div className="flex gap-2">
+          <Button variant="secondary" size="sm" onClick={triggerInterruption}>
+            Test Interruption
+          </Button>
+          <Button variant="primary" size="sm" onClick={generateSummary}>
+            Résumé Session
+          </Button>
+        </div>
       </div>
 
       <div className="flex-1 overflow-y-auto px-4 py-3">
+        {/* Résumé de session (si affiché) */}
+        {showSummary && (
+          <SessionSummaryCard
+            coverage={85}
+            coherence={0.82}
+            depth={4}
+            cran={4}
+            iqs={82}
+            summary="Bon travail ! Tu as bien expliqué les concepts et utilisé des exemples pertinents. Continue sur cette voie !"
+          />
+        )}
+
+        {/* Carte des concepts de l'apprenant */}
         <div className="mb-6">
           <h3 className="text-h3 font-semibold text-text-primary mb-3">
             Vos concepts et maîtrise
@@ -117,6 +141,7 @@ export function StudentAISurface() {
           </div>
         </div>
 
+        {/* Assistant Chat */}
         <AssistantChat
           theme={nainoforgeTheme}
           className="flex-1 min-h-[400px]"
