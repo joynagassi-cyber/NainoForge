@@ -1,7 +1,7 @@
-import { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 import { BlockNoteView } from "@blocknote/react";
 import { BlockNoteEditor } from "@blocknote/core";
-import { Flame } from "@/components/icons";
+import { Flame, BookOpen, Sparkles, HelpCircle } from "lucide-react";
 import { Button } from "../ui/button";
 import { useImprint } from "../../hooks/use-imprint.js";
 import { nfCustomBlocks } from "./custom-blocks";
@@ -10,7 +10,7 @@ import { nfCustomBlocks } from "./custom-blocks";
  * Surface IMPRINT — editor BlockNote habillé NainoForge.
  *
  * Cette surface est un atelier de forge cognitive.
- * custom blocks : keyIdea (implémenté), example, analogy, teachBackSeed (à venir)
+ * custom blocks : keyIdea, example, analogy, teachBackSeed (tous implémentés)
  */
 
 export function ImprintSurface() {
@@ -18,6 +18,8 @@ export function ImprintSurface() {
     "temp-source",  // TODO: pass real sourceId from parent
     "temp-concept", // TODO: pass real conceptId from parent
   );
+
+  const editorRef = useRef<BlockNoteEditor | null>(null);
 
   // Create BlockNote editor connected to useImprint content
   const editor = useMemo(
@@ -32,6 +34,11 @@ export function ImprintSurface() {
     []
   );
 
+  // Sync BlockNote editor reference for toolbar insertion
+  useEffect(() => {
+    editorRef.current = editor;
+  }, [editor]);
+
   // Sync BlockNote content back to useImprint state via onChange callback
   const handleEditorChange = useCallback(() => {
     const text = editor.blocks
@@ -40,6 +47,27 @@ export function ImprintSurface() {
     setContent(text);
     evaluate(text);
   }, [editor, setContent, evaluate]);
+
+  // Subscribe to BlockNote changes instead of polling with setInterval
+  useEffect(() => {
+    handleEditorChange(); // seed initial content
+    return editor.onChange(handleEditorChange);
+  }, [editor, setContent, evaluate]);
+
+  // Insert a custom block at the cursor position
+  const insertBlock = (blockType: string, label: string, icon: any) => {
+    if (editorRef.current) {
+      // Create a new block of the specified type
+      const newBlock = {
+        type: blockType as any,
+        content: {
+          text: label, // Initial content with label
+        },
+      };
+      // Insert the block at the current cursor position
+      editorRef.current?.insertBlock(newBlock);
+    }
+  };
 
   // Subscribe to BlockNote changes instead of polling with setInterval
   useEffect(() => {
@@ -71,6 +99,48 @@ export function ImprintSurface() {
             }}
           >
             {saving ? "Forging..." : saved ? "Forged" : "Forger"}
+          </Button>
+        </div>
+      </div>
+
+      {/* Toolbar rapide pour les blocs custom */}
+      <div className="px-4 py-2 border-b border-border-subtle bg-surface-1">
+        <div className="mx-auto max-w-[600px] flex gap-2 flex-wrap">
+          <Button
+            variant="secondary"
+            size="sm"
+            onClick={() => insertBlock("keyIdea", "Idée clé", Flame)}
+            className="flex items-center gap-1"
+          >
+            <Flame className="w-3 h-3" />
+            Idée clé
+          </Button>
+          <Button
+            variant="secondary"
+            size="sm"
+            onClick={() => insertBlock("example", "Exemple", BookOpen)}
+            className="flex items-center gap-1"
+          >
+            <BookOpen className="w-3 h-3" />
+            Exemple
+          </Button>
+          <Button
+            variant="secondary"
+            size="sm"
+            onClick={() => insertBlock("analogy", "Analogie", Sparkles)}
+            className="flex items-center gap-1"
+          >
+            <Sparkles className="w-3 h-3" />
+            Analogie
+          </Button>
+          <Button
+            variant="secondary"
+            size="sm"
+            onClick={() => insertBlock("teachBackSeed", "Amorce TB", HelpCircle)}
+            className="flex items-center gap-1"
+          >
+            <HelpCircle className="w-3 h-3" />
+            Amorce TB
           </Button>
         </div>
       </div>
