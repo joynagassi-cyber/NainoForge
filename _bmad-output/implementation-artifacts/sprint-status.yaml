@@ -34,7 +34,7 @@ development_status:
   4-1-assistant-ui-integration: done
   4-2-ai-provider-bridge: done
   4-3-student-card-component: done
-  4-4-interruption-bubble: backlog
+  4-4-interruption-bubble: done
   4-5-confidence-marker: backlog
   4-6-session-summary-card: backlog
   4-7-cognitive-wording-mapping: backlog
