@@ -6,6 +6,7 @@ import { Button } from "../ui/button";
 import { useImprint } from "../../hooks/use-imprint.js";
 import { nfCustomBlocks } from "./custom-blocks";
 import { ImprintCard } from "./ImprintCard";
+import { ConfidenceMarker } from "../ConfidenceMarker";
 
 /**
  * Surface IMPRINT — editor BlockNote habillé NainoForge.
@@ -161,7 +162,7 @@ export function ImprintSurface() {
 
       <div className="flex-1 overflow-y-auto px-4 py-3">
         <div className="mx-auto max-w-[600px]">
-          {/* Barre cognitive dynamique */}
+          {/* Barre cognitive dynamique avec marqueur de confiance */}
           <div className="mb-4 flex items-center gap-3">
             <div className="cognitive-bar flex-1">
               <div
@@ -170,7 +171,11 @@ export function ImprintSurface() {
                 data-state={cran >= 3 ? "good" : cran >= 1 ? "partial" : "default"}
               />
             </div>
-            <span className="text-caption text-text-muted">Cran {cran}/5 · IQS {iqs}</span>
+            {/* Remplacement du texte par le marqueur de confiance */}
+            <div className="flex items-center gap-2">
+              <ConfidenceMarker cran={cran} size="lg" />
+              <span className="text-caption text-text-muted">Cran {cran}/5 · IQS {iqs}</span>
+            </div>
           </div>
 
           <BlockNoteView
