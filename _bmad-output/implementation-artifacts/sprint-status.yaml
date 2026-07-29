@@ -21,10 +21,10 @@ development_status:
 
   epic-3: in-progress
   3-1-blocknote-integration: in-progress
-  3-2-custom-blocks-keyidea: ready-for-dev
+  3-2-custom-blocks-keyidea: done
   3-3-custom-blocks-example: ready-for-dev
   3-4-custom-blocks-analogy: ready-for-dev
-  3-5-custom-blocks-teachback: ready-for-dev
+  3-5-custom-blocks-teachBackSeed: ready-for-dev
   3-6-toolbar-customization: backlog
   3-7-cognitive-feedback-inline: backlog
   3-8-imprint-card-output: backlog
