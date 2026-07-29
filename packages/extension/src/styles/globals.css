@@ -161,4 +161,23 @@
   .cognitive-bar-fill[data-state="error"] {
     @apply bg-state-leech;
   }
+
+  /* Blocs BlockNote custom - NainoForge IMPRINT */
+  .block-keyIdea {
+    @apply border-l-4 border-primary pl-3 pr-3 py-2 rounded-sm my-2
+           bg-surface-1/50 dark:bg-surface-1/20;
+  }
+  .block-keyIdea .block-content {
+    @apply text-text-primary;
+  }
+  .block-keyIdea .block-heading {
+    @apply flex items-center gap-2 text-body-sm font-semibold
+           text-primary mb-1;
+  }
+  .block-keyIdea .block-heading .icon {
+    @apply w-4 h-4 text-primary;
+  }
+  .block-keyIdea .block-heading .label {
+    @apply text-text-primary;
+  }
 }

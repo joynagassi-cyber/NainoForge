@@ -1,15 +1,16 @@
 import { useCallback, useEffect, useMemo } from "react";
 import { BlockNoteView } from "@blocknote/react";
 import { BlockNoteEditor } from "@blocknote/core";
+import { Flame } from "@/components/icons";
 import { Button } from "../ui/button";
 import { useImprint } from "../../hooks/use-imprint.js";
+import { nfCustomBlocks } from "./custom-blocks";
 
 /**
  * Surface IMPRINT — editor BlockNote habillé NainoForge.
  *
  * Cette surface est un atelier de forge cognitive.
- * TODO: wire custom block types (keyIdea, example, analogy, teachBackSeed)
- * when BlockNote v0.52+ resolves the schema type bug.
+ * custom blocks : keyIdea (implémenté), example, analogy, teachBackSeed (à venir)
  */
 
 export function ImprintSurface() {
@@ -22,6 +23,8 @@ export function ImprintSurface() {
   const editor = useMemo(
     () =>
       BlockNoteEditor.create({
+        // Custom blocks pour NainoForge
+        customBlocks: nfCustomBlocks,
         // ponytail: BlockNoteSchema.create() has a TS type bug in v0.51.x
         // where it can't be used as a value. We work around it by casting.
         schema: (BlockNoteEditor as any).defaultSchema,
