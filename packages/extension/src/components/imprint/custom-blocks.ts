@@ -1,4 +1,4 @@
-import { Flame, BookOpen, Sparkles } from "lucide-react";
+import { Flame, BookOpen, Sparkles, HelpCircle } from "lucide-react";
 import { BlockNoteBlock } from "@blocknote/core";
 
 /**
@@ -7,7 +7,7 @@ import { BlockNoteBlock } from "@blocknote/core";
  * dans l'éditeur IMPRINT.
  */
 export const nfCustomBlocks = [
-  // Bloc "Idée clé" — premier bloc custom à implémenté (histoire 3-2)
+  // Bloc "Idée clé" — histoire 3-2
   {
     type: "keyIdea",
     label: "Idée clé",
@@ -28,11 +28,11 @@ export const nfCustomBlocks = [
     icon: Sparkles,
     content: {},
   },
-  // Bloc "TeachBackSeed" — à implémenter (histoire 3-5)
-  // {
-  //   type: "teachBackSeed",
-  //   label: "Amorce TB",
-  //   icon: HelpCircle,
-  //   content: {},
-  // },
+  // Bloc "TeachBackSeed" — histoire 3-5
+  {
+    type: "teachBackSeed",
+    label: "Amorce TB",
+    icon: HelpCircle,
+    content: {},
+  },
 ];
