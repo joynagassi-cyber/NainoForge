@@ -5,3 +5,6 @@ dist/
 .DS_Store
 *.stackdump
 sh.exe.stackdump
+.bmad-loop/runs/
+.bmad-loop/cache/
+.bmad-loop/policy.toml
