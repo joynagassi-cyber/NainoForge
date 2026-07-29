@@ -42,7 +42,7 @@ development_status:
 
   epic-5: in-progress
   5-1-reactflow-integration: done
-  5-2-custom-node-types: backlog
+  5-2-custom-node-types: done
   5-3-custom-edge-types: backlog
   5-4-mvp-cosmos: backlog
   epic-5-retrospective: optional
