@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NainoForge Mobile — PostForgeSnapshotScreen</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#8B5CF6',
+            'primary-dark': '#7C3AED',
+            'surface-base': '#121212',
+            'surface-1': '#1A1A2E',
+            'surface-2': '#22223A',
+            'surface-3': '#2A2A45',
+            'text-primary': '#F8FAFC',
+            'text-muted': '#94A3B8',
+            'state-forged': '#22C55E',
+            'border-subtle': 'rgba(255,255,255,0.05)',
+          },
+          fontFamily: {
+            sans: ['system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+          },
+          animation: {
+            'forge-ignition': 'forge-ignition 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards',
+            'fade-in': 'fade-in 0.3s ease forwards',
+            'count-up': 'count-up 0.6s cubic-bezier(0.2, 0, 0, 1) forwards',
+            'ring-fill': 'ring-fill 0.6s cubic-bezier(0.2, 0, 0, 1) forwards',
+          },
+          keyframes: {
+            'forge-ignition': {
+              '0%': { transform: 'scale(0.8)', opacity: '0.5' },
+              '50%': { transform: 'scale(1.15)', opacity: '1' },
+              '70%': { transform: 'scale(0.95)' },
+              '100%': { transform: 'scale(1)' },
+            },
+            'fade-in': {
+              '0%': { opacity: '0', transform: 'translateY(10px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            'count-up': {
+              '0%': { opacity: '0', transform: 'translateY(10px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            'ring-fill': {
+              'from': { strokeDashoffset: '283' },
+              'to': { strokeDashoffset: '100' },
+            },
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    .glow-forged {
+      box-shadow: 0 0 16px rgba(34,197,94,0.4), 0 0 40px rgba(34,197,94,0.1);
+    }
+    .cosmic-bg {
+      background:
+        radial-gradient(ellipse 80% 50% at 20% -10%, rgba(139,92,246,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 110%, rgba(139,92,246,0.06) 0%, transparent 60%),
+        #121212;
+    }
+    .particle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #8B5CF6;
+      animation: particle-burst 1s ease-out forwards;
+    }
+    @keyframes particle-burst {
+      0% { transform: translate(0, 0) scale(1); opacity: 1; }
+      100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+    }
+    .smi-ring { transform: rotate(-90deg); transform-origin: center; }
+    .smi-ring-bg { fill: none; stroke: #2A2A45; stroke-width: 4; }
+    .smi-ring-fill { fill: none; stroke: #22C55E; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 283; stroke-dashoffset: 283; animation: ring-fill 0.6s cubic-bezier(0.2, 0, 0, 1) 0.3s forwards; }
+  </style>
+</head>
+<body class="cosmic-bg min-h-screen font-sans text-text-primary flex items-center justify-center">
+  <div class="max-w-[430px] w-full mx-auto px-4 py-8 flex flex-col items-center">
+
+    <!-- Flame Animation -->
+    <div class="relative mb-6">
+      <!-- Particles -->
+      <div class="particle" style="--tx: -40px; --ty: -30px; animation-delay: 0s;"></div>
+      <div class="particle" style="--tx: 35px; --ty: -45px; animation-delay: 0.1s;"></div>
+      <div class="particle" style="--tx: -25px; --ty: 35px; animation-delay: 0.2s;"></div>
+      <div class="particle" style="--tx: 40px; --ty: 20px; animation-delay: 0.15s;"></div>
+      <div class="particle" style="--tx: 0px; --ty: -50px; animation-delay: 0.05s; background: #22C55E;"></div>
+      <div class="particle" style="--tx: -50px; --ty: 10px; animation-delay: 0.25s; background: #F59E0B;"></div>
+
+      <!-- Flame Icon -->
+      <div class="w-20 h-20 rounded-full bg-state-forged/10 border-2 border-state-forged flex items-center justify-center glow-forged animate-forge-ignition">
+        <svg class="w-10 h-10 text-state-forged" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2C8.5 6 5 9 5 13a7 7 0 0 0 14 0c0-4-3.5-7-7-11zm0 16a5 5 0 0 1-5-5c0-2.5 2-5 5-9 3 4 5 6.5 5 9a5 5 0 0 1-5 5z"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Title -->
+    <h1 class="text-h1 font-bold text-state-forged text-center mb-2 animate-fade-in" style="animation-delay: 0.2s;">
+      Concept forgé !
+    </h1>
+    <p class="text-body text-text-muted text-center mb-8 animate-fade-in" style="animation-delay: 0.3s;">
+      Embeddings vectoriels
+    </p>
+
+    <!-- Stats Card -->
+    <div class="w-full bg-surface-1 border border-border-subtle rounded-2xl p-6 mb-6 animate-fade-in" style="animation-delay: 0.4s;">
+      <div class="flex items-center justify-between mb-4">
+        <span class="text-body-sm text-text-muted">Métriques de forge</span>
+        <span class="text-caption bg-state-forged/10 text-state-forged px-2 py-0.5 rounded-full">✓ Complet</span>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <!-- Cran -->
+        <div class="bg-surface-2 rounded-xl p-3 text-center">
+          <div class="flex items-center justify-center gap-1 mb-1">
+            <span class="text-h2 font-bold text-state-partial">3</span>
+            <span class="text-body-sm text-text-muted">/5</span>
+          </div>
+          <p class="text-caption text-text-muted">Cran atteint</p>
+        </div>
+
+        <!-- IQS -->
+        <div class="bg-surface-2 rounded-xl p-3 text-center">
+          <div class="flex items-center justify-center gap-1 mb-1">
+            <span class="text-h2 font-bold text-primary">67</span>
+            <span class="text-body-sm text-text-muted">/100</span>
+          </div>
+          <p class="text-caption text-text-muted">IQS</p>
+        </div>
+
+        <!-- Cards -->
+        <div class="bg-surface-2 rounded-xl p-3 text-center">
+          <div class="flex items-center justify-center gap-1 mb-1">
+            <span class="text-h2 font-bold text-text-primary">3</span>
+          </div>
+          <p class="text-caption text-text-muted">Cartes générées</p>
+          <div class="flex items-center justify-center gap-1 mt-1">
+            <span class="text-caption bg-surface-3 text-text-muted px-1.5 py-0.5 rounded">B02</span>
+            <span class="text-caption bg-surface-3 text-text-muted px-1.5 py-0.5 rounded">B04</span>
+            <span class="text-caption bg-surface-3 text-text-muted px-1.5 py-0.5 rounded">B04</span>
+          </div>
+        </div>
+
+        <!-- Next Review -->
+        <div class="bg-surface-2 rounded-xl p-3 text-center">
+          <div class="flex items-center justify-center gap-1 mb-1">
+            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+          </div>
+          <p class="text-h2 font-bold text-text-primary">4 jours</p>
+          <p class="text-caption text-text-muted">Prochaine révision</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SMI Preview -->
+    <div class="w-full bg-surface-1 border border-border-subtle rounded-2xl p-4 mb-6 animate-fade-in" style="animation-delay: 0.5s;">
+      <div class="flex items-center gap-4">
+        <!-- SMI Radar SVG -->
+        <svg class="w-20 h-20 flex-shrink-0" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="40" fill="none" stroke="#2A2A45" stroke-width="1"/>
+          <circle cx="50" cy="50" r="30" fill="none" stroke="#2A2A45" stroke-width="1"/>
+          <circle cx="50" cy="50" r="20" fill="none" stroke="#2A2A45" stroke-width="1"/>
+          <circle cx="50" cy="50" r="10" fill="none" stroke="#2A2A45" stroke-width="1"/>
+          <!-- Radar fill -->
+          <polygon points="50,10 85,50 50,90 15,50" fill="rgba(139,92,246,0.15)" stroke="#8B5CF6" stroke-width="1.5"/>
+          <!-- Labels -->
+          <text x="50" y="8" text-anchor="middle" fill="#94A3B8" font-size="7">Rétention</text>
+          <text x="92" y="52" text-anchor="middle" fill="#94A3B8" font-size="7">Profondeur</text>
+          <text x="50" y="96" text-anchor="middle" fill="#94A3B8" font-size="7">Enseignem.</text>
+          <text x="8" y="52" text-anchor="middle" fill="#94A3B8" font-size="7">Métacogn.</text>
+        </svg>
+        <div class="flex-1 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-body-sm text-text-muted">SMI global</span>
+            <span class="text-body-sm font-semibold text-state-partial">55%</span>
+          </div>
+          <div class="w-full h-1.5 bg-surface-3 rounded-full overflow-hidden">
+            <div class="h-full bg-state-partial rounded-full" style="width: 55%"></div>
+          </div>
+          <p class="text-caption text-text-disabled">Prochain seuil: 60% → Forged</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="w-full space-y-3 animate-fade-in" style="animation-delay: 0.6s;">
+      <button class="w-full h-12 bg-primary hover:bg-primary-dark text-surface-base font-semibold text-body rounded-xl transition-colors flex items-center justify-center gap-2 glow-primary">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v10.5M5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V8.25m-12.75 0H21"/></svg>
+        Voir dans COSMOS
+      </button>
+      <button class="w-full h-12 bg-surface-2 hover:bg-surface-3 text-text-primary font-semibold text-body rounded-xl transition-colors flex items-center justify-center gap-2">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M2.25 12 8.954 8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
+        Continuer
+      </button>
+    </div>
+
+    <!-- Dismiss hint -->
+    <p class="text-caption text-text-disabled mt-4 animate-fade-in" style="animation-delay: 0.8s;">
+      Touchez ailleurs pour fermer
+    </p>
+
+  </div>
+</body>
+</html>

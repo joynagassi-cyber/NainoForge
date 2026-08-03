@@ -1,14 +1,8 @@
-"use strict";
 // ─── Article extraction via Readability + Turndown ────────────
 // Zero runtime style: pure Markdown output conforming to DCM.
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.extractArticle = extractArticle;
-const readability_1 = require("@mozilla/readability");
-const turndown_1 = __importDefault(require("turndown"));
-const turndown = new turndown_1.default({
+import { Readability } from '@mozilla/readability';
+import TurndownService from 'turndown';
+const turndown = new TurndownService({
     headingStyle: 'atx',
     hr: '---',
     bulletListMarker: '-',
@@ -19,8 +13,8 @@ function estimateWordCount(text) {
         return 0;
     return text.split(/[\s\n]+/).filter(Boolean).length;
 }
-function extractArticle(doc, sourceUrl) {
-    const article = new readability_1.Readability(doc, { charThreshold: 100 }).parse();
+export function extractArticle(doc, sourceUrl) {
+    const article = new Readability(doc, { charThreshold: 100 }).parse();
     if (!article?.textContent || article.textContent.trim().length === 0) {
         throw new Error('ARTICLE_EXTRACTION_FAILED: empty article');
     }

@@ -2,7 +2,8 @@
 title: "Implémenter la bubble d'interruption pédagogique"
 type: 'feature'
 created: '2026-07-29'
-status: 'in-review'
+status: 'done'
+final_revision: 'bc469b7'
 review_loop_iteration: 0
 followup_review_recommended: false
 baseline_revision: '3baa3e0'

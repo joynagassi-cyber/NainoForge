@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NainoForge Mobile — ReviewScreen</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#8B5CF6',
+            'primary-dark': '#7C3AED',
+            'surface-base': '#121212',
+            'surface-1': '#1A1A2E',
+            'surface-2': '#22223A',
+            'surface-3': '#2A2A45',
+            'text-primary': '#F8FAFC',
+            'text-muted': '#94A3B8',
+            'state-forged': '#22C55E',
+            'state-leech': '#EF4444',
+            'state-partial': '#F59E0B',
+            'border-subtle': 'rgba(255,255,255,0.05)',
+            'border-default': 'rgba(255,255,255,0.09)',
+          },
+          fontFamily: {
+            sans: ['system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+          },
+          animation: {
+            'card-flip': 'card-flip 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
+          },
+          keyframes: {
+            'card-flip': {
+              '0%': { transform: 'rotateY(0deg)' },
+              '100%': { transform: 'rotateY(180deg)' },
+            },
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    .card-container { perspective: 1000px; }
+    .card-inner {
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transform-style: preserve-3d;
+    }
+    .card-flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+    .card-front, .card-back {
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+    .card-back {
+      transform: rotateY(180deg);
+    }
+    .rating-btn.active-again { background: rgba(239,68,68,0.15); border-color: #EF4444; color: #EF4444; }
+    .rating-btn.active-hard { background: rgba(245,158,11,0.15); border-color: #F59E0B; color: #F59E0B; }
+    .rating-btn.active-good { background: rgba(139,92,246,0.15); border-color: #8B5CF6; color: #8B5CF6; }
+    .rating-btn.active-easy { background: rgba(34,197,94,0.15); border-color: #22C55E; color: #22C55E; }
+    .progress-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .progress-dot.done { background: #8B5CF6; }
+    .progress-dot.current { background: #8B5CF6; box-shadow: 0 0 0 2px rgba(139,92,246,0.3); }
+    .progress-dot.upcoming { background: #2A2A45; }
+    .progress-dot.leech { background: #EF4444; }
+  </style>
+</head>
+<body class="bg-surface-base min-h-screen font-sans text-text-primary">
+  <div class="max-w-[430px] mx-auto min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-10 bg-surface-base/95 backdrop-blur-md px-4 py-3 flex items-center justify-between border-b border-border-subtle">
+      <button class="w-11 h-11 flex items-center justify-center text-text-muted hover:text-text-primary transition-colors" aria-label="Retour">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M15.75 19.5 8.25 12l7.5-7.5"/></svg>
+      </button>
+      <h1 class="text-h3 font-semibold text-text-primary">Révision</h1>
+      <div class="flex items-center gap-2 text-body-sm text-text-muted">
+        <span class="text-primary font-semibold">12</span>
+        <span>/</span>
+        <span>47</span>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col px-4 py-4">
+
+      <!-- Progress Bar -->
+      <div class="mb-6">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-caption text-text-muted">Progression</span>
+          <span class="text-caption text-primary font-medium">25%</span>
+        </div>
+        <div class="w-full h-1.5 bg-surface-3 rounded-full overflow-hidden">
+          <div class="h-full bg-primary rounded-full transition-all duration-600" style="width: 25%"></div>
+        </div>
+      </div>
+
+      <!-- Card -->
+      <div class="flex-1 flex flex-col">
+        <div class="card-container flex-1" id="cardContainer">
+          <div class="card-inner relative w-full" style="min-height: 280px;">
+
+            <!-- Front -->
+            <div class="card-front absolute inset-0 bg-surface-1 border border-border-default rounded-2xl p-6 flex flex-col justify-center items-center text-center cursor-pointer" onclick="flipCard()" role="button" aria-label="Touchez pour révéler la réponse">
+              <div class="mb-4">
+                <span class="text-caption bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">B02 · Définition</span>
+              </div>
+              <p class="text-h2 font-semibold text-text-primary leading-tight">
+                Qu'est-ce qu'un <span class="text-primary">embedding</span> vectoriel ?
+              </p>
+              <p class="text-body-sm text-text-muted mt-6">
+                Touchez pour révéler la réponse
+              </p>
+              <div class="mt-4 flex items-center gap-2 text-caption text-text-disabled">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09Z"/></svg>
+                Embeddings · Concept #3
+              </div>
+            </div>
+
+            <!-- Back -->
+            <div class="card-back absolute inset-0 bg-surface-1 border border-primary/30 rounded-2xl p-6 flex flex-col justify-center">
+              <div class="mb-4">
+                <span class="text-caption bg-state-forged/10 text-state-forged px-3 py-1 rounded-full font-medium">Réponse</span>
+              </div>
+              <p class="text-body text-text-primary leading-relaxed">
+                Un <span class="text-primary font-medium">embedding</span> est une représentation vectorielle d'un token (mot, phrase) dans un espace continu de haute dimension, où la position du vecteur capture son <span class="text-state-partial font-medium">sens sémantique</span>.
+              </p>
+              <p class="text-body-sm text-text-muted mt-3">
+                Les embeddings permettent de mesurer la similarité entre concepts : deux mots sémantiquement proches auront des vecteurs proches dans l'espace.
+              </p>
+              <div class="mt-4 flex items-center gap-2 text-caption text-text-disabled">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09Z"/></svg>
+                B02 · Embeddings · Source: web_article
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rating Buttons -->
+        <div class="mt-6 grid grid-cols-4 gap-2" id="ratingButtons">
+          <button class="rating-btn h-12 border-2 border-state-leech/30 text-state-leech rounded-xl text-body-sm font-medium transition-all hover:bg-state-leech/10 active:scale-95" onclick="selectRating('again', this)">
+            À revoir
+          </button>
+          <button class="rating-btn h-12 border-2 border-state-partial/30 text-state-partial rounded-xl text-body-sm font-medium transition-all hover:bg-state-partial/10 active:scale-95" onclick="selectRating('hard', this)">
+            Difficile
+          </button>
+          <button class="rating-btn h-12 border-2 border-primary/30 text-primary rounded-xl text-body-sm font-medium transition-all hover:bg-primary/10 active:scale-95" onclick="selectRating('good', this)">
+            Solide
+          </button>
+          <button class="rating-btn h-12 border-2 border-state-forged/30 text-state-forged rounded-xl text-body-sm font-medium transition-all hover:bg-state-forged/10 active:scale-95" onclick="selectRating('easy', this)">
+            Maîtrisé
+          </button>
+        </div>
+
+        <!-- Leech Alternative Sheet (hidden by default) -->
+        <div class="mt-4 bg-surface-1 border border-state-leech/30 rounded-xl p-4 hidden" id="leechSheet">
+          <div class="flex items-center gap-2 mb-3">
+            <svg class="w-5 h-5 text-state-leech" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg>
+            <span class="text-body-sm text-state-leech font-medium">Concept difficile détecté</span>
+          </div>
+          <p class="text-body-sm text-text-muted mb-3">Ce concept résiste. Essayons autrement :</p>
+          <div class="space-y-2">
+            <button class="w-full h-11 bg-surface-2 hover:bg-surface-3 text-text-primary text-body-sm rounded-lg transition-colors text-left px-4 flex items-center gap-2">
+              <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3.5.512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3.5.512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/></svg>
+              Reforger avec IMPRINT
+            </button>
+            <button class="w-full h-11 bg-surface-2 hover:bg-surface-3 text-text-primary text-body-sm rounded-lg transition-colors text-left px-4 flex items-center gap-2">
+              <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"/></svg>
+              Session Student AI
+            </button>
+            <button class="w-full h-11 bg-surface-2 hover:bg-surface-3 text-text-primary text-body-sm rounded-lg transition-colors text-left px-4 flex items-center gap-2">
+              <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3.5.512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3.5.512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/></svg>
+              Revoir la source originale
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress Dots -->
+      <div class="mt-6 flex items-center justify-center gap-1.5 flex-wrap">
+        <span class="progress-dot done"></span>
+        <span class="progress-dot done"></span>
+        <span class="progress-dot done"></span>
+        <span class="progress-dot done"></span>
+        <span class="progress-dot done"></span>
+        <span class="progress-dot done"></span>
+        <span class="progress-dot done"></span>
+        <span class="progress-dot done"></span>
+        <span class="progress-dot done"></span>
+        <span class="progress-dot done"></span>
+        <span class="progress-dot done"></span>
+        <span class="progress-dot current"></span>
+        <span class="progress-dot upcoming"></span>
+        <span class="progress-dot upcoming"></span>
+        <span class="progress-dot leech" title="Leech"></span>
+        <span class="progress-dot upcoming"></span>
+        <span class="progress-dot upcoming"></span>
+        <span class="progress-dot upcoming"></span>
+        <span class="progress-dot upcoming"></span>
+        <span class="progress-dot upcoming"></span>
+      </div>
+    </main>
+
+    <script>
+      function flipCard() {
+        document.getElementById('cardContainer').classList.add('card-flipped');
+      }
+      function selectRating(rating, btn) {
+        document.querySelectorAll('.rating-btn').forEach(b => {
+          b.className = b.className.replace(/active-(again|hard|good|easy)/g, '');
+        });
+        btn.classList.add('active-' + rating);
+        // Simulate next card after delay
+        setTimeout(() => {
+          document.getElementById('cardContainer').classList.remove('card-flipped');
+        }, 500);
+      }
+    </script>
+  </div>
+</body>
+</html>

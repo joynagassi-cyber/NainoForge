@@ -3,7 +3,7 @@ title: "Intégrer React Flow pour le graphe conceptuel COSMOS"
 type: 'feature'
 created: '2026-07-29'
 status: 'done'
-final_revision: '<to-be-filled-after-commit>'
+final_revision: '3abb0f6'
 review_loop_iteration: 0
 followup_review_recommended: false
 baseline_revision: 'd9f8335'

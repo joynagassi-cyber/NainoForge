@@ -8,6 +8,9 @@
     "typecheck": "tsc --noEmit",
     "test": "echo 'no tests yet' > /dev/null"
   },
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+    "@nainoforge/core": "workspace:*"
+  },
+  "devDependencies": {},
+  "type": "module"
 }

@@ -1,5 +1,5 @@
 import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "../lib/utils";
+import { cn } from "../../lib/utils";
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
@@ -7,7 +7,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          "bg-primary text-surface-base hover:bg-primary-dark active:bg-primary-darkest",
+          "bg-primary text-surface-base hover:bg-primary-dark active:bg-primary-darkest glow-primary",
         secondary:
           "bg-surface-2 text-text-primary hover:bg-surface-3 border border-border-default",
         ghost:
@@ -15,13 +15,13 @@ const buttonVariants = cva(
         destructive:
           "bg-state-leech text-surface-base hover:bg-red-600",
         forge:
-          "btn-forge",
+          "gradient-primary text-white hover:opacity-90 active:bg-primary-darkest glow-primary",
       },
       size: {
-        sm: "h-8 px-3 text-body-sm",
-        md: "h-10 px-4 text-body",
-        lg: "h-12 px-6 text-h3",
-        icon: "h-10 w-10",
+        sm: "h-11 px-3 text-body-sm min-w-[44px]",
+        md: "h-11 px-4 text-body min-w-[44px]",
+        lg: "h-12 px-6 text-h3 min-w-[44px]",
+        icon: "h-11 w-11 min-w-[44px] min-h-[44px]",
       },
     },
     defaultVariants: {

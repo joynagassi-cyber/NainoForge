@@ -3,7 +3,7 @@ title: "Enrichir le Dashboard Home avec streak, cards dues, prochaine révision,
 type: 'feature'
 created: '2026-07-29'
 status: 'done'
-final_revision: '<to-be-filled>'
+final_revision: '2c9db93'
 review_loop_iteration: 0
 followup_review_recommended: false
 baseline_revision: 'cdcfe85'

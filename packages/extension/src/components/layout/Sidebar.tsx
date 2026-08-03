@@ -1,5 +1,5 @@
 import { Flame, BookOpen, Brain, GitGraph, Settings } from "lucide-react";
-import { cn } from "../../lib/utils";
+import { cn } from "../../lib/utils.ts";
 import type { Tab } from "./SidePanelHeader";
 
 const navItems: { id: Tab; label: string; icon: typeof Flame }[] = [
@@ -25,7 +25,7 @@ export function Sidebar({ activeTab, onTabChange, onSettingsOpen }: SidebarProps
             aria-label={item.label}
             aria-current={activeTab === item.id ? "page" : undefined}
             className={cn(
-              "flex h-10 w-10 items-center justify-center rounded-md transition-colors",
+              "flex h-11 w-11 items-center justify-center rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
               activeTab === item.id
                 ? "bg-primary/10 text-primary"
                 : "text-text-muted hover:text-text-primary hover:bg-surface-2"
@@ -40,7 +40,7 @@ export function Sidebar({ activeTab, onTabChange, onSettingsOpen }: SidebarProps
       <button
         onClick={onSettingsOpen}
         aria-label="Paramètres"
-        className="flex h-10 w-10 items-center justify-center rounded-md text-text-muted hover:text-text-primary hover:bg-surface-2 transition-colors"
+        className="flex h-11 w-11 items-center justify-center rounded-md text-text-muted hover:text-text-primary hover:bg-surface-2 transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
         title="Paramètres"
       >
         <Settings className="h-5 w-5" />

@@ -8,6 +8,8 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@nainoforge/core": "workspace:*"
+  },
   "devDependencies": {}
 }

@@ -1,7 +1,7 @@
 import { useSources } from '../../hooks/use-sources.js';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/card';
 import { Skeleton } from '../ui/skeleton';
-import { ConfidenceMarker } from '../components/ConfidenceMarker';
+import { ConfidenceMarker } from '../ConfidenceMarker.tsx';
 import { Flame } from 'lucide-react';
 
 // Helper pour formater la date (simplifié)
@@ -42,7 +42,7 @@ export function HomeSurface() {
 
   return (
     <div className="space-y-4 px-4 py-3">
-      {/* En-tête avec streak et cards dues */}
+      {/* En-tête avec streak et cartes à réviser */}
       <div className="grid grid-cols-2 gap-4">
         <Card>
           <CardHeader>
@@ -52,15 +52,15 @@ export function HomeSurface() {
             <div className="flex items-center gap-2">
               <Flame className="w-6 h-6 text-accent-warm" />
               <span className="text-2xl font-bold text-text-primary">{streak}</span>
-              <span className="text-caption text-text-muted">jours</span>
+              <span className="text-caption text-text-muted">jour(s)</span>
             </div>
-            <p className="text-xs text-text-muted mt-1">Chaine continue de révision</p>
+            <p className="text-xs text-text-muted mt-1">Chaîne continue de révision</p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader>
-            <CardTitle>Cartes dues</CardTitle>
+            <CardTitle>Cartes à réviser</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-3xl font-bold text-text-primary">{cardsDueToday}</div>
@@ -72,7 +72,7 @@ export function HomeSurface() {
       {/* Prochaine révision et mini graph */}
       <Card>
         <CardHeader>
-          <CardTitle>Prochaine révision</CardHeader>
+          <CardTitle>Prochaine révision</CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-text-primary">Dans <span className="font-bold">{nextReviewInHours}</span> heure(s)</p>
@@ -102,8 +102,8 @@ export function HomeSurface() {
         <h2 className="text-h2 font-semibold text-text-primary">Forge</h2>
         <p className="text-caption text-text-muted">
           {sources.length === 0
-            ? 'Commence par capturer un contenu.'
-            : fr(sources.length, 'contenu capturé')}
+            ? 'Commencez par capturer un contenu.'
+            : fr(sources.length, 'contenu(s) capturé(s)')}
         </p>
       </div>
 
@@ -115,8 +115,8 @@ export function HomeSurface() {
           <CardContent>
             <p className="text-body-sm text-text-muted">
               {sources.length === 0
-                ? 'Aucune carte due. Capture un contenu pour commencer.'
-                : fr(sources.length, 'contenu prêt') + ' pour révision.'}
+                ? 'Aucune carte à réviser. Capturez un contenu pour commencer.'
+                : fr(sources.length, 'contenu(s) prêt(s)')}
             </p>
           </CardContent>
         </Card>
@@ -135,7 +135,7 @@ export function HomeSurface() {
                 />
               </div>
               <p className="text-caption text-text-muted">
-                {fr(sources.length, 'concept capturé')}
+                {fr(sources.length, 'concept(s) capturé(s)')}
               </p>
             </div>
           </CardContent>
@@ -147,7 +147,7 @@ export function HomeSurface() {
           </CardHeader>
           <CardContent>
             {sources.length === 0 ? (
-              <p className="text-body-sm text-text-muted">Aucune source capturée.</p>
+              <p className="text-body-sm text-text-muted">Aucune source capturée pour le moment.</p>
             ) : (
               <ul className="space-y-1">
                 {sources.slice(-3).reverse().map((s) => (

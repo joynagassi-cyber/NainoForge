@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.SourceRepository = void 0;
-const crypto_js_1 = require("./crypto.js");
+import { hashMessage } from './crypto.js';
 // ─── IndexedDB-backed repository for nf_sources ──────────────
 const DB_NAME = 'nainoforge';
 const STORE = 'nf_sources';
@@ -26,9 +23,9 @@ function tx(storeName, mode) {
         return t.objectStore(storeName);
     });
 }
-class SourceRepository {
+export class SourceRepository {
     async insert(source) {
-        const hash = await (0, crypto_js_1.hashMessage)(source.content_markdown);
+        const hash = await hashMessage(source.content_markdown);
         const existing = await this.getByHash(hash);
         if (existing) {
             console.debug(`[nf-repo] dedup skip hash=${hash} id=${existing.id}`);
@@ -100,5 +97,4 @@ class SourceRepository {
         });
     }
 }
-exports.SourceRepository = SourceRepository;
 //# sourceMappingURL=repository.js.map

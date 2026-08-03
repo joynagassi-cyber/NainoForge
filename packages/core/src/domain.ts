@@ -1,5 +1,6 @@
 // ─── Core domain interfaces ──────────────────────────────────
-// Shared vocabulary used across extension, fsrs, cosmos, ai, etc.
+// Single source of truth for domain types.
+// Other packages import from here to avoid duplication.
 
 export interface CapturedSource {
   id: string;
@@ -7,11 +8,14 @@ export interface CapturedSource {
   title: string;
   url?: string;
   content_markdown: string;
+  content_hash: string; // SHA-256 hex — used for dedup index
   metadata: Record<string, unknown>;
   privacy_level: 'public' | 'personal' | 'enterprise';
-  status: 'captured' | 'processing' | 'ready' | 'error';
+  status: SourceStatus;
   created_at: number; // unix ms
 }
+
+export type SourceStatus = 'pending' | 'processing' | 'ready' | 'error';
 
 export interface Chapter {
   start_ms: number;
@@ -47,3 +51,39 @@ export interface ImprintNote {
   concept_coverage_pct?: number; // 0-100
   created_at: number;
 }
+
+/** Minimal source shape — used by imprint, student-ai, bundle engines. */
+export interface SourceLike {
+  id: string;
+  title?: string;
+  content_markdown?: string;
+  source_type?: string;
+}
+
+/** Minimal note shape — used by student-ai, bundle engines. */
+export interface NoteLike {
+  id: string;
+  source_id: string;
+  concept_id: string;
+  content: string;
+  word_count?: number;
+  cran_level?: CranLevel;
+  quality_score?: number;
+  bloom_level?: BloomLevel;
+  concept_coverage_pct?: number;
+  created_at?: number;
+}
+
+/** Digital Content Model — normalized output of any extractor. */
+export interface DCM {
+  id: string;
+  title: string;
+  content_markdown: string;
+  source_url: string;
+  source_type: 'web_article' | 'youtube' | 'pdf';
+  metadata: Record<string, unknown>;
+  captured_at: number; // unix timestamp ms
+}
+
+/** FSRS review rating. */
+export type ReviewRating = 'again' | 'hard' | 'good' | 'easy';

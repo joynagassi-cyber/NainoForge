@@ -2,8 +2,8 @@
 title: "Implémenter le bloc 'Analogie' pour BlockNote"
 type: 'feature'
 created: '2026-07-29'
-status: 'in-review'
-final_revision: '<to-be-filled-after-commit>'
+status: 'done'
+final_revision: '1a4ce41'
 review_loop_iteration: 0
 followup_review_recommended: false
 baseline_revision: '1c383ef'

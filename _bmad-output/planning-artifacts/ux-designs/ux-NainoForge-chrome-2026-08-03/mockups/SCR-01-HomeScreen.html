@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NainoForge Mobile — HomeScreen</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#8B5CF6',
+            'primary-dark': '#7C3AED',
+            'surface-base': '#121212',
+            'surface-1': '#1A1A2E',
+            'surface-2': '#22223A',
+            'surface-3': '#2A2A45',
+            'text-primary': '#F8FAFC',
+            'text-muted': '#94A3B8',
+            'text-disabled': '#475569',
+            'state-forged': '#22C55E',
+            'state-leech': '#EF4444',
+            'state-partial': '#F59E0B',
+            'state-lacune': '#F97316',
+            'accent-warm': '#F59E0B',
+            'border-subtle': 'rgba(255,255,255,0.05)',
+            'border-default': 'rgba(255,255,255,0.09)',
+          },
+          fontFamily: {
+            sans: ['system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+          },
+          animation: {
+            'pulse-violet': 'pulse-violet 2s ease-in-out infinite',
+            'shimmer': 'shimmer 1.5s ease-in-out infinite',
+            'forge-ignition': 'forge-ignition 1s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+          },
+          keyframes: {
+            'pulse-violet': {
+              '0%, 100%': { boxShadow: '0 0 0 0 rgba(139,92,246,0.4)' },
+              '50%': { boxShadow: '0 0 0 8px rgba(139,92,246,0)' },
+            },
+            'shimmer': {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' },
+            },
+            'forge-ignition': {
+              '0%': { transform: 'scale(0.8)', opacity: '0.5' },
+              '50%': { transform: 'scale(1.15)', opacity: '1' },
+              '70%': { transform: 'scale(0.95)' },
+              '100%': { transform: 'scale(1)' },
+            },
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    @keyframes forge-ignition {
+      0% { transform: scale(0.8); opacity: 0.5; }
+      50% { transform: scale(1.15); opacity: 1; }
+      70% { transform: scale(0.95); }
+      100% { transform: scale(1); }
+    }
+    @keyframes pulse-violet {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(139,92,246,0.4); }
+      50% { box-shadow: 0 0 0 8px rgba(139,92,246,0); }
+    }
+    .shimmer {
+      background: linear-gradient(90deg, #22223A 0%, #2A2A45 50%, #22223A 100%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s ease-in-out infinite;
+    }
+    .glow-primary {
+      box-shadow: 0 0 20px rgba(139,92,246,0.5), 0 0 60px rgba(139,92,246,0.15), inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .cosmic-bg {
+      background:
+        radial-gradient(ellipse 80% 50% at 20% -10%, rgba(139,92,246,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 110%, rgba(139,92,246,0.06) 0%, transparent 60%),
+        #121212;
+    }
+    .tab-active { color: #8B5CF6; border-bottom: 2px solid #8B5CF6; }
+    .tab-inactive { color: #94A3B8; border-bottom: 2px solid transparent; }
+    .tab-inactive:hover { color: #F8FAFC; }
+    .source-card:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,0.45); }
+    .source-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .cran-dot { width: 32px; height: 32px; border-radius: 50%; border: 2px solid; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; }
+    .cran-1 { border-color: #94A3B8; color: #94A3B8; }
+    .cran-2 { border-color: #F97316; color: #F97316; }
+    .cran-3 { border-color: #F59E0B; color: #F59E0B; }
+    .cran-4 { border-color: #22C55E; color: #22C55E; }
+    .cran-5 { border-color: #22C55E; color: #22C55E; background: rgba(34,197,94,0.12); }
+  </style>
+</head>
+<body class="cosmic-bg min-h-screen font-sans text-text-primary">
+  <div class="max-w-[430px] mx-auto min-h-screen relative pb-20">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-10 bg-surface-1/95 backdrop-blur-md border-b border-border-subtle px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <svg class="w-5 h-5 text-primary animate-pulse-violet" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2C8.5 6 5 9 5 13a7 7 0 0 0 14 0c0-4-3.5-7-7-11zm0 16a5 5 0 0 1-5-5c0-2.5 2-5 5-9 3 4 5 6.5 5 9a5 5 0 0 1-5 5z"/>
+        </svg>
+        <span class="text-h3 font-semibold text-text-primary">NainoForge</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="flex items-center gap-1.5">
+          <div class="w-2 h-2 rounded-full bg-state-forged"></div>
+          <span class="text-caption text-text-muted">En ligne</span>
+        </div>
+        <button class="w-11 h-11 flex items-center justify-center text-text-muted hover:text-text-primary transition-colors" aria-label="Paramètres">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.38.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.941-1.11.941h-2.593c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124a6.52 6.52 0 0 1 .22-.128c.332-.183.582-.495.644-.869l.214-1.28z"/><path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="px-4 py-4 space-y-5">
+
+      <!-- Streak Banner -->
+      <div class="flex items-center justify-between bg-surface-1 border border-border-subtle rounded-xl p-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 7l5 5-5 5M6 12l5 5-5 5"/></svg>
+          </div>
+          <div>
+            <p class="text-body-sm text-text-muted">Série actuelle</p>
+            <p class="text-h3 font-semibold text-text-primary">7 jours 🔥</p>
+          </div>
+        </div>
+        <div class="text-right">
+          <p class="text-body-sm text-text-muted">Cartes今天</p>
+          <p class="text-h3 font-semibold text-text-primary">23</p>
+        </div>
+      </div>
+
+      <!-- Today's Briefing -->
+      <div class="bg-surface-1 border border-border-subtle rounded-xl p-5 glow-primary">
+        <div class="flex items-center gap-2 mb-3">
+          <svg class="w-5 h-5 text-accent-warm" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+          <h2 class="text-h3 font-semibold text-text-primary">Briefing du jour</h2>
+        </div>
+        <div class="space-y-2 mb-4">
+          <div class="flex items-center gap-2 text-body-sm text-text-muted">
+            <span class="w-2 h-2 rounded-full bg-primary"></span>
+            5 cartes à réviser
+          </div>
+          <div class="flex items-center gap-2 text-body-sm text-text-muted">
+            <span class="w-2 h-2 rounded-full bg-state-partial"></span>
+            1 concept en difficulté
+          </div>
+          <div class="flex items-center gap-2 text-body-sm text-text-muted">
+            <span class="w-2 h-2 rounded-full bg-state-lacune"></span>
+            2 gaps dans l'arbre
+          </div>
+        </div>
+        <button class="w-full h-12 bg-primary hover:bg-primary-dark text-surface-base font-semibold text-body rounded-xl transition-colors flex items-center justify-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 7l5 5-5 5M6 12l5 5-5 5"/></svg>
+          Démarrer la révision
+        </button>
+      </div>
+
+      <!-- Recent Sources -->
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-h2 font-semibold text-text-primary">Sources récentes</h2>
+          <span class="text-caption text-text-muted bg-surface-3 px-2 py-0.5 rounded-full">3</span>
+        </div>
+
+        <!-- Source Card 1 -->
+        <div class="source-card bg-surface-1 border border-border-subtle rounded-xl p-4 mb-3 cursor-pointer">
+          <div class="flex items-start justify-between mb-2">
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/></svg>
+              <h3 class="text-h3 font-semibold text-text-primary">Embeddings vectoriels</h3>
+            </div>
+            <div class="flex items-center gap-1">
+              <div class="w-2 h-2 rounded-full bg-state-forged" title="Public"></div>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 text-body-sm text-text-muted mb-3">
+            <span>web_article</span>
+            <span>·</span>
+            <span>1 234 mots</span>
+            <span>·</span>
+            <span>Il y a 2h</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-1">
+              <span class="cran-dot cran-3">3</span>
+              <span class="text-caption text-text-muted">Cran</span>
+            </div>
+            <div class="flex gap-2">
+              <button class="h-11 px-4 bg-primary hover:bg-primary-dark text-surface-base text-body-sm font-semibold rounded-lg transition-colors">
+                Forger
+              </button>
+              <button class="h-11 px-4 text-text-muted hover:text-text-primary text-body-sm rounded-lg transition-colors">
+                Aperçu
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Source Card 2 — Leech -->
+        <div class="source-card bg-surface-1 border border-state-leech/30 rounded-xl p-4 mb-3 cursor-pointer" style="box-shadow: 0 0 16px rgba(239,68,68,0.2);">
+          <div class="flex items-start justify-between mb-2">
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-state-leech" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m15.536 8.464a5 5 0 0 1 0 7.072m2.828-9.9a9 9 0 0 1 0 12.728M5.586 15H4a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/></svg>
+              <h3 class="text-h3 font-semibold text-text-primary">RAG Architecture</h3>
+            </div>
+            <div class="flex items-center gap-1">
+              <span class="text-caption text-state-leech bg-state-leech/10 px-2 py-0.5 rounded-full">Leech</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 text-body-sm text-text-muted mb-3">
+            <span>youtube</span>
+            <span>·</span>
+            <span>15 min</span>
+            <span>·</span>
+            <span>Hier</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-1">
+              <span class="cran-dot cran-2">2</span>
+              <span class="text-caption text-text-muted">Cran</span>
+            </div>
+            <div class="flex gap-2">
+              <button class="h-11 px-4 bg-primary hover:bg-primary-dark text-surface-base text-body-sm font-semibold rounded-lg transition-colors">
+                Reforger
+              </button>
+              <button class="h-11 px-4 text-state-leech hover:bg-state-leech/10 text-body-sm rounded-lg transition-colors">
+                Student AI
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Source Card 3 -->
+        <div class="source-card bg-surface-1 border border-border-subtle rounded-xl p-4 mb-3 cursor-pointer">
+          <div class="flex items-start justify-between mb-2">
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"/></svg>
+              <h3 class="text-h3 font-semibold text-text-primary">FSRS Algorithm</h3>
+            </div>
+            <div class="w-2 h-2 rounded-full bg-state-forged" title="Public"></div>
+          </div>
+          <div class="flex items-center gap-2 text-body-sm text-text-muted mb-3">
+            <span>web_article</span>
+            <span>·</span>
+            <span>890 mots</span>
+            <span>·</span>
+            <span>Il y a 3j</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-1">
+              <span class="cran-dot cran-4">4</span>
+              <span class="text-caption text-text-muted">Cran</span>
+            </div>
+            <div class="flex gap-2">
+              <button class="h-11 px-4 bg-surface-3 text-text-muted text-body-sm font-semibold rounded-lg cursor-not-allowed" disabled>
+                Déjà forgé
+              </button>
+              <button class="h-11 px-4 text-text-muted hover:text-text-primary text-body-sm rounded-lg transition-colors">
+                Aperçu
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COSMOS Preview -->
+      <div>
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-h2 font-semibold text-text-primary">COSMOS</h2>
+          <a href="#" class="text-body-sm text-primary hover:text-primary-dark transition-colors">Voir tout →</a>
+        </div>
+        <div class="bg-surface-1 border border-border-subtle rounded-xl p-4">
+          <div class="flex items-center gap-4">
+            <div class="text-center">
+              <div class="w-12 h-12 rounded-full bg-state-forged/10 border-2 border-state-forged flex items-center justify-center mb-1">
+                <span class="text-state-forged text-body-sm font-bold">78%</span>
+              </div>
+              <p class="text-caption text-text-muted">Embeddings</p>
+            </div>
+            <div class="text-center">
+              <div class="w-12 h-12 rounded-full bg-state-partial/10 border-2 border-state-partial flex items-center justify-center mb-1">
+                <span class="text-state-partial text-body-sm font-bold">55%</span>
+              </div>
+              <p class="text-caption text-text-muted">Attention</p>
+            </div>
+            <div class="text-center">
+              <div class="w-12 h-12 rounded-full bg-state-lacune/10 border-2 border-state-lacune flex items-center justify-center mb-1">
+                <span class="text-state-lacune text-body-sm font-bold">23%</span>
+              </div>
+              <p class="text-caption text-text-muted">RAG</p>
+            </div>
+            <div class="text-center">
+              <div class="w-12 h-12 rounded-full bg-surface-3 border-2 border-text-disabled flex items-center justify-center mb-1">
+                <span class="text-text-disabled text-body-sm font-bold">0%</span>
+              </div>
+              <p class="text-caption text-text-muted">Fine-tuning</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- FAB -->
+    <button class="fixed bottom-24 right-4 w-14 h-14 bg-primary hover:bg-primary-dark text-surface-base rounded-full shadow-lg flex items-center justify-center transition-colors glow-primary" aria-label="Importer un fichier">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4.5v15m7.5-7.5h-15"/></svg>
+    </button>
+
+    <!-- Tab Bar -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-surface-1/95 backdrop-blur-md border-t border-border-subtle px-4 py-2" aria-label="Navigation principale">
+      <div class="max-w-[430px] mx-auto flex items-center justify-around">
+        <button class="flex flex-col items-center gap-1 px-3 py-2 tab-active" aria-selected="true">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
+          <span class="text-caption font-medium">Home</span>
+        </button>
+        <button class="flex flex-col items-center gap-1 px-3 py-2 tab-inactive" aria-selected="false">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/></svg>
+          <span class="text-caption font-medium">Review</span>
+        </button>
+        <button class="flex flex-col items-center gap-1 px-3 py-2 tab-inactive" aria-selected="false">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v10.5M5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V8.25m-12.75 0H21"/></svg>
+          <span class="text-caption font-medium">COSMOS</span>
+        </button>
+        <button class="flex flex-col items-center gap-1 px-3 py-2 tab-inactive" aria-selected="false">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0zM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+          <span class="text-caption font-medium">Profil</span>
+        </button>
+      </div>
+    </nav>
+
+  </div>
+</body>
+</html>

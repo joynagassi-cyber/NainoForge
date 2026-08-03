@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NainoForge — Design System v2.0 "Forge"</title>
+  <style>
+    /* ============================================
+       NAINOFORGE DESIGN SYSTEM v2.0 — "FORGE"
+       ============================================ */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+    :root {
+      /* === VIOLET VIVANT === */
+      --color-primary: #8B5CF6;
+      --color-primary-dark: #7C3AED;
+      --color-primary-darkest: #6D28D9;
+      --color-primary-light: #A78BFA;
+      --color-primary-glow: rgba(139, 92, 246, 0.5);
+      --color-primary-subtle: rgba(139, 92, 246, 0.08);
+      --color-primary-border: rgba(139, 92, 246, 0.3);
+
+      /* === ACCENT === */
+      --color-accent-warm: #F59E0B;
+      --color-accent-warm-light: #FCD34D;
+
+      /* === SURFACES — CANVAS #121212 === */
+      --color-surface-base: #121212;
+      --color-surface-1: #1A1A2E;
+      --color-surface-2: #22223A;
+      --color-surface-3: #2A2A45;
+      --color-surface-elevated: #252540;
+      --color-surface-highlight: #2D2D4A;
+
+      /* === TEXTES === */
+      --color-text-primary: #F8FAFC;
+      --color-text-secondary: #E2E8F0;
+      --color-text-muted: #94A3B8;
+      --color-text-disabled: #475569;
+
+      /* === BORDURES === */
+      --color-border-subtle: rgba(255, 255, 255, 0.05);
+      --color-border-default: rgba(255, 255, 255, 0.09);
+      --color-border-elevated: rgba(255, 255, 255, 0.13);
+      --color-border-primary: rgba(139, 92, 246, 0.25);
+
+      /* === ÉTATS === */
+      --color-state-forged: #22C55E;
+      --color-state-forged-glow: rgba(34, 197, 94, 0.4);
+      --color-state-leech: #EF4444;
+      --color-state-leech-glow: rgba(239, 68, 68, 0.4);
+      --color-state-partial: #F59E0B;
+      --color-state-lacune: #F97316;
+
+      /* === TOKENS === */
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --radius-xl: 20px;
+      --radius-full: 9999px;
+      --duration-fast: 120ms;
+      --duration-normal: 200ms;
+      --duration-slow: 350ms;
+
+      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    /* === RESET === */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--color-surface-base);
+      color: var(--color-text-primary);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+
+    /* === COSMIC BACKGROUND === */
+    .cosmic-bg {
+      background:
+        radial-gradient(ellipse 80% 50% at 20% -10%, rgba(139, 92, 246, 0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 110%, rgba(139, 92, 246, 0.06) 0%, transparent 60%),
+        var(--color-surface-base);
+    }
+
+    /* === SCROLLBAR === */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: var(--color-surface-base); }
+    ::-webkit-scrollbar-thumb { background: var(--color-surface-3); border-radius: var(--radius-full); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
+    ::selection { background: rgba(139, 92, 246, 0.3); color: var(--color-text-primary); }
+
+    /* ============================================
+       TYPOGRAPHIE
+       ============================================ */
+    .text-h1 { font-size: 3rem; line-height: 1.1; font-weight: 800; letter-spacing: -0.03em; }
+    .text-h2 { font-size: 2.25rem; line-height: 1.15; font-weight: 700; letter-spacing: -0.025em; }
+    .text-h3 { font-size: 1.5rem; line-height: 1.25; font-weight: 600; letter-spacing: -0.01em; }
+    .text-body { font-size: 1rem; line-height: 1.6; }
+    .text-body-sm { font-size: 0.875rem; line-height: 1.5; }
+    .text-caption { font-size: 0.75rem; line-height: 1.4; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
+
+    /* ============================================
+       EFFETS PREMIUM
+       ============================================ */
+    .glow-primary {
+      box-shadow:
+        0 0 20px var(--color-primary-glow),
+        0 0 60px rgba(139, 92, 246, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    .glow-forged {
+      box-shadow: 0 0 16px var(--color-state-forged-glow), 0 0 40px rgba(34, 197, 94, 0.1);
+    }
+
+    .cosmic-bg-subtle {
+      background:
+        radial-gradient(ellipse 50% 80% at 0% 0%, rgba(139, 92, 246, 0.06) 0%, transparent 60%),
+        var(--color-surface-1);
+    }
+
+    .glass-panel {
+      background: rgba(18, 18, 30, 0.75);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+
+    .gradient-primary {
+      background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 50%, #6D28D9 100%);
+    }
+
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    .shimmer {
+      background: linear-gradient(90deg, var(--color-surface-2) 0%, var(--color-surface-3) 50%, var(--color-surface-2) 100%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse-violet {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4); }
+      50% { box-shadow: 0 0 0 8px rgba(139, 92, 246, 0); }
+    }
+    .pulse-violet { animation: pulse-violet 2s ease-in-out infinite; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+    .float { animation: float 3s ease-in-out infinite; }
+
+    @keyframes glow-pulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 1; }
+    }
+    .glow-pulse { animation: glow-pulse 2s ease-in-out infinite; }
+
+    @keyframes slide-in {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .slide-in { animation: slide-in 0.5s ease-out forwards; }
+
+    @keyframes gradient-shift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ============================================
+       COMPOSANTS
+       ============================================ */
+
+    /* --- Boutons --- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: var(--radius-lg);
+      border: none;
+      font-family: var(--font-sans);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all var(--duration-normal) ease;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 50%, #6D28D9 100%);
+      color: white;
+      box-shadow: 0 0 20px rgba(139, 92, 246, 0.3), 0 0 60px rgba(139, 92, 246, 0.1);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 28px rgba(139, 92, 246, 0.5), 0 0 80px rgba(139, 92, 246, 0.2), 0 4px 16px rgba(0,0,0,0.4);
+    }
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-secondary {
+      background: var(--color-surface-2);
+      color: var(--color-text-primary);
+      border: 1px solid var(--color-border-default);
+    }
+    .btn-secondary:hover {
+      background: var(--color-surface-3);
+      border-color: var(--color-border-elevated);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--color-text-muted);
+    }
+    .btn-ghost:hover {
+      background: var(--color-surface-2);
+      color: var(--color-text-primary);
+    }
+
+    .btn-icon {
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      border-radius: var(--radius-md);
+    }
+
+    /* --- Cards --- */
+    .card {
+      background: var(--color-surface-1);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 24px;
+      transition: all var(--duration-normal) ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 50% 80% at 0% 0%, rgba(139, 92, 246, 0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .card:hover {
+      border-color: var(--color-border-primary);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 20px rgba(139, 92, 246, 0.1);
+    }
+
+    .card-glow {
+      box-shadow: 0 0 20px rgba(139, 92, 246, 0.15), 0 0 60px rgba(139, 92, 246, 0.05);
+      border-color: var(--color-primary-border);
+    }
+
+    /* --- Badges --- */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+    .badge-primary { background: var(--color-primary-subtle); color: var(--color-primary); border: 1px solid var(--color-primary-border); }
+    .badge-forged { background: rgba(34, 197, 94, 0.1); color: var(--color-state-forged); border: 1px solid rgba(34, 197, 94, 0.2); }
+    .badge-leech { background: rgba(239, 68, 68, 0.1); color: var(--color-state-leech); border: 1px solid rgba(239, 68, 68, 0.2); }
+    .badge-partial { background: rgba(245, 158, 11, 0.1); color: var(--color-state-partial); border: 1px solid rgba(245, 158, 11, 0.2); }
+    .badge-lacune { background: rgba(249, 115, 22, 0.1); color: var(--color-state-lacune); border: 1px solid rgba(249, 115, 22, 0.2); }
+
+    /* --- Inputs --- */
+    .input {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border-default);
+      border-radius: var(--radius-md);
+      color: var(--color-text-primary);
+      font-family: var(--font-sans);
+      font-size: 0.9375rem;
+      transition: all var(--duration-fast) ease;
+      outline: none;
+    }
+    .input:hover { border-color: var(--color-border-elevated); }
+    .input:focus {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+    }
+    .input::placeholder { color: var(--color-text-disabled); }
+
+    /* --- Toast --- */
+    .toast {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border-default);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    }
+    .toast-success { border-left: 3px solid var(--color-state-forged); }
+    .toast-error { border-left: 3px solid var(--color-state-leech); }
+    .toast-warning { border-left: 3px solid var(--color-state-partial); }
+
+    /* --- Spinner --- */
+    .spinner {
+      width: 24px;
+      height: 24px;
+      border: 3px solid var(--color-surface-3);
+      border-top-color: var(--color-primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* --- Progress --- */
+    .progress-track {
+      height: 6px;
+      background: var(--color-surface-3);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      border-radius: var(--radius-full);
+      background: linear-gradient(90deg, #8B5CF6, #A78BFA);
+      box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+      transition: width 0.5s ease;
+    }
+
+    /* --- Avatar --- */
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-full);
+      background: linear-gradient(135deg, #8B5CF6, #6D28D9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.875rem;
+      color: white;
+      flex-shrink: 0;
+    }
+    .avatar-lg { width: 56px; height: 56px; font-size: 1.25rem; }
+
+    /* --- Toggle --- */
+    .toggle {
+      width: 44px;
+      height: 24px;
+      background: var(--color-surface-3);
+      border-radius: var(--radius-full);
+      position: relative;
+      cursor: pointer;
+      transition: background var(--duration-fast) ease;
+      border: none;
+      padding: 0;
+    }
+    .toggle::after {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      background: white;
+      border-radius: 50%;
+      top: 3px;
+      left: 3px;
+      transition: transform var(--duration-fast) ease;
+    }
+    .toggle.active { background: var(--color-primary); }
+    .toggle.active::after { transform: translateX(20px); }
+
+    /* ============================================
+       LAYOUT
+       ============================================ */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    .section {
+      padding: 80px 0;
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+    .section:last-child { border-bottom: none; }
+
+    .section-label {
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-primary);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .section-desc {
+      color: var(--color-text-muted);
+      font-size: 1.0625rem;
+      margin-bottom: 48px;
+      max-width: 560px;
+    }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+    .flex { display: flex; }
+    .flex-col { flex-direction: column; }
+    .items-center { align-items: center; }
+    .justify-between { justify-content: space-between; }
+    .gap-2 { gap: 8px; }
+    .gap-3 { gap: 12px; }
+    .gap-4 { gap: 16px; }
+    .gap-6 { gap: 24px; }
+    .gap-8 { gap: 32px; }
+    .gap-12 { gap: 48px; }
+    .flex-1 { flex: 1; }
+    .w-full { width: 100%; }
+
+    .text-center { text-align: center; }
+    .text-muted { color: var(--color-text-muted); }
+    .text-primary { color: var(--color-primary); }
+    .text-sm { font-size: 0.875rem; }
+    .text-xs { font-size: 0.75rem; }
+    .font-medium { font-weight: 500; }
+    .font-semibold { font-weight: 600; }
+    .font-bold { font-weight: 700; }
+
+    .mt-2 { margin-top: 8px; }
+    .mt-4 { margin-top: 16px; }
+    .mt-6 { margin-top: 24px; }
+    .mt-8 { margin-top: 32px; }
+    .mt-12 { margin-top: 48px; }
+    .mb-4 { margin-bottom: 16px; }
+    .mb-8 { margin-bottom: 32px; }
+
+    .p-6 { padding: 24px; }
+    .p-8 { padding: 32px; }
+
+    /* ============================================
+       NAV (demo)
+       ============================================ */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(18, 18, 18, 0.8);
+      backdrop-filter: blur(16px) saturate(180%);
+      border-bottom: 1px solid var(--color-border-subtle);
+      padding: 16px 0;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--color-text-primary);
+    }
+    .nav-logo-icon {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #8B5CF6, #6D28D9);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.875rem;
+      box-shadow: 0 0 12px rgba(139, 92, 246, 0.4);
+    }
+    .nav-logo-text {
+      font-weight: 700;
+      font-size: 1.125rem;
+      letter-spacing: -0.02em;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color var(--duration-fast) ease;
+    }
+    .nav-links a:hover { color: var(--color-text-primary); }
+
+    /* ============================================
+       HERO
+       ============================================ */
+    .hero {
+      padding: 120px 0 100px;
+      text-align: center;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: var(--color-primary-subtle);
+      border: 1px solid var(--color-primary-border);
+      border-radius: var(--radius-full);
+      font-size: 0.8125rem;
+      color: var(--color-primary-light);
+      margin-bottom: 32px;
+      animation: slide-in 0.6s ease-out;
+    }
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--color-primary);
+      border-radius: 50%;
+      animation: glow-pulse 2s ease-in-out infinite;
+    }
+    .hero h1 {
+      font-size: 4.5rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      margin-bottom: 24px;
+      animation: slide-in 0.6s ease-out 0.1s both;
+    }
+    .hero h1 .gradient-text {
+      background: linear-gradient(135deg, #8B5CF6 0%, #A78BFA 50%, #F59E0B 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--color-text-muted);
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+      animation: slide-in 0.6s ease-out 0.2s both;
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      animation: slide-in 0.6s ease-out 0.3s both;
+    }
+
+    /* ============================================
+       COLOR SWATCHES
+       ============================================ */
+    .swatch-group { margin-bottom: 32px; }
+    .swatch-group-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text-muted);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+    .swatches {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .swatch {
+      width: 64px;
+      height: 64px;
+      border-radius: var(--radius-md);
+      position: relative;
+      cursor: pointer;
+      transition: transform var(--duration-fast) ease;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .swatch:hover { transform: scale(1.1); z-index: 1; }
+    .swatch-label {
+      position: absolute;
+      bottom: -22px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.625rem;
+      color: var(--color-text-disabled);
+      white-space: nowrap;
+      font-family: monospace;
+    }
+
+    /* ============================================
+       COMPONENT SHOWCASE
+       ============================================ */
+    .showcase-item {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .showcase-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* ============================================
+       CARD SHOWCASE
+     ============================================ */
+    .card-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .card-demo {
+      background: var(--color-surface-1);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 20px;
+      transition: all var(--duration-normal) ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-demo::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 50% 80% at 0% 0%, rgba(139, 92, 246, 0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .card-demo:hover {
+      border-color: var(--color-border-primary);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3), 0 0 20px rgba(139,92,246,0.1);
+    }
+    .card-demo-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .card-demo-title {
+      font-weight: 600;
+      font-size: 0.9375rem;
+    }
+    .card-demo-body {
+      font-size: 0.8125rem;
+      color: var(--color-text-muted);
+      line-height: 1.5;
+    }
+
+    /* ============================================
+       SKELETON
+     ============================================ */
+    .skeleton-block {
+      height: 16px;
+      border-radius: var(--radius-sm);
+      background: linear-gradient(90deg, var(--color-surface-2) 0%, var(--color-surface-3) 50%, var(--color-surface-2) 100%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s ease-in-out infinite;
+    }
+    .skeleton-circle {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(90deg, var(--color-surface-2) 0%, var(--color-surface-3) 50%, var(--color-surface-2) 100%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s ease-in-out infinite;
+    }
+    .skeleton-line { height: 12px; border-radius: var(--radius-sm); margin-bottom: 8px; }
+    .skeleton-line.w-75 { width: 75%; }
+    .skeleton-line.w-50 { width: 50%; }
+    .skeleton-line.w-90 { width: 90%; }
+    .skeleton-line.h-24 { height: 24px; }
+
+    /* ============================================
+       CONFIANCE MARQUEUR
+     ============================================ */
+    .confidence-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background: var(--color-surface-1);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-md);
+    }
+    .confidence-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .confidence-dot.forged { background: var(--color-state-forged); box-shadow: 0 0 8px var(--color-state-forged-glow); }
+    .confidence-dot.leech { background: var(--color-state-leech); box-shadow: 0 0 8px var(--color-state-leech-glow); }
+    .confidence-dot.partial { background: var(--color-state-partial); }
+    .confidence-dot.lacune { background: var(--color-state-lacune); }
+
+    /* ============================================
+       GLASS PANEL DEMO
+     ============================================ */
+    .glass-demo {
+      position: relative;
+      padding: 40px;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+    }
+    .glass-demo::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 30% 20%, rgba(139, 92, 246, 0.2) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 80%, rgba(245, 158, 11, 0.1) 0%, transparent 50%),
+        var(--color-surface-1);
+    }
+    .glass-demo-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ============================================
+       FOOTER
+     ============================================ */
+    .footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--color-border-subtle);
+      text-align: center;
+      color: var(--color-text-muted);
+      font-size: 0.8125rem;
+    }
+
+    /* ============================================
+       RESPONSIVE
+     ============================================ */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.75rem; }
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .hero-actions { flex-direction: column; }
+    }
+
+    /* ============================================
+       ANIMATIONS ON SCROLL
+     ============================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="cosmic-bg">
+
+  <!-- ============================================
+       NAVIGATION
+  ============================================ -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-icon">N</div>
+        <span class="nav-logo-text">NainoForge</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#couleurs">Couleurs</a></li>
+        <li><a href="#typo">Typographie</a></li>
+        <li><a href="#boutons">Boutons</a></li>
+        <li><a href="#cards">Cards</a></li>
+        <li><a href="#components">Composants</a></li>
+        <li><a href="#effets">Effets</a></li>
+      </ul>
+      <button class="btn btn-primary" style="padding: 8px 16px; font-size: 0.8125rem;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Lancer Forge
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============================================
+       HERO
+  ============================================ -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Design System v2.0 — "Forge"
+      </div>
+      <h1>
+        Le design<br>
+        <span class="gradient-text">sans Figma</span>
+      </h1>
+      <p>
+        Un système de design premium, codé directement en CSS. Violet électrique,
+        surfaces profondes, effets lumineux — tout depuis zéro.
+      </p>
+      <div class="hero-actions">
+        <button class="btn btn-primary glow-primary" style="padding: 14px 32px; font-size: 1rem;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          Explorer le système
+        </button>
+        <button class="btn btn-secondary" style="padding: 14px 32px; font-size: 1rem;">
+          Voir le code source
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       PALETTE DE COULEURS
+  ============================================ -->
+  <section class="section" id="couleurs">
+    <div class="container">
+      <div class="reveal">
+        <p class="section-label">01 — Palette</p>
+        <h2 class="section-title">Couleurs & Surfaces</h2>
+        <p class="section-desc">Canvas #121212, violet électrique #8B5CF6, et une hiérarchie de surfaces qui respire la profondeur.</p>
+      </div>
+
+      <!-- Primaires -->
+      <div class="swatch-group reveal">
+        <p class="swatch-group-title">Violet Primary</p>
+        <div class="swatches">
+          <div class="swatch" style="background:#8B5CF6"><span class="swatch-label">#8B5CF6</span></div>
+          <div class="swatch" style="background:#7C3AED"><span class="swatch-label">#7C3AED</span></div>
+          <div class="swatch" style="background:#6D28D9"><span class="swatch-label">#6D28D9</span></div>
+          <div class="swatch" style="background:#A78BFA"><span class="swatch-label">#A78BFA</span></div>
+          <div class="swatch" style="background:rgba(139,92,246,0.15);border:1px solid rgba(139,92,246,0.3)"><span class="swatch-label">subtle</span></div>
+        </div>
+      </div>
+
+      <!-- Surfaces -->
+      <div class="swatch-group reveal">
+        <p class="swatch-group-title">Surfaces</p>
+        <div class="swatches">
+          <div class="swatch" style="background:#121212"><span class="swatch-label">#121212</span></div>
+          <div class="swatch" style="background:#1A1A2E"><span class="swatch-label">#1A1A2E</span></div>
+          <div class="swatch" style="background:#22223A"><span class="swatch-label">#22223A</span></div>
+          <div class="swatch" style="background:#2A2A45"><span class="swatch-label">#2A2A45</span></div>
+          <div class="swatch" style="background:#252540"><span class="swatch-label">elevated</span></div>
+          <div class="swatch" style="background:#2D2D4A"><span class="swatch-label">highlight</span></div>
+        </div>
+      </div>
+
+      <!-- Textes -->
+      <div class="swatch-group reveal">
+        <p class="swatch-group-title">Textes</p>
+        <div class="swatches">
+          <div class="swatch" style="background:#F8FAFC"><span class="swatch-label">#F8FAFC</span></div>
+          <div class="swatch" style="background:#E2E8F0"><span class="swatch-label">#E2E8F0</span></div>
+          <div class="swatch" style="background:#94A3B8"><span class="swatch-label">#94A3B8</span></div>
+          <div class="swatch" style="background:#475569"><span class="swatch-label">#475569</span></div>
+        </div>
+      </div>
+
+      <!-- États -->
+      <div class="swatch-group reveal">
+        <p class="swatch-group-title">États</p>
+        <div class="swatches">
+          <div class="swatch" style="background:#22C55E;box-shadow:0 0 12px rgba(34,197,94,0.5)"><span class="swatch-label">forged</span></div>
+          <div class="swatch" style="background:#EF4444;box-shadow:0 0 12px rgba(239,68,68,0.5)"><span class="swatch-label">leech</span></div>
+          <div class="swatch" style="background:#F59E0B"><span class="swatch-label">partial</span></div>
+          <div class="swatch" style="background:#F97316"><span class="swatch-label">lacune</span></div>
+        </div>
+      </div>
+
+      <!-- Bordures -->
+      <div class="swatch-group reveal">
+        <p class="swatch-group-title">Bordures</p>
+        <div class="swatches">
+          <div class="swatch" style="background:#1A1A2E;border:1px solid rgba(255,255,255,0.05)"><span class="swatch-label">subtle</span></div>
+          <div class="swatch" style="background:#1A1A2E;border:1px solid rgba(255,255,255,0.09)"><span class="swatch-label">default</span></div>
+          <div class="swatch" style="background:#1A1A2E;border:1px solid rgba(255,255,255,0.13)"><span class="swatch-label">elevated</span></div>
+          <div class="swatch" style="background:#1A1A2E;border:1px solid rgba(139,92,246,0.25)"><span class="swatch-label">primary</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       TYPOGRAPHIE
+  ============================================ -->
+  <section class="section" id="typo">
+    <div class="container">
+      <div class="reveal">
+        <p class="section-label">02 — Typographie</p>
+        <h2 class="section-title">Hiérarchie & Échelle</h2>
+        <p class="section-desc">System font, Inter pour les accents, et une échelle typographique soignée.</p>
+      </div>
+
+      <div class="grid-2 reveal">
+        <div class="showcase-item">
+          <div>
+            <p class="text-h1">Heading 1</p>
+            <p class="text-sm text-muted mt-2">font-size: 3rem · weight: 800 · letter-spacing: -0.03em</p>
+          </div>
+          <div>
+            <p class="text-h2">Heading 2</p>
+            <p class="text-sm text-muted mt-2">font-size: 2.25rem · weight: 700 · letter-spacing: -0.025em</p>
+          </div>
+          <div>
+            <p class="text-h3">Heading 3</p>
+            <p class="text-sm text-muted mt-2">font-size: 1.5rem · weight: 600 · letter-spacing: -0.01em</p>
+          </div>
+        </div>
+        <div class="showcase-item">
+          <div>
+            <p class="text-body">Body text — Le texte principal pour le contenu. Line height de 1.6 pour une lisibilité optimale.</p>
+            <p class="text-sm text-muted mt-2">font-size: 1rem · line-height: 1.6</p>
+          </div>
+          <div>
+            <p class="text-body-sm">Small body — Pour les descriptions, labels et texte secondaire.</p>
+            <p class="text-sm text-muted mt-2">font-size: 0.875rem · line-height: 1.5</p>
+          </div>
+          <div>
+            <p class="text-caption">Caption text — Pour les labels en uppercase et les métadonnées.</p>
+            <p class="text-sm text-muted mt-2">font-size: 0.75rem · uppercase · letter-spacing: 0.08em</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       BOUTONS
+  ============================================ -->
+  <section class="section" id="boutons">
+    <div class="container">
+      <div class="reveal">
+        <p class="section-label">03 — Boutons</p>
+        <h2 class="section-title">Actions & CTAs</h2>
+        <p class="section-desc">Boutons primaires avec glow violet, secondaires avec hover subtil, et icônes carrées.</p>
+      </div>
+
+      <div class="reveal">
+        <div class="card p-8" style="margin-bottom: 24px;">
+          <p class="text-caption mb-4">Variants</p>
+          <div class="showcase-row" style="gap: 16px; flex-wrap: wrap;">
+            <button class="btn btn-primary glow-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              Forge now
+            </button>
+            <button class="btn btn-secondary">Secondary</button>
+            <button class="btn btn-ghost">Ghost</button>
+          </div>
+        </div>
+
+        <div class="card p-8" style="margin-bottom: 24px;">
+          <p class="text-caption mb-4">Sizes</p>
+          <div class="showcase-row" style="gap: 16px; align-items: center;">
+            <button class="btn btn-primary" style="padding: 8px 16px; font-size: 0.8125rem;">Small</button>
+            <button class="btn btn-primary" style="padding: 12px 24px; font-size: 0.9375rem;">Medium</button>
+            <button class="btn btn-primary" style="padding: 14px 32px; font-size: 1rem;">Large</button>
+            <button class="btn btn-primary btn-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="card p-8">
+          <p class="text-caption mb-4">Avec glow & gradient</p>
+          <div class="showcase-row" style="gap: 16px; flex-wrap: wrap;">
+            <button class="btn btn-primary glow-primary pulse-violet" style="padding: 14px 32px; font-size: 1rem;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              Glow pulse
+            </button>
+            <button class="btn btn-primary" style="padding: 14px 32px; font-size: 1rem; background: linear-gradient(135deg, #8B5CF6 0%, #A78BFA 100%);">
+              Gradient light
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       BADGES & STATUS
+  ============================================ -->
+  <section class="section">
+    <div class="container">
+      <div class="reveal">
+        <p class="section-label">04 — Badges</p>
+        <h2 class="section-title">États & Badges</h2>
+        <p class="section-desc">Badges colorés pour les statuts : forged, leech, partial, lacune.</p>
+      </div>
+
+      <div class="grid-3 reveal">
+        <div class="showcase-item">
+          <div class="card p-8">
+            <p class="text-caption mb-4">Forge Badges</p>
+            <div class="showcase-row" style="flex-wrap: wrap;">
+              <span class="badge badge-forged">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+                Forged
+              </span>
+              <span class="badge badge-primary">Primary</span>
+              <span class="badge badge-partial">Partial</span>
+              <span class="badge badge-lacune">Lacune</span>
+            </div>
+          </div>
+        </div>
+        <div class="showcase-item">
+          <div class="card p-8">
+            <p class="text-caption mb-4">Error / Leech</p>
+            <div class="showcase-row" style="flex-wrap: wrap;">
+              <span class="badge badge-leech">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                Leech detected
+              </span>
+              <span class="badge badge-leech">3 erreurs</span>
+            </div>
+          </div>
+        </div>
+        <div class="showcase-item">
+          <div class="card p-8">
+            <p class="text-caption mb-4">Avatars</p>
+            <div class="showcase-row" style="gap: 16px;">
+              <div class="avatar">NF</div>
+              <div class="avatar avatar-lg" style="background: linear-gradient(135deg, #F59E0B, #F97316);">AI</div>
+              <div class="avatar" style="background: linear-gradient(135deg, #22C55E, #16A34A);">OK</div>
+              <div class="avatar" style="background: var(--color-surface-3); color: var(--color-text-muted);">?</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       CARDS
+  ============================================ -->
+  <section class="section" id="cards">
+    <div class="container">
+      <div class="reveal">
+        <p class="section-label">05 — Cards</p>
+        <h2 class="section-title">Cartes & Surfaces</h2>
+        <p class="section-desc">Cartes avec gradient cosmique subtil, hover avec glow violet et translation.</p>
+      </div>
+
+      <div class="grid-3 reveal">
+        <div class="card-demo" style="cursor: default;">
+          <div class="card-demo-header">
+            <div class="avatar" style="width:32px;height:32px;font-size:0.75rem;">AI</div>
+            <div>
+              <p class="card-demo-title">StudentAI</p>
+              <p class="text-xs text-muted">Assistant intelligence</p>
+            </div>
+          </div>
+          <p class="card-demo-body">Interface immersive pour l'assistance aux étudiants. Design glassmorphism avec gradient violet.</p>
+          <div class="mt-4" style="display:flex;gap:8px;flex-wrap:wrap;">
+            <span class="badge badge-primary">v2.0</span>
+            <span class="badge badge-forged">Forge ready</span>
+          </div>
+        </div>
+
+        <div class="card-demo" style="cursor: default;">
+          <div class="card-demo-header">
+            <div class="spinner" style="width:20px;height:20px;"></div>
+            <div>
+              <p class="card-demo-title">Processing</p>
+              <p class="text-xs text-muted">En cours de forge</p>
+            </div>
+          </div>
+          <p class="card-demo-body">Indicateur de chargement avec bordure violet. Animation fluide à 0.8s par rotation.</p>
+          <div class="mt-4">
+            <div class="progress-track">
+              <div class="progress-fill" style="width: 65%;"></div>
+            </div>
+            <p class="text-xs text-muted mt-2">65% — Forge en cours...</p>
+          </div>
+        </div>
+
+        <div class="card-demo" style="cursor: default;">
+          <div class="card-demo-header">
+            <div style="width:32px;height:32px;border-radius:var(--radius-sm);background:linear-gradient(135deg,#22C55E,#16A34A);display:flex;align-items:center;justify-content:center;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div>
+              <p class="card-demo-title">Imprint</p>
+              <p class="text-xs text-muted">Sélection terminée</p>
+            </div>
+          </div>
+          <p class="card-demo-body">Carte de résultat avec badge de statut. Effet hover avec glow violet et translation.</p>
+          <div class="mt-4" style="display:flex;gap:8px;flex-wrap:wrap;">
+            <span class="badge badge-forged">Forged</span>
+            <span class="badge badge-partial">Partial</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card avec glow fort -->
+      <div class="reveal mt-8">
+        <div class="card card-glow p-8" style="cursor: default;">
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+            <div>
+              <p class="text-caption text-primary mb-2">Feature premium</p>
+              <p class="text-h3">Carte avec glow violet</p>
+              <p class="text-body-sm text-muted" style="max-width:480px;margin-top:8px;">
+                Cette carte utilise un effet glow primaire avec box-shadow violet diffus.
+                Le gradient cosmique en arrière-plan ajoute de la profondeur.
+              </p>
+            </div>
+            <div style="display:flex;gap:12px;">
+              <button class="btn btn-secondary" style="padding:10px 20px;">Annuler</button>
+              <button class="btn btn-primary glow-primary" style="padding:10px 20px;">Confirmer</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       INPUTS & FORMS
+  ============================================ -->
+  <section class="section">
+    <div class="container">
+      <div class="reveal">
+        <p class="section-label">06 — Formulaires</p>
+        <h2 class="section-title">Inputs & Champs</h2>
+        <p class="section-desc">Inputs avec focus ring violet, transitions fluides, et état hover subtil.</p>
+      </div>
+
+      <div class="grid-2 reveal">
+        <div class="card p-8 showcase-item">
+          <p class="text-caption mb-4">Text Input</p>
+          <input class="input" type="text" placeholder="Rechercher un student...">
+          <div class="mt-4">
+            <input class="input" type="text" placeholder="Champ désactivé" disabled style="opacity:0.5;cursor:not-allowed;">
+          </div>
+        </div>
+        <div class="card p-8 showcase-item">
+          <p class="text-caption mb-4">Textarea</p>
+          <textarea class="input" rows="3" placeholder="Décrivez votreForge..."></textarea>
+          <div class="mt-4">
+            <p class="text-caption mb-4">Toggle</p>
+            <div class="showcase-row">
+              <button class="toggle active" onclick="this.classList.toggle('active')"></button>
+              <span class="text-body-sm">Mode sombre activé</span>
+              <button class="toggle" onclick="this.classList.toggle('active')"></button>
+              <span class="text-body-sm">Notifications</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       TOASTS & NOTIFICATIONS
+  ============================================ -->
+  <section class="section">
+    <div class="container">
+      <div class="reveal">
+        <p class="section-label">07 — Notifications</p>
+        <h2 class="section-title">Toasts & Feedback</h2>
+        <p class="section-desc">Notifications avec bordure colorée à gauche, icônes et textes adaptés.</p>
+      </div>
+
+      <div class="grid-3 reveal">
+        <div class="toast toast-success">
+          <div style="width:20px;height:20px;border-radius:50%;background:rgba(34,197,94,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <p class="text-body-sm font-semibold">Forge terminée !</p>
+            <p class="text-xs text-muted">3 documents analysés avec succès.</p>
+          </div>
+        </div>
+        <div class="toast toast-error">
+          <div style="width:20px;height:20px;border-radius:50%;background:rgba(239,68,68,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          </div>
+          <div>
+            <p class="text-body-sm font-semibold">Leech détecté</p>
+            <p class="text-xs text-muted">1 document contient des copiés.</p>
+          </div>
+        </div>
+        <div class="toast toast-warning">
+          <div style="width:20px;height:20px;border-radius:50%;background:rgba(245,158,11,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <div>
+            <p class="text-body-sm font-semibold">Partial coverage</p>
+            <p class="text-xs text-muted">2 documents nécessitent une vérification.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SKELETONS
+  ============================================ -->
+  <section class="section">
+    <div class="container">
+      <div class="reveal">
+        <p class="section-label">08 — Loading</p>
+        <h2 class="section-title">Skeletons & Spinners</h2>
+        <p class="section-desc">États de chargement avec animation shimmer et spinner violet.</p>
+      </div>
+
+      <div class="grid-2 reveal">
+        <div class="card p-8">
+          <p class="text-caption mb-4">Shimmer skeleton</p>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div class="skeleton-circle"></div>
+              <div style="flex:1;display:flex;flex-direction:column;gap:8px;">
+                <div class="skeleton-block w-75"></div>
+                <div class="skeleton-block w-50"></div>
+              </div>
+            </div>
+            <div class="skeleton-block w-90"></div>
+            <div class="skeleton-block w-75"></div>
+          </div>
+        </div>
+        <div class="card p-8">
+          <p class="text-caption mb-4">Spinner & Progress</p>
+          <div style="display:flex;flex-direction:column;gap:20px;">
+            <div style="display:flex;align-items:center;gap:20px;">
+              <div class="spinner" style="width:32px;height:32px;"></div>
+              <div style="flex:1;">
+                <p class="text-body-sm font-semibold">Forge en cours...</p>
+                <p class="text-xs text-muted">Analyse des documents</p>
+              </div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+                <span class="text-xs text-muted">Progression</span>
+                <span class="text-xs text-primary font-semibold">65%</span>
+              </div>
+              <div class="progress-track">
+                <div class="progress-fill" style="width:65%;"></div>
+              </div>
+            </div>
+            <div>
+              <div class="progress-track">
+                <div class="progress-fill" style="width:30%;background:linear-gradient(90deg,#22C55E,#16A34A);box-shadow:0 0 10px rgba(34,197,94,0.5);"></div>
+              </div>
+              <p class="text-xs text-muted mt-2">Forged: 3/5 documents</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       EFFETS PREMIUM
+  ============================================ -->
+  <section class="section" id="effets">
+    <div class="container">
+      <div class="reveal">
+        <p class="section-label">09 — Effets</p>
+        <h2 class="section-title">Glassmorphism & Cosmique</h2>
+        <p class="section-desc">Effets de verre dépoli, gradients cosmiques, et glow lumineux.</p>
+      </div>
+
+      <div class="reveal">
+        <!-- Glassmorphism -->
+        <div class="glass-demo" style="margin-bottom:24px;">
+          <div class="glass-demo-content">
+            <p class="text-caption text-primary mb-2">Glassmorphism</p>
+            <p class="text-h2 mb-4">Panels en verre dépoli</p>
+            <p class="text-body-sm text-muted" style="max-width:400px;">
+              <code style="background:rgba(139,92,246,0.15);padding:2px 8px;border-radius:4px;color:#A78BFA;">backdrop-filter: blur(16px) saturate(180%)</code>
+              — Création d'effet vitre avec saturation des couleurs en arrière-plan.
+            </p>
+            <div class="mt-6" style="display:flex;gap:12px;">
+              <div class="glass-panel" style="padding:16px 24px;border-radius:var(--radius-lg);">
+                <p class="text-body-sm font-semibold">Glass card</p>
+                <p class="text-xs text-muted mt-1">Backdrop blur + border subtile</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cosmique -->
+        <div class="card p-8" style="position:relative;overflow:hidden;">
+          <div style="position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 20% -10%, rgba(139,92,246,0.12) 0%, transparent 60%),radial-gradient(ellipse 60% 40% at 80% 110%, rgba(139,92,246,0.06) 0%, transparent 60%);pointer-events:none;"></div>
+          <div style="position:relative;z-index:1;">
+            <p class="text-caption text-primary mb-2">Cosmic Gradient</p>
+            <p class="text-h3 mb-4">Gradients cosmiques en arrière-plan</p>
+            <p class="text-body-sm text-muted" style="max-width:500px;">
+              Deux radiaux gradients en coin opposé créent une ambiance spatiale subtile.
+              Le violet diffuse doucement sur le canvas #121212.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       CONFIANCE MARQUEUR
+  ============================================ -->
+  <section class="section">
+    <div class="container">
+      <div class="reveal">
+        <p class="section-label">10 — Confiace Marker</p>
+        <h2 class="section-title">Indicateurs de Confiance</h2>
+        <p class="section-desc">Points colorés avec glow pour les statuts de forge.</p>
+      </div>
+
+      <div class="grid-2 reveal">
+        <div class="showcase-item" style="gap:12px;">
+          <div class="confidence-row">
+            <div class="confidence-dot forged"></div>
+            <span class="text-body-sm font-semibold">Forged — Parfaitement identifié</span>
+            <span class="text-xs text-muted" style="margin-left:auto;">95-100%</span>
+          </div>
+          <div class="confidence-row">
+            <div class="confidence-dot partial"></div>
+            <span class="text-body-sm font-semibold">Partial — Partiellement identifié</span>
+            <span class="text-xs text-muted" style="margin-left:auto;">70-94%</span>
+          </div>
+          <div class="confidence-row">
+            <div class="confidence-dot lacune"></div>
+            <span class="text-body-sm font-semibold">Lacune — Manque de données</span>
+            <span class="text-xs text-muted" style="margin-left:auto;">50-69%</span>
+          </div>
+          <div class="confidence-row">
+            <div class="confidence-dot leech"></div>
+            <span class="text-body-sm font-semibold">Leech — Copie détectée</span>
+            <span class="text-xs text-muted" style="margin-left:auto;">&lt;50%</span>
+          </div>
+        </div>
+        <div class="card p-8">
+          <p class="text-caption mb-4">Exemple de carte avec confiace marker</p>
+          <div style="display:flex;align-items:center;gap:16px;">
+            <div class="avatar">JS</div>
+            <div style="flex:1;">
+              <p class="text-body-sm font-semibold">Jean Dupont</p>
+              <p class="text-xs text-muted">Rédaction — 3 documents</p>
+            </div>
+            <div class="confidence-dot forged" style="width:14px;height:14px;"></div>
+          </div>
+          <div class="mt-4" style="display:flex;gap:8px;flex-wrap:wrap;">
+            <span class="badge badge-forged">2 Forged</span>
+            <span class="badge badge-partial">1 Partial</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       RADIUS & SHAPES
+  ============================================ -->
+  <section class="section">
+    <div class="container">
+      <div class="reveal">
+        <p class="section-label">11 — Formes</p>
+        <h2 class="section-title">Rayons & Formes</h2>
+        <p class="section-desc">Différents niveaux de borderRadius pour les différents composants.</p>
+      </div>
+
+      <div class="reveal">
+        <div class="card p-8">
+          <p class="text-caption mb-4">Border Radius Tokens</p>
+          <div class="showcase-row" style="gap:24px;align-items:flex-end;flex-wrap:wrap;">
+            <div style="text-align:center;">
+              <div style="width:64px;height:64px;background:var(--color-surface-2);border:1px solid var(--color-border-default);border-radius:6px;margin:0 auto 8px;"></div>
+              <p class="text-xs text-muted">sm: 6px</p>
+            </div>
+            <div style="text-align:center;">
+              <div style="width:64px;height:64px;background:var(--color-surface-2);border:1px solid var(--color-border-default);border-radius:10px;margin:0 auto 8px;"></div>
+              <p class="text-xs text-muted">md: 10px</p>
+            </div>
+            <div style="text-align:center;">
+              <div style="width:64px;height:64px;background:var(--color-surface-2);border:1px solid var(--color-border-default);border-radius:14px;margin:0 auto 8px;"></div>
+              <p class="text-xs text-muted">lg: 14px</p>
+            </div>
+            <div style="text-align:center;">
+              <div style="width:64px;height:64px;background:var(--color-surface-2);border:1px solid var(--color-border-default);border-radius:20px;margin:0 auto 8px;"></div>
+              <p class="text-xs text-muted">xl: 20px</p>
+            </div>
+            <div style="text-align:center;">
+              <div style="width:64px;height:64px;background:linear-gradient(135deg,#8B5CF6,#6D28D9);box-shadow:0 0 20px rgba(139,92,246,0.4);margin:0 auto 8px;"></div>
+              <p class="text-xs text-muted">full: 9999px</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       COMPOSITION COMPLÈTE
+  ============================================ -->
+  <section class="section">
+    <div class="container">
+      <div class="reveal">
+        <p class="section-label">12 — Composition</p>
+        <h2 class="section-title">Exemple Complet</h2>
+        <p class="section-desc">Une interface complète combinant tous les éléments du design system.</p>
+      </div>
+
+      <div class="reveal">
+        <!-- Simulation d'une card de review -->
+        <div class="card" style="max-width:640px;margin:0 auto;position:relative;overflow:hidden;">
+          <div style="position:absolute;inset:0;background:radial-gradient(ellipse 50% 80% at 0% 0%, rgba(139,92,246,0.06) 0%, transparent 60%);pointer-events:none;"></div>
+          <div style="position:relative;z-index:1;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+              <div style="display:flex;align-items:center;gap:12px;">
+                <div class="avatar" style="width:44px;height:44px;">ML</div>
+                <div>
+                  <p class="text-body-sm font-semibold">Marie Laurent</p>
+                  <p class="text-xs text-muted">Rédaction — 12 documents</p>
+                </div>
+              </div>
+              <span class="badge badge-forged glow-forged">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                92% Forged
+              </span>
+            </div>
+
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;">
+              <div style="background:var(--color-surface-2);border-radius:var(--radius-md);padding:12px;text-align:center;">
+                <p class="text-h3 text-primary" style="font-size:1.5rem;">12</p>
+                <p class="text-xs text-muted">Documents</p>
+              </div>
+              <div style="background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:var(--radius-md);padding:12px;text-align:center;">
+                <p class="text-h3" style="font-size:1.5rem;color:var(--color-state-forged);">8</p>
+                <p class="text-xs text-muted">Forged</p>
+              </div>
+              <div style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);border-radius:var(--radius-md);padding:12px;text-align:center;">
+                <p class="text-h3" style="font-size:1.5rem;color:var(--color-state-partial);">3</p>
+                <p class="text-xs text-muted">Partial</p>
+              </div>
+            </div>
+
+            <div style="margin-bottom:20px;">
+              <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+                <span class="text-xs text-muted">Confiance globale</span>
+                <span class="text-xs text-primary font-semibold">92%</span>
+              </div>
+              <div class="progress-track">
+                <div class="progress-fill" style="width:92%;"></div>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:12px;">
+              <button class="btn btn-primary glow-primary flex-1" style="padding:10px 16px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                Lancer la Forge
+              </button>
+              <button class="btn btn-secondary" style="padding:10px 16px;">
+                Voir détails
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FOOTER
+  ============================================ -->
+  <footer class="footer">
+    <div class="container">
+      <p>NainoForge Design System v2.0 "Forge" — Construit en CSS pur, sans Figma</p>
+      <p class="text-xs text-muted mt-2" style="margin-top:8px;">Violet électrique #8B5CF6 · Canvas #121212 · Glow cosmique</p>
+    </div>
+  </footer>
+
+  <!-- ============================================
+       SCRIPTS
+  ============================================ -->
+  <script>
+    // Reveal on scroll
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    revealElements.forEach(el => observer.observe(el));
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Toggle demo
+    document.querySelectorAll('.toggle').forEach(toggle => {
+      toggle.addEventListener('click', () => toggle.classList.toggle('active'));
+    });
+  </script>
+</body>
+</html>

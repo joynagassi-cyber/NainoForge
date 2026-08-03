@@ -2,7 +2,8 @@
 title: "Implémenter la toolbar rapide pour les blocs custom IMPRINT"
 type: 'feature'
 created: '2026-07-29'
-status: 'in-review'
+status: 'done'
+final_revision: 'b1c29c8'
 review_loop_iteration: 0
 followup_review_recommended: false
 baseline_revision: 'bef3db2'

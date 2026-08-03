@@ -2,7 +2,8 @@
 title: "Connecter l'AiProvider au hook useAssistant pour Student AI"
 type: 'feature'
 created: '2026-07-29'
-status: 'in-review'
+status: 'done'
+final_revision: '525a23e'
 review_loop_iteration: 0
 followup_review_recommended: false
 baseline_revision: 'fc7fdfb'

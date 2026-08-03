@@ -1,37 +1,17 @@
-// ─── Shared domain types ─────────────────────────────────────
-// Used by extension, core, and all downstream packages.
+// ─── Shared types — re-export from core to avoid duplication ──
+// CapturedSource, DCM, SourceStatus, ReviewRating are defined in core/src/domain.ts
+// and re-exported here for backwards compatibility.
 
-/** Captured source record — persisted in IndexedDB nf_sources. */
-export interface CapturedSource {
-  id: string;
-  source_type: 'web_article' | 'youtube' | 'pdf';
-  title: string;
-  url?: string;
-  content_markdown: string;
-  content_hash: string; // SHA-256 hex — used for dedup index
-  metadata: Record<string, unknown>;
-  privacy_level: 'public' | 'personal' | 'enterprise';
-  status: SourceStatus;
-  created_at: number; // unix ms
-}
-
-/** Digital Content Model — normalized output of any extractor. */
-export interface DCM {
-  id: string;
-  title: string;
-  content_markdown: string;
-  source_url: string;
-  source_type: 'web_article' | 'youtube' | 'pdf';
-  metadata: Record<string, unknown>;
-  captured_at: number; // unix timestamp ms
-}
-
-/** Pipeline status for a captured source. */
-export type SourceStatus =
-  | 'pending'
-  | 'processing'
-  | 'ready'
-  | 'error';
-
-/** FSRS review rating. */
-export type ReviewRating = 'again' | 'hard' | 'good' | 'easy';
+export type {
+  CapturedSource,
+  DCM,
+  SourceStatus,
+  ReviewRating,
+  Chapter,
+  TranscriptSegment,
+  CranLevel,
+  BloomLevel,
+  ImprintNote,
+  SourceLike,
+  NoteLike,
+} from '@nainoforge/core';

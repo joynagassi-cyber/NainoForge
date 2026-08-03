@@ -1,0 +1,1130 @@
+{
+  "config": {
+    "argv": [
+      "C:\\nvm4w\\nodejs\\node.exe",
+      "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--workers=1",
+      "--repeat-each=1"
+    ],
+    "configFile": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\playwright.config.ts",
+    "rootDir": "C:/Users/joyda/ZCodeProject/NainoForge/packages/extension/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/joyda/ZCodeProject/NainoForge/packages/extension/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "NainoForge-Debug",
+        "name": "NainoForge-Debug",
+        "testDir": "C:/Users/joyda/ZCodeProject/NainoForge/packages/extension/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "dot",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "tests/reports/test-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.62.1",
+    "workers": 1,
+    "webServer": {
+      "command": "pnpm vite --port 3001 --strictPort --host 0.0.0.0",
+      "port": 3001,
+      "timeout": 120000,
+      "reuseExistingServer": true
+    }
+  },
+  "suites": [
+    {
+      "title": "nainoforge-comprehensive.spec.ts",
+      "file": "nainoforge-comprehensive.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "HP-01: Side panel ouvre l'interface React",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "NainoForge-Debug",
+              "projectName": "NainoForge-Debug",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "timedOut",
+                  "duration": 32093,
+                  "error": {
+                    "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                    "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                  },
+                  "errors": [
+                    {
+                      "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                    },
+                    {
+                      "location": {
+                        "file": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts",
+                        "column": 53,
+                        "line": 24
+                      },
+                      "message": "Error: locator.hover: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for locator('text=NainoForge').first()\u001b[22m\n\n\n  22 |       await page.goto('https://www.wikipedia.org');\n  23 |       await page.waitForTimeout(2000);\n> 24 |       await page.locator('text=NainoForge').first().hover();\n     |                                                     ^\n  25 |       await page.click('text=Ouvrir le panneau latéral');\n  26 |       await waitForSelectorWithRetry(page, '#root', 3);\n  27 |     });\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts:24:53\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts:21:5"
+                    },
+                    {
+                      "location": {
+                        "file": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts",
+                        "column": 6,
+                        "line": 12
+                      },
+                      "message": "\u001b[31m\"afterAll\" hook timeout of 30000ms exceeded.\u001b[39m\n\n  10 | });\n  11 |\n> 12 | test.afterAll(async () => {\n     |      ^\n  13 |   await browser.close();\n  14 | });\n  15 |\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts:12:6"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [
+                    {
+                      "text": "❌ HP-01 échoué: locator.hover: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for locator('text=NainoForge').first()\u001b[22m\n\n"
+                    }
+                  ],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "HP-01: Ouvrir le side panel",
+                      "duration": 33452,
+                      "error": {
+                        "message": "Error: locator.hover: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for locator('text=NainoForge').first()\u001b[22m\n",
+                        "stack": "Error: locator.hover: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for locator('text=NainoForge').first()\u001b[22m\n\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts:24:53\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts:21:5",
+                        "location": {
+                          "file": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts",
+                          "column": 53,
+                          "line": 24
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 22 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'https://www.wikipedia.org'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 23 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m2000\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 24 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'text=NainoForge'\u001b[39m)\u001b[33m.\u001b[39mfirst()\u001b[33m.\u001b[39mhover()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 25 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'text=Ouvrir le panneau latéral'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 26 |\u001b[39m       \u001b[36mawait\u001b[39m waitForSelectorWithRetry(page\u001b[33m,\u001b[39m \u001b[32m'#root'\u001b[39m\u001b[33m,\u001b[39m \u001b[35m3\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 27 |\u001b[39m     })\u001b[33m;\u001b[39m\u001b[0m"
+                      }
+                    }
+                  ],
+                  "startTime": "2026-08-01T19:53:20.978Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\test-results\\nainoforge-comprehensive-H-369af-nel-ouvre-l-interface-React-NainoForge-Debug\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\test-results\\nainoforge-comprehensive-H-369af-nel-ouvre-l-interface-React-NainoForge-Debug\\error-context.md"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\test-results\\nainoforge-comprehensive-H-369af-nel-ouvre-l-interface-React-NainoForge-Debug\\error-context.md"
+                    }
+                  ]
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a79472367ddaa145d695-31b7be030b72a413d68d",
+          "file": "nainoforge-comprehensive.spec.ts",
+          "line": 19,
+          "column": 5
+        },
+        {
+          "title": "HP-02: Content script injecte le badge sur les articles",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "NainoForge-Debug",
+              "projectName": "NainoForge-Debug",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9698,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "✅ HP-02: Content script sans erreurs\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "HP-02: Content script",
+                      "duration": 9620
+                    }
+                  ],
+                  "startTime": "2026-08-01T19:54:46.422Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a79472367ddaa145d695-ec185aa7fb9743105de4",
+          "file": "nainoforge-comprehensive.spec.ts",
+          "line": 41,
+          "column": 5
+        },
+        {
+          "title": "HP-03: Navigation entre onglets",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "NainoForge-Debug",
+              "projectName": "NainoForge-Debug",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "timedOut",
+                  "duration": 35077,
+                  "error": {
+                    "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                    "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                  },
+                  "errors": [
+                    {
+                      "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                    },
+                    {
+                      "location": {
+                        "file": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts",
+                        "column": 18,
+                        "line": 65
+                      },
+                      "message": "Error: page.goto: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - navigating to \"https://www.wikipedia.org/\", waiting until \"load\"\u001b[22m\n\n\n  63 |   try {\n  64 |     await test.step('HP-03: Navigation', async () => {\n> 65 |       await page.goto('https://www.wikipedia.org');\n     |                  ^\n  66 |       await page.waitForTimeout(2000);\n  67 |       await page.locator('text=NainoForge').first().hover();\n  68 |       await page.click('text=Ouvrir le panneau latéral');\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts:65:18\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts:64:5"
+                    },
+                    {
+                      "location": {
+                        "file": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts",
+                        "column": 6,
+                        "line": 12
+                      },
+                      "message": "\u001b[31m\"afterAll\" hook timeout of 30000ms exceeded.\u001b[39m\n\n  10 | });\n  11 |\n> 12 | test.afterAll(async () => {\n     |      ^\n  13 |   await browser.close();\n  14 | });\n  15 |\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts:12:6"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [
+                    {
+                      "text": "❌ HP-03 échoué: page.goto: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - navigating to \"https://www.wikipedia.org/\", waiting until \"load\"\u001b[22m\n\n"
+                    }
+                  ],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "HP-03: Navigation",
+                      "duration": 40648,
+                      "error": {
+                        "message": "Error: page.goto: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - navigating to \"https://www.wikipedia.org/\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "Error: page.goto: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - navigating to \"https://www.wikipedia.org/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts:65:18\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts:64:5",
+                        "location": {
+                          "file": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts",
+                          "column": 18,
+                          "line": 65
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 63 |\u001b[39m   \u001b[36mtry\u001b[39m {\n \u001b[90m 64 |\u001b[39m     \u001b[36mawait\u001b[39m test\u001b[33m.\u001b[39mstep(\u001b[32m'HP-03: Navigation'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m () \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 65 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'https://www.wikipedia.org'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 66 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m2000\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 67 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'text=NainoForge'\u001b[39m)\u001b[33m.\u001b[39mfirst()\u001b[33m.\u001b[39mhover()\u001b[33m;\u001b[39m\n \u001b[90m 68 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'text=Ouvrir le panneau latéral'\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                      }
+                    }
+                  ],
+                  "startTime": "2026-08-01T19:55:08.260Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\test-results\\nainoforge-comprehensive-HP-03-Navigation-entre-onglets-NainoForge-Debug\\error-context.md"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\test-results\\nainoforge-comprehensive-HP-03-Navigation-entre-onglets-NainoForge-Debug\\error-context.md"
+                    }
+                  ]
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a79472367ddaa145d695-c0e87572b0fb04b07574",
+          "file": "nainoforge-comprehensive.spec.ts",
+          "line": 62,
+          "column": 5
+        },
+        {
+          "title": "HP-04: Mode App (plein écran)",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "NainoForge-Debug",
+              "projectName": "NainoForge-Debug",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 14557,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('button[title=\"Fermer le mode application\"]')\nExpected: visible\nReceived: hidden\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('button[title=\"Fermer le mode application\"]')\u001b[22m\n\u001b[2m    11 × locator resolved to <button title=\"Fermer le mode application\" class=\"absolute top-4 right-4 z-10 flex h-11 w-11 items-center justify-center rounded-md text-text-muted hover:text-text-primary bg-surface-1/80 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-ring transition-colors\">…</button>\u001b[22m\n\u001b[2m       - unexpected value \"hidden\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('button[title=\"Fermer le mode application\"]')\nExpected: visible\nReceived: hidden\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('button[title=\"Fermer le mode application\"]')\u001b[22m\n\u001b[2m    11 × locator resolved to <button title=\"Fermer le mode application\" class=\"absolute top-4 right-4 z-10 flex h-11 w-11 items-center justify-center rounded-md text-text-muted hover:text-text-primary bg-surface-1/80 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-ring transition-colors\">…</button>\u001b[22m\n\u001b[2m       - unexpected value \"hidden\"\u001b[22m\n\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts:98:33\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts:92:5",
+                    "location": {
+                      "file": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts",
+                      "column": 33,
+                      "line": 98
+                    },
+                    "snippet": "\u001b[0m \u001b[90m  96 |\u001b[39m\n \u001b[90m  97 |\u001b[39m       \u001b[36mconst\u001b[39m closeButton \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'button[title=\"Fermer le mode application\"]'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  98 |\u001b[39m       \u001b[36mawait\u001b[39m expect(closeButton)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  99 |\u001b[39m\n \u001b[90m 100 |\u001b[39m       console\u001b[33m.\u001b[39mlog(\u001b[32m'✅ HP-04: Mode App avec fermeture'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 101 |\u001b[39m     })\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts",
+                        "column": 33,
+                        "line": 98
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('button[title=\"Fermer le mode application\"]')\nExpected: visible\nReceived: hidden\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('button[title=\"Fermer le mode application\"]')\u001b[22m\n\u001b[2m    11 × locator resolved to <button title=\"Fermer le mode application\" class=\"absolute top-4 right-4 z-10 flex h-11 w-11 items-center justify-center rounded-md text-text-muted hover:text-text-primary bg-surface-1/80 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-ring transition-colors\">…</button>\u001b[22m\n\u001b[2m       - unexpected value \"hidden\"\u001b[22m\n\n\n   96 |\n   97 |       const closeButton = page.locator('button[title=\"Fermer le mode application\"]');\n>  98 |       await expect(closeButton).toBeVisible();\n      |                                 ^\n   99 |\n  100 |       console.log('✅ HP-04: Mode App avec fermeture');\n  101 |     });\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts:98:33\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts:92:5"
+                    },
+                    {
+                      "location": {
+                        "file": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts",
+                        "column": 6,
+                        "line": 12
+                      },
+                      "message": "\u001b[31m\"afterAll\" hook timeout of 30000ms exceeded.\u001b[39m\n\n  10 | });\n  11 |\n> 12 | test.afterAll(async () => {\n     |      ^\n  13 |   await browser.close();\n  14 | });\n  15 |\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts:12:6"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [
+                    {
+                      "text": "❌ HP-04 échoué: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('button[title=\"Fermer le mode application\"]')\nExpected: visible\nReceived: hidden\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('button[title=\"Fermer le mode application\"]')\u001b[22m\n\u001b[2m    11 × locator resolved to <button title=\"Fermer le mode application\" class=\"absolute top-4 right-4 z-10 flex h-11 w-11 items-center justify-center rounded-md text-text-muted hover:text-text-primary bg-surface-1/80 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-ring transition-colors\">…</button>\u001b[22m\n\u001b[2m       - unexpected value \"hidden\"\u001b[22m\n\n"
+                    }
+                  ],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "HP-04: Mode App",
+                      "duration": 13722,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('button[title=\"Fermer le mode application\"]')\nExpected: visible\nReceived: hidden\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('button[title=\"Fermer le mode application\"]')\u001b[22m\n\u001b[2m    11 × locator resolved to <button title=\"Fermer le mode application\" class=\"absolute top-4 right-4 z-10 flex h-11 w-11 items-center justify-center rounded-md text-text-muted hover:text-text-primary bg-surface-1/80 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-ring transition-colors\">…</button>\u001b[22m\n\u001b[2m       - unexpected value \"hidden\"\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('button[title=\"Fermer le mode application\"]')\nExpected: visible\nReceived: hidden\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('button[title=\"Fermer le mode application\"]')\u001b[22m\n\u001b[2m    11 × locator resolved to <button title=\"Fermer le mode application\" class=\"absolute top-4 right-4 z-10 flex h-11 w-11 items-center justify-center rounded-md text-text-muted hover:text-text-primary bg-surface-1/80 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-ring transition-colors\">…</button>\u001b[22m\n\u001b[2m       - unexpected value \"hidden\"\u001b[22m\n\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts:98:33\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts:92:5",
+                        "location": {
+                          "file": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts",
+                          "column": 33,
+                          "line": 98
+                        },
+                        "snippet": "\u001b[0m \u001b[90m  96 |\u001b[39m\n \u001b[90m  97 |\u001b[39m       \u001b[36mconst\u001b[39m closeButton \u001b[33m=\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'button[title=\"Fermer le mode application\"]'\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  98 |\u001b[39m       \u001b[36mawait\u001b[39m expect(closeButton)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  99 |\u001b[39m\n \u001b[90m 100 |\u001b[39m       console\u001b[33m.\u001b[39mlog(\u001b[32m'✅ HP-04: Mode App avec fermeture'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 101 |\u001b[39m     })\u001b[33m;\u001b[39m\u001b[0m"
+                      }
+                    }
+                  ],
+                  "startTime": "2026-08-01T19:56:27.488Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\test-results\\nainoforge-comprehensive-HP-04-Mode-App-plein-écran--NainoForge-Debug\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\test-results\\nainoforge-comprehensive-HP-04-Mode-App-plein-écran--NainoForge-Debug\\error-context.md"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\test-results\\nainoforge-comprehensive-HP-04-Mode-App-plein-écran--NainoForge-Debug\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts",
+                    "column": 33,
+                    "line": 98
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a79472367ddaa145d695-0a6a94c736bba428517a",
+          "file": "nainoforge-comprehensive.spec.ts",
+          "line": 90,
+          "column": 5
+        },
+        {
+          "title": "HP-05: Toasts notifications",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "NainoForge-Debug",
+              "projectName": "NainoForge-Debug",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "timedOut",
+                  "duration": 35103,
+                  "error": {
+                    "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                    "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                  },
+                  "errors": [
+                    {
+                      "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                    },
+                    {
+                      "location": {
+                        "file": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts",
+                        "column": 53,
+                        "line": 114
+                      },
+                      "message": "Error: locator.hover: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for locator('text=NainoForge').first()\u001b[22m\n\n\n  112 |       await page.goto('https://www.wikipedia.org');\n  113 |       await page.waitForTimeout(2000);\n> 114 |       await page.locator('text=NainoForge').first().hover();\n      |                                                     ^\n  115 |       await page.click('text=Ouvrir le panneau latéral');\n  116 |       await waitForSelectorWithRetry(page, '#root', 3);\n  117 |\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts:114:53\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts:111:5"
+                    },
+                    {
+                      "location": {
+                        "file": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts",
+                        "column": 6,
+                        "line": 12
+                      },
+                      "message": "\u001b[31m\"afterAll\" hook timeout of 30000ms exceeded.\u001b[39m\n\n  10 | });\n  11 |\n> 12 | test.afterAll(async () => {\n     |      ^\n  13 |   await browser.close();\n  14 | });\n  15 |\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts:12:6"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [
+                    {
+                      "text": "❌ HP-05 échoué: locator.hover: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for locator('text=NainoForge').first()\u001b[22m\n\n"
+                    }
+                  ],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "HP-05: Toasts",
+                      "duration": 40927,
+                      "error": {
+                        "message": "Error: locator.hover: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for locator('text=NainoForge').first()\u001b[22m\n",
+                        "stack": "Error: locator.hover: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for locator('text=NainoForge').first()\u001b[22m\n\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts:114:53\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts:111:5",
+                        "location": {
+                          "file": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts",
+                          "column": 53,
+                          "line": 114
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 112 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'https://www.wikipedia.org'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 113 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m2000\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 114 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'text=NainoForge'\u001b[39m)\u001b[33m.\u001b[39mfirst()\u001b[33m.\u001b[39mhover()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 115 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'text=Ouvrir le panneau latéral'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 116 |\u001b[39m       \u001b[36mawait\u001b[39m waitForSelectorWithRetry(page\u001b[33m,\u001b[39m \u001b[32m'#root'\u001b[39m\u001b[33m,\u001b[39m \u001b[35m3\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 117 |\u001b[39m\u001b[0m"
+                      }
+                    }
+                  ],
+                  "startTime": "2026-08-01T19:57:28.991Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\test-results\\nainoforge-comprehensive-HP-05-Toasts-notifications-NainoForge-Debug\\error-context.md"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\test-results\\nainoforge-comprehensive-HP-05-Toasts-notifications-NainoForge-Debug\\error-context.md"
+                    }
+                  ]
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a79472367ddaa145d695-583c788f3d2dafcacfd5",
+          "file": "nainoforge-comprehensive.spec.ts",
+          "line": 109,
+          "column": 5
+        },
+        {
+          "title": "ES-01: Service Worker s'initialise",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "NainoForge-Debug",
+              "projectName": "NainoForge-Debug",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 168,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "✅ ES-01: Service Worker chargé\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "ES-01: Service Worker",
+                      "duration": 29
+                    }
+                  ],
+                  "startTime": "2026-08-01T19:58:57.572Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a79472367ddaa145d695-193dea2355e4befbd2bc",
+          "file": "nainoforge-comprehensive.spec.ts",
+          "line": 144,
+          "column": 5
+        },
+        {
+          "title": "ES-02: Content script handle les erreurs",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "NainoForge-Debug",
+              "projectName": "NainoForge-Debug",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5050,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "✅ ES-02: Pas d'erreurs critiques\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "ES-02: Error Handling",
+                      "duration": 5025
+                    }
+                  ],
+                  "startTime": "2026-08-01T19:59:03.021Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a79472367ddaa145d695-914e437502156b5d318a",
+          "file": "nainoforge-comprehensive.spec.ts",
+          "line": 157,
+          "column": 5
+        },
+        {
+          "title": "EC-01: Side panel sur page non-article",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "NainoForge-Debug",
+              "projectName": "NainoForge-Debug",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 16950,
+                  "error": {
+                    "message": "Error: page.goto: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - navigating to \"chrome://extensions/\", waiting until \"load\"\u001b[22m\n",
+                    "stack": "Error: page.goto: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - navigating to \"chrome://extensions/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts:185:18\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts:184:5",
+                    "location": {
+                      "file": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts",
+                      "column": 18,
+                      "line": 185
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 183 |\u001b[39m   \u001b[36mtry\u001b[39m {\n \u001b[90m 184 |\u001b[39m     \u001b[36mawait\u001b[39m test\u001b[33m.\u001b[39mstep(\u001b[32m'EC-01: Page non-article'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m () \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 185 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'chrome://extensions/'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 186 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'text=NainoForge'\u001b[39m)\u001b[33m.\u001b[39mfirst()\u001b[33m.\u001b[39mhover()\u001b[33m;\u001b[39m\n \u001b[90m 187 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'text=Ouvrir le panneau latéral'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 188 |\u001b[39m       \u001b[36mawait\u001b[39m waitForSelectorWithRetry(page\u001b[33m,\u001b[39m \u001b[32m'#root'\u001b[39m\u001b[33m,\u001b[39m \u001b[35m3\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts",
+                        "column": 18,
+                        "line": 185
+                      },
+                      "message": "Error: page.goto: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - navigating to \"chrome://extensions/\", waiting until \"load\"\u001b[22m\n\n\n  183 |   try {\n  184 |     await test.step('EC-01: Page non-article', async () => {\n> 185 |       await page.goto('chrome://extensions/');\n      |                  ^\n  186 |       await page.locator('text=NainoForge').first().hover();\n  187 |       await page.click('text=Ouvrir le panneau latéral');\n  188 |       await waitForSelectorWithRetry(page, '#root', 3);\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts:185:18\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts:184:5"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [
+                    {
+                      "text": "❌ EC-01 échoué: page.goto: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - navigating to \"chrome://extensions/\", waiting until \"load\"\u001b[22m\n\n"
+                    }
+                  ],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "EC-01: Page non-article",
+                      "duration": 16905,
+                      "error": {
+                        "message": "Error: page.goto: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - navigating to \"chrome://extensions/\", waiting until \"load\"\u001b[22m\n",
+                        "stack": "Error: page.goto: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - navigating to \"chrome://extensions/\", waiting until \"load\"\u001b[22m\n\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts:185:18\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts:184:5",
+                        "location": {
+                          "file": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts",
+                          "column": 18,
+                          "line": 185
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 183 |\u001b[39m   \u001b[36mtry\u001b[39m {\n \u001b[90m 184 |\u001b[39m     \u001b[36mawait\u001b[39m test\u001b[33m.\u001b[39mstep(\u001b[32m'EC-01: Page non-article'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m () \u001b[33m=>\u001b[39m {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 185 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'chrome://extensions/'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 186 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'text=NainoForge'\u001b[39m)\u001b[33m.\u001b[39mfirst()\u001b[33m.\u001b[39mhover()\u001b[33m;\u001b[39m\n \u001b[90m 187 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'text=Ouvrir le panneau latéral'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 188 |\u001b[39m       \u001b[36mawait\u001b[39m waitForSelectorWithRetry(page\u001b[33m,\u001b[39m \u001b[32m'#root'\u001b[39m\u001b[33m,\u001b[39m \u001b[35m3\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                      }
+                    }
+                  ],
+                  "startTime": "2026-08-01T19:59:08.384Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\test-results\\nainoforge-comprehensive-E-de080--panel-sur-page-non-article-NainoForge-Debug\\error-context.md"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\test-results\\nainoforge-comprehensive-E-de080--panel-sur-page-non-article-NainoForge-Debug\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts",
+                    "column": 18,
+                    "line": 185
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a79472367ddaa145d695-3b2eb47e2f7dc7c41459",
+          "file": "nainoforge-comprehensive.spec.ts",
+          "line": 182,
+          "column": 5
+        },
+        {
+          "title": "EC-02: Performance COSMOS avec grand nombre de nœuds",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "NainoForge-Debug",
+              "projectName": "NainoForge-Debug",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 0,
+                  "status": "timedOut",
+                  "duration": 30654,
+                  "error": {
+                    "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                    "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                  },
+                  "errors": [
+                    {
+                      "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                    },
+                    {
+                      "location": {
+                        "file": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts",
+                        "column": 53,
+                        "line": 205
+                      },
+                      "message": "Error: locator.hover: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for locator('text=NainoForge').first()\u001b[22m\n\n\n  203 |       await page.goto('https://www.wikipedia.org');\n  204 |       await page.waitForTimeout(2000);\n> 205 |       await page.locator('text=NainoForge').first().hover();\n      |                                                     ^\n  206 |       await page.click('text=Ouvrir le panneau latéral');\n  207 |       await waitForSelectorWithRetry(page, '#root', 3);\n  208 |       await page.locator('text=\"Graphe\"').click();\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts:205:53\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts:202:5"
+                    },
+                    {
+                      "location": {
+                        "file": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts",
+                        "column": 6,
+                        "line": 12
+                      },
+                      "message": "\u001b[31m\"afterAll\" hook timeout of 30000ms exceeded.\u001b[39m\n\n  10 | });\n  11 |\n> 12 | test.afterAll(async () => {\n     |      ^\n  13 |   await browser.close();\n  14 | });\n  15 |\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts:12:6"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [
+                    {
+                      "text": "❌ EC-02 échoué: locator.hover: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for locator('text=NainoForge').first()\u001b[22m\n\n"
+                    }
+                  ],
+                  "retry": 0,
+                  "steps": [
+                    {
+                      "title": "EC-02: Performance",
+                      "duration": 32516,
+                      "error": {
+                        "message": "Error: locator.hover: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for locator('text=NainoForge').first()\u001b[22m\n",
+                        "stack": "Error: locator.hover: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - waiting for locator('text=NainoForge').first()\u001b[22m\n\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts:205:53\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts:202:5",
+                        "location": {
+                          "file": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts",
+                          "column": 53,
+                          "line": 205
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 203 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m'https://www.wikipedia.org'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 204 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m2000\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 205 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'text=NainoForge'\u001b[39m)\u001b[33m.\u001b[39mfirst()\u001b[33m.\u001b[39mhover()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 206 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mclick(\u001b[32m'text=Ouvrir le panneau latéral'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 207 |\u001b[39m       \u001b[36mawait\u001b[39m waitForSelectorWithRetry(page\u001b[33m,\u001b[39m \u001b[32m'#root'\u001b[39m\u001b[33m,\u001b[39m \u001b[35m3\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 208 |\u001b[39m       \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m'text=\"Graphe\"'\u001b[39m)\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\u001b[0m"
+                      }
+                    }
+                  ],
+                  "startTime": "2026-08-01T19:59:56.475Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\test-results\\nainoforge-comprehensive-E-6ec1a--avec-grand-nombre-de-nœuds-NainoForge-Debug\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\test-results\\nainoforge-comprehensive-E-6ec1a--avec-grand-nombre-de-nœuds-NainoForge-Debug\\error-context.md"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\test-results\\nainoforge-comprehensive-E-6ec1a--avec-grand-nombre-de-nœuds-NainoForge-Debug\\error-context.md"
+                    }
+                  ]
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a79472367ddaa145d695-c4663faebee715347c78",
+          "file": "nainoforge-comprehensive.spec.ts",
+          "line": 200,
+          "column": 5
+        },
+        {
+          "title": "Affichage du rapport de test",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "NainoForge-Debug",
+              "projectName": "NainoForge-Debug",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 0,
+                  "status": "timedOut",
+                  "duration": 225,
+                  "error": {
+                    "message": "\u001b[31m\"afterAll\" hook timeout of 30000ms exceeded.\u001b[39m",
+                    "stack": "\u001b[31m\"afterAll\" hook timeout of 30000ms exceeded.\u001b[39m\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts:12:6",
+                    "location": {
+                      "file": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts",
+                      "column": 6,
+                      "line": 12
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 10 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 11 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 12 |\u001b[39m test\u001b[33m.\u001b[39mafterAll(\u001b[36masync\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 13 |\u001b[39m   \u001b[36mawait\u001b[39m browser\u001b[33m.\u001b[39mclose()\u001b[33m;\u001b[39m\n \u001b[90m 14 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 15 |\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts",
+                        "column": 6,
+                        "line": 12
+                      },
+                      "message": "\u001b[31m\"afterAll\" hook timeout of 30000ms exceeded.\u001b[39m\n\n  10 | });\n  11 |\n> 12 | test.afterAll(async () => {\n     |      ^\n  13 |   await browser.close();\n  14 | });\n  15 |\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts:12:6"
+                    }
+                  ],
+                  "stdout": [
+                    {
+                      "text": "\n==================================================\n"
+                    },
+                    {
+                      "text": "📊 RAPPORT DE TEST FINAL\n"
+                    },
+                    {
+                      "text": "==================================================\n"
+                    },
+                    {
+                      "text": "Tous les tests ont été exécutés.\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T20:01:46.169Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\test-results\\nainoforge-comprehensive-Affichage-du-rapport-de-test-NainoForge-Debug\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-comprehensive.spec.ts",
+                    "column": 6,
+                    "line": 12
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a79472367ddaa145d695-04fca9704ded8f9df65d",
+          "file": "nainoforge-comprehensive.spec.ts",
+          "line": 221,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "nainoforge-extension.spec.ts",
+      "file": "nainoforge-extension.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "HP-01: Side panel ouvre l'interface React",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "NainoForge-Debug",
+              "projectName": "NainoForge-Debug",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 0,
+                  "status": "timedOut",
+                  "duration": 168,
+                  "error": {
+                    "message": "\u001b[31m\"beforeAll\" hook timeout of 30000ms exceeded.\u001b[39m",
+                    "stack": "\u001b[31m\"beforeAll\" hook timeout of 30000ms exceeded.\u001b[39m\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-extension.spec.ts:40:6",
+                    "location": {
+                      "file": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-extension.spec.ts",
+                      "column": 6,
+                      "line": 40
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 38 |\u001b[39m \u001b[36mlet\u001b[39m browser\u001b[33m,\u001b[39m page\u001b[33m;\u001b[39m\n \u001b[90m 39 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 40 |\u001b[39m test\u001b[33m.\u001b[39mbeforeAll(\u001b[36masync\u001b[39m () \u001b[33m=>\u001b[39m {\n \u001b[90m    |\u001b[39m      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 41 |\u001b[39m   browser \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m chromium\u001b[33m.\u001b[39mlaunch({ headless\u001b[33m:\u001b[39m \u001b[36mfalse\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 42 |\u001b[39m   \u001b[36mconst\u001b[39m context \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m browser\u001b[33m.\u001b[39mnewContext()\u001b[33m;\u001b[39m\n \u001b[90m 43 |\u001b[39m   page \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m context\u001b[33m.\u001b[39mnewPage()\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-extension.spec.ts",
+                        "column": 6,
+                        "line": 40
+                      },
+                      "message": "\u001b[31m\"beforeAll\" hook timeout of 30000ms exceeded.\u001b[39m\n\n  38 | let browser, page;\n  39 |\n> 40 | test.beforeAll(async () => {\n     |      ^\n  41 |   browser = await chromium.launch({ headless: false });\n  42 |   const context = await browser.newContext();\n  43 |   page = await context.newPage();\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-extension.spec.ts:40:6"
+                    },
+                    {
+                      "location": {
+                        "file": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-extension.spec.ts",
+                        "column": 14,
+                        "line": 45
+                      },
+                      "message": "Error: page.goto: Target page, context or browser has been closed\nCall log:\n\u001b[2m  - navigating to \"chrome://extensions/\", waiting until \"load\"\u001b[22m\n\n\n  43 |   page = await context.newPage();\n  44 |   // Charger l'extension en mode développeur\n> 45 |   await page.goto('chrome://extensions/');\n     |              ^\n  46 |   await page.waitForTimeout(1000);\n  47 | });\n  48 |\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-extension.spec.ts:45:14"
+                    },
+                    {
+                      "location": {
+                        "file": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-extension.spec.ts",
+                        "column": 6,
+                        "line": 49
+                      },
+                      "message": "\u001b[31m\"afterAll\" hook timeout of 30000ms exceeded.\u001b[39m\n\n  47 | });\n  48 |\n> 49 | test.afterAll(async () => {\n     |      ^\n  50 |   await browser.close();\n  51 | });\n  52 |\n    at C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-extension.spec.ts:49:6"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T20:02:48.609Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\test-results\\nainoforge-extension-HP-01-1aadb-nel-ouvre-l-interface-React-NainoForge-Debug\\error-context.md"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\test-results\\nainoforge-extension-HP-01-1aadb-nel-ouvre-l-interface-React-NainoForge-Debug\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\joyda\\ZCodeProject\\NainoForge\\packages\\extension\\tests\\e2e\\nainoforge-extension.spec.ts",
+                    "column": 6,
+                    "line": 40
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "e8ffb5604340ce2c0236-40e5953f73b3d9c2320c",
+          "file": "nainoforge-extension.spec.ts",
+          "line": 54,
+          "column": 5
+        },
+        {
+          "title": "HP-02: Content script injecte le badge sur les articles",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "NainoForge-Debug",
+              "projectName": "NainoForge-Debug",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T20:04:01.852Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "e8ffb5604340ce2c0236-69c868f49f3df9658af2",
+          "file": "nainoforge-extension.spec.ts",
+          "line": 75,
+          "column": 5
+        },
+        {
+          "title": "ES-01: Service worker fonctionne",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "NainoForge-Debug",
+              "projectName": "NainoForge-Debug",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T20:04:01.887Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "e8ffb5604340ce2c0236-70b2cd8c6b64cabea125",
+          "file": "nainoforge-extension.spec.ts",
+          "line": 93,
+          "column": 5
+        },
+        {
+          "title": "HP-04: Mode App fonctionne",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "NainoForge-Debug",
+              "projectName": "NainoForge-Debug",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T20:04:01.906Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "e8ffb5604340ce2c0236-b6bc89af486892574ae5",
+          "file": "nainoforge-extension.spec.ts",
+          "line": 104,
+          "column": 5
+        },
+        {
+          "title": "HP-05: Toasts s'affichent et se ferment",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "NainoForge-Debug",
+              "projectName": "NainoForge-Debug",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T20:04:01.906Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "e8ffb5604340ce2c0236-d312cec3b52b186790db",
+          "file": "nainoforge-extension.spec.ts",
+          "line": 120,
+          "column": 5
+        },
+        {
+          "title": "EC-01: Side panel fonctionne sans article",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "NainoForge-Debug",
+              "projectName": "NainoForge-Debug",
+              "results": [
+                {
+                  "workerIndex": -1,
+                  "parallelIndex": -1,
+                  "status": "skipped",
+                  "duration": 0,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-08-01T20:04:01.906Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "skipped"
+            }
+          ],
+          "id": "e8ffb5604340ce2c0236-9ca8d6cc7367d6121030",
+          "file": "nainoforge-extension.spec.ts",
+          "line": 139,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "message": "\u001b[31mWorker teardown timeout of 30000ms exceeded.\u001b[39m\n\n\u001b[31mFailed worker ran 1 test:\u001b[39m\n[NainoForge-Debug] › tests\\e2e\\nainoforge-comprehensive.spec.ts:200:5 › EC-02: Performance COSMOS avec grand nombre de nœuds",
+      "stack": "\u001b[31mWorker teardown timeout of 30000ms exceeded.\u001b[39m\n\n\u001b[31mFailed worker ran 1 test:\u001b[39m\n[NainoForge-Debug] › tests\\e2e\\nainoforge-comprehensive.spec.ts:200:5 › EC-02: Performance COSMOS avec grand nombre de nœuds"
+    }
+  ],
+  "stats": {
+    "startTime": "2026-08-01T19:52:57.442Z",
+    "duration": 666888.885,
+    "expected": 3,
+    "skipped": 5,
+    "unexpected": 8,
+    "flaky": 0
+  }
+}

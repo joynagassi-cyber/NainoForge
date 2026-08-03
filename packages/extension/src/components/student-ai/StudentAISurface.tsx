@@ -4,7 +4,7 @@ import {
   type UseAssistantReturnType,
   useAssistant,
 } from "@assistant-ui/react";
-import { cn } from "../lib/utils";
+import { cn } from "../../lib/utils.ts";
 import { Spinner } from "../ui/spinner";
 import { Button } from "../ui/button";
 import { Send } from "lucide-react";
@@ -14,19 +14,19 @@ import { StudentCard } from "./StudentCard";
 import { InterruptionBubble } from "./InterruptionBubble";
 import { SessionSummaryCard } from "./SessionSummaryCard";
 
-// Thème NainoForge pour assistant-ui
+// Thème NainoForge pour assistant-ui — Neuro-Technical
 const nainoforgeTheme = {
   colors: {
-    background: "#0A0A0F",
-    surface: "#12101C",
-    surfaceSecondary: "#1A1726",
-    primary: "#7C3AED",
-    primaryForeground: "#FFFFFF",
-    foreground: "#F0F2F5",
-    foregroundMuted: "#A5A0B8",
-    border: "rgba(255,255,255,0.08)",
+    background: "#141313",
+    surface: "#1c1b1b",
+    surfaceSecondary: "#201f1f",
+    primary: "#ffffff",
+    primaryForeground: "#2f3131",
+    foreground: "#e5e2e1",
+    foregroundMuted: "#c4c7c8",
+    border: "rgba(255,255,255,0.06)",
   },
-  radius: { sm: "6px", md: "10px", lg: "14px" },
+  radius: { sm: "2px", md: "6px", lg: "8px" },
   spacing: { xs: "8px", sm: "12px", md: "16px" },
 };
 
@@ -56,7 +56,7 @@ export function StudentAISurface() {
       } catch (error) {
         console.error("AiProvider error:", error);
         return new Response(JSON.stringify({
-          replies: [{ content: "Désolé, je ne peux pas répondre. Veuillez réessayer plus tard.", role: "assistant" }],
+          replies: [{ content: "Désolé, je ne peux pas répondre pour le moment. Réessayez plus tard.", role: "assistant" }],
         }));
       }
     },
@@ -80,10 +80,10 @@ export function StudentAISurface() {
 
   const triggerInterruption = () => {
     const questions = [
-      "Selon toi, quel est le lien entre ces deux concepts ?",
-      "Peux-tu expliquer cela avec tes propres mots ?",
-      "Qu'est-ce que tu as appris aujourd'hui qui t'a surpris ?",
-      "Comment appliquerais-tu ce knowledge dans un autre contexte ?"
+      "Selon vous, quel est le lien entre ces deux concepts ?",
+      "Pourriez-vous expliquer cela avec vos propres mots ?",
+      "Qu'est-ce qui vous a surpris aujourd'hui dans ce que vous avez appris ?",
+      "Comment pourriez-vous appliquer ce concept dans un autre contexte ?"
     ];
     const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
     setInterruptionQuestion(randomQuestion);
@@ -120,7 +120,7 @@ export function StudentAISurface() {
             depth={4}
             cran={4}
             iqs={82}
-            summary="Bon travail ! Tu as bien expliqué les concepts et utilisé des exemples pertinents. Continue sur cette voie !"
+            summary="Bon travail ! Vous avez bien expliqué les concepts et utilisé des exemples pertinents. Continuez comme ça !"
           />
         )}
 
@@ -180,7 +180,7 @@ export function StudentAISurface() {
                 <input
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="Explique avec tes propres mots..."
+                  placeholder="Expliquez avec vos propres mots..."
                   className={cn(
                     "flex-1 rounded-md border border-border-default bg-surface px-3 py-2 text-body text-foreground placeholder-text-foregroundMuted focus:border-primary focus:outline-none",
                     input && !disabled && "border-primary"
@@ -192,14 +192,14 @@ export function StudentAISurface() {
                   variant="primary"
                   size="icon"
                   disabled={!input.trim() || submitting || disabled}
-                  iconLeft={<Send className="h-4 w-4" />}
+                  iconLeft={<Send className="h-5 w-5" />}
                 />
               </form>
             </div>
           )}
           renderLoading={() => (
             <div className="mr-auto mt-2">
-              <Spinner size="sm" label="Réflexion..." />
+              <Spinner size="sm" label="En réflexion..." />
             </div>
           )}
         />

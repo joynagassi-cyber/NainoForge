@@ -1,6 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.evaluateCrank = evaluateCrank;
 const CONNECTORS = new Set([
     'because', 'therefore', 'however', 'thus', 'consequently', 'moreover', 'furthermore',
     'nevertheless', 'nonetheless', 'accordingly', 'hence', 'so', 'but', 'and', 'or',
@@ -11,7 +8,7 @@ const RICH_CONNECTORS = new Set([
     'for example', 'for instance', 'such as', 'because', 'thus', 'hence',
 ]);
 const ANALOGY_MARKERS = ['like', 'as if', 'as though', 'similar to', 'compared to', 'just as'];
-function evaluateCrank(input) {
+export function evaluateCrank(input) {
     const text = input.content.trim();
     const words = text.split(/\s+/).filter(Boolean);
     const word_count = words.length;

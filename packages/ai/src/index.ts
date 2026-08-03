@@ -6,3 +6,4 @@ export type {
   ExtractConceptsInput,
   ExtractConceptsOutput,
 } from './contracts.js';
+export type { ImprintNote } from '@nainoforge/core';

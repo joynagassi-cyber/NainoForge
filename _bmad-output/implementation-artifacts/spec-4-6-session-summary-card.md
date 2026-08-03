@@ -2,10 +2,11 @@
 title: "Implémenter le Session Summary Card pour résumer la session"
 type: 'feature'
 created: '2026-07-29'
-status: 'in-review'
+status: 'done'
 review_loop_iteration: 0
 followup_review_recommended: false
 baseline_revision: '3cc69da'
+final_revision: 'ff5bf3f'
 warnings: []
 ---
 

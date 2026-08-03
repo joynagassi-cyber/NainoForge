@@ -1,0 +1,50 @@
+[
+  {
+    "file": "packages/extension/src/components/imprint/ImprintSurface.tsx",
+    "line": 88,
+    "summary": "Duplicate useEffect causes double subscription to BlockNote editor changes, leading to duplicate content processing and state corruption",
+    "failure_scenario": "User types in editor → handleEditorChange is called twice → setContent and evaluate each fire twice → state becomes inconsistent, evaluations run twice, potential duplicate network calls"
+  },
+  {
+    "file": "packages/extension/src/components/student-ai/StudentAISurface.tsx",
+    "line": 44,
+    "summary": "fetch function passed to useAssistant is recreated on every render without memoization, risking reset of assistant message history and state",
+    "failure_scenario": "User types a message → component re-renders → new fetch function created → useAssistant detects change and resets internal state → previous conversation history is lost"
+  },
+  {
+    "file": "packages/extension/src/components/student-ai/InterruptionBubble.tsx",
+    "line": 45,
+    "summary": "Timer expiration calls onDismiss without checking if parent is mounted, risking React state update on unmounted component warning",
+    "failure_scenario": "User leaves page while interruption timer is counting down → timer reaches 0 → onDismiss is called → parent component may have unmounted → React warning: Can't call setState on an unmounted component"
+  },
+  {
+    "file": "packages/extension/src/components/student-ai/InterruptionBubble.tsx",
+    "line": 73,
+    "summary": "Overlay remains clickable during opacity fade-out transition because pointer-events are not disabled, causing re-opening on click",
+    "failure_scenario": "User clicks 'Passer' or closes interruption → opacity-0 applied but overlay still in DOM → user accidentally clicks overlay during transition → bubble re-opens unexpectedly"
+  },
+  {
+    "file": "packages/extension/src/components/student-ai/StudentCard.tsx",
+    "line": 30,
+    "summary": "\"leech\" mastery status incorrectly mapped to \"forge\" badge variant, displaying wrong visual feedback for weakest mastery level",
+    "failure_scenario": "Student concept has status 'leech' → displays 'forge' badge (typically green/complete) instead of a warning variant → user incorrectly perceives concept as mastered when it's actually weak"
+  },
+  {
+    "file": "packages/extension/src/lib/cognitive-mapping.ts",
+    "line": 24,
+    "summary": "Duplicate case statement for 'à revoir' (lines 24-25) and likely typo 'àrevoyer' (line 27) that will never match valid input",
+    "failure_scenario": "Code is confusing to maintainers; 'àrevoyer' typo is dead code that should be removed; duplicate case suggests copy-paste error"
+  },
+  {
+    "file": "packages/extension/src/components/student-ai/StudentAISurface.tsx",
+    "line": 54,
+    "summary": "Mock confidence value uses Math.random() producing unpredictable scores between 70-90, not reflecting actual AI confidence",
+    "failure_scenario": "Every AI response shows a different random confidence score (e.g., 73%, then 88%, then 71%) → misleading user about system's actual certainty"
+  },
+  {
+    "file": "packages/extension/src/components/ConfidenceMarker.tsx",
+    "line": 40,
+    "summary": "Flame icon uses absolute positioning with transforms when flex centering on parent would suffice, adding unnecessary complexity",
+    "failure_scenario": "If parent flex layout changes, absolute positioning may misalign the icon; harder to maintain than pure flex solution"
+  }
+]

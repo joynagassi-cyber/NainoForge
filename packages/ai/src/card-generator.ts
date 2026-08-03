@@ -7,18 +7,9 @@
 //   FR-CARD-003: B01 (Exposition) generated once per concept
 //   FR-IQS-013: IQS < 30 → B01 + B02 only (no B03/B04/B05)
 
-export interface ImprintNote {
-  id: string;
-  source_id: string;
-  concept_id: string;
-  content: string;
-  word_count: number;
-  cran_level: number; // 1-5
-  quality_score: number; // 0-100
-  bloom_level?: string;
-  concept_coverage_pct?: number;
-  created_at: number;
-}
+import type { ImprintNote } from '@nainoforge/core';
+
+export type { ImprintNote };
 
 export interface GeneratedCard {
   id: string;

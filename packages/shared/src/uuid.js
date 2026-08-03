@@ -1,4 +1,3 @@
-"use strict";
 /**
  * UUID v7 — RFC 4122 compliant, no external deps.
  *
@@ -7,13 +6,11 @@
  * Variant bits (10xx) are placed in byte 8.
  * Remaining bytes are random.
  */
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.uuidv7 = uuidv7;
 const HEX = '0123456789abcdef';
 function byteToHex(b) {
     return HEX[(b >> 4) & 0x0f] + HEX[b & 0x0f];
 }
-function uuidv7() {
+export function uuidv7() {
     const now = Date.now();
     const bytes = new Uint8Array(16);
     // 48-bit timestamp big-endian dans bytes[0..5]

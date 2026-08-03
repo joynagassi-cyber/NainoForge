@@ -1,492 +1,576 @@
 ---
-name: nainoforge-design
-description: NainoForge S1 visual identity, component specification and UI tooling
+name: nainoforge-design-system
+description: NainoForge — Neuro-Technical design system, single source of truth for Chrome extension (Popup / Side Panel / App Mode)
 status: final
-updated: 2026-07-16
+updated: 2026-08-03
 ---
 
-# DESIGN — NainoForge
+# NainoForge — Design System : Neuro-Technical
 
-## Brand & Style
+> **Produit :** Extension Chrome (pas une application mobile)
+> **Contextes :** Popup · Side Panel · App Mode
+> **Esthétique :** Minimalism × Glassmorphism — fond monochromatique obsidienne, typographie haut contraste, indicateurs cinétiques subtils.
+> **Émotion cible :** "Calm focus" + "technological depth"
 
-Brand voice: industrial forge. Hard surfaces, violet glow, amber heat accent.
-Dark mode only.
+---
+
+## Contexte
+
+NainoForge est une **extension Chrome** avec trois contextes de rendu, chacun ayant des contraintes d'espace radicalement différentes :
+
+| Contexte | Point d'entrée | Dimensions | Contrainte dominante |
+|---|---|---|---|
+| **Popup** | `main.tsx` (mode par défaut) | 400px × ≤600px, fixe | Hauteur ET largeur limitées — densité maximale |
+| **Side Panel** | `main.tsx` (`?mode=sidebar`) | 320–560px de large, hauteur = fenêtre | Largeur étroite mais variable, hauteur généreuse |
+| **App Mode** | `appModeMain.tsx` | ≥800px, viewport desktop | Espace généreux — seul contexte où la mise en page à 3 colonnes a du sens |
+
+Chaque section ci-dessous précise à quel(s) contexte(s) elle s'applique. Sauf mention contraire, **Couleurs, Typographie, Rounded, Elevation** sont partagés par les trois contextes.
+
+---
 
 ## Colors
 
-### Palette
+Palette monochromatique rooted in deep obsidian. **Primary = blanc (#FFFFFF) comme accent** — interface strictement monochrome, le blanc est le seul accent fonctionnel.
 
-| Token | Value | Usage |
-|---|---|---|
-| primary | #7C3AED | CTA, active chrome, link |
-| primary-dark | #6D28D9 | hover primary |
-| primary-darkest | #5B21B6 | active primary |
-| accent-warm | #F59E0B | status heat, notification |
-| surface-base | #0A0A0F | deepest background |
-| surface-1 | #12101C | card/elevated base |
-| surface-2 | #1A1726 | input/secondary panel |
-| surface-3 | #201D2E | disabled/sunken |
-| text-primary | #F0F2F5 | body/headings on dark |
-| text-muted | #A5A0B8 | secondary metadata |
-| text-disabled | #5E5A6E | disabled text |
-| border-subtle | rgba(255,255,255,0.08) | hairline dividers |
-| border-default | rgba(255,255,255,0.14) | inputs |
-| state-forged | #22C55E | success/ready |
-| state-leech | #EF4444 | error/failure |
+```yaml
+name: NainoForge Neuro-Technical
+colors:
+  surface: '#141313'
+  surface-dim: '#141313'
+  surface-bright: '#3a3939'
+  surface-container-lowest: '#0e0e0e'
+  surface-container-low: '#1c1b1b'
+  surface-container: '#201f1f'
+  surface-container-high: '#2a2a2a'
+  surface-container-highest: '#353434'
+  on-surface: '#e5e2e1'
+  on-surface-variant: '#c4c7c8'
+  inverse-surface: '#e5e2e1'
+  inverse-on-surface: '#313030'
+  outline: '#8e9192'
+  outline-variant: '#444748'
+  surface-tint: '#c6c6c7'
+  primary: '#ffffff'
+  on-primary: '#2f3131'
+  primary-container: '#e2e2e2'
+  on-primary-container: '#636565'
+  inverse-primary: '#5d5f5f'
+  secondary: '#cac6c5'
+  on-secondary: '#313030'
+  secondary-container: '#484646'
+  on-secondary-container: '#b8b4b4'
+  tertiary: '#ffffff'
+  on-tertiary: '#342f2d'
+  tertiary-container: '#eae1dd'
+  on-tertiary-container: '#696360'
+  error: '#ffb4ab'
+  on-error: '#690005'
+  error-container: '#93000a'
+  on-error-container: '#ffdad6'
+  primary-fixed: '#e2e2e2'
+  primary-fixed-dim: '#c6c6c7'
+  on-primary-fixed: '#1a1c1c'
+  on-primary-fixed-variant: '#454747'
+  secondary-fixed: '#e6e1e1'
+  secondary-fixed-dim: '#cac6c5'
+  on-secondary-fixed: '#1c1b1b'
+  on-secondary-fixed-variant: '#484646'
+  tertiary-fixed: '#eae1dd'
+  tertiary-fixed-dim: '#cec5c1'
+  on-tertiary-fixed: '#1f1b19'
+  on-tertiary-fixed-variant: '#4b4643'
+  background: '#141313'
+  on-background: '#e5e2e1'
+  surface-variant: '#353434'
+```
 
-### Accessibility
+### Traduction CSS (globals.css)
 
-Contrast ratios (WCAG 2.1):
-- `#7C3AED` on `#12101C` ≈ 7.2:1 → AAA
-- `#F0F2F5` on `#0A0A0F` ≈ 17.4:1 → AAA
-- `#A5A0B8` on `#12101C` ≈ 4.8:1 → AA
+```css
+:root {
+  /* Background */
+  --nf-bg: #141313;
+  --nf-on-bg: #e5e2e1;
+
+  /* Surface elevation ladder (MD3 tonal) */
+  --nf-surface-lowest: #0e0e0e;
+  --nf-surface-low: #1c1b1b;
+  --nf-surface: #201f1f;
+  --nf-surface-high: #2a2a2a;
+  --nf-surface-highest: #353434;
+  --nf-surface-variant: #353434;
+  --nf-surface-dim: #141313;
+  --nf-surface-bright: #3a3939;
+
+  /* Text */
+  --nf-on-surface: #e5e2e1;
+  --nf-on-surface-variant: #c4c7c8;
+  --nf-inverse-surface: #e5e2e1;
+  --nf-inverse-on-surface: #313030;
+
+  /* Outline */
+  --nf-outline: #8e9192;
+  --nf-outline-variant: #444748;
+  --nf-surface-tint: #c6c6c7;
+
+  /* Primary accent (white-on-dark) */
+  --nf-primary: #ffffff;
+  --nf-on-primary: #2f3131;
+  --nf-primary-container: #e2e2e2;
+  --nf-on-primary-container: #636565;
+  --nf-inverse-primary: #5d5f5f;
+
+  /* Secondary */
+  --nf-secondary: #cac6c5;
+  --nf-on-secondary: #313030;
+  --nf-secondary-container: #484646;
+  --nf-on-secondary-container: #b8b4b4;
+  --nf-secondary-fixed: #e6e1e1;
+  --nf-secondary-fixed-dim: #cac6c5;
+  --nf-on-secondary-fixed: #1c1b1b;
+  --nf-on-secondary-fixed-variant: #484646;
+
+  /* Tertiary (reserved for future accent — currently = primary) */
+  --nf-tertiary: #ffffff;
+  --nf-on-tertiary: #342f2d;
+  --nf-tertiary-container: #eae1dd;
+  --nf-on-tertiary-container: #696360;
+  --nf-tertiary-fixed: #eae1dd;
+  --nf-tertiary-fixed-dim: #cec5c1;
+  --nf-on-tertiary-fixed: #1f1b19;
+  --nf-on-tertiary-fixed-variant: #4b4643;
+
+  /* Error */
+  --nf-error: #ffb4ab;
+  --nf-on-error: #690005;
+  --nf-error-container: #93000a;
+  --nf-on-error-container: #ffdad6;
+
+  /* Fixed variants */
+  --nf-primary-fixed: #e2e2e2;
+  --nf-primary-fixed-dim: #c6c6c7;
+  --nf-on-primary-fixed: #1a1c1c;
+  --nf-on-primary-fixed-variant: #454747;
+}
+```
+
+### Rules
+
+- **Primary accent** = `--nf-primary` (`#ffffff`) — buttons, high-importance icons, active-focus border. Paired with `--nf-on-primary` (`#2f3131`) for text on filled primary surfaces.
+- **Body text** = `--nf-on-surface` (`#e5e2e1`) — softened off-white, distinct from pure-white `primary`, reserved for body copy and long-form reading.
+- **Elevated surfaces** = `--nf-surface-low` → `--nf-surface-high` — 3-step elevation ladder for containers, cards, hover states.
+- **Accent scope** = interface strictly monochromatic — `primary` is the sole functional accent. `tertiary` is currently identical to `primary`; treat as reserved slot for a future distinguishing accent.
+- **No hardcoded hex in JSX** — only `var(--nf-*)` tokens.
+
+---
 
 ## Typography
 
-| Role | Stack | Size | Weight |
+Exclusivement **Inter** — look utilitaire, systématique. Poids variable + tracking pour créer des rôles distincts.
+
+```yaml
+typography:
+  display:
+    fontFamily: Inter
+    fontSize: 42px
+    fontWeight: '400'
+    lineHeight: '1.15'
+    letterSpacing: -0.02em
+  headline-1:
+    fontFamily: Inter
+    fontSize: 32px
+    fontWeight: '400'
+    lineHeight: '1.20'
+    letterSpacing: -0.01em
+  headline-2:
+    fontFamily: Inter
+    fontSize: 24px
+    fontWeight: '400'
+    lineHeight: '1.25'
+  headline-3:
+    fontFamily: Inter
+    fontSize: 18px
+    fontWeight: '500'
+    lineHeight: '1.35'
+    letterSpacing: -0.01em
+  body-lg:
+    fontFamily: Inter
+    fontSize: 16px
+    fontWeight: '300'
+    lineHeight: '1.65'
+    letterSpacing: -0.005em
+  body-reg:
+    fontFamily: Inter
+    fontSize: 14px
+    fontWeight: '300'
+    lineHeight: '1.60'
+  caption:
+    fontFamily: Inter
+    fontSize: 12px
+    fontWeight: '500'
+    lineHeight: '1.50'
+    letterSpacing: 0.05em
+  code:
+    fontFamily: Inter
+    fontSize: 13px
+    fontWeight: '400'
+    lineHeight: '1.70'
+```
+
+### Traduction CSS
+
+```css
+/* Font import */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --nf-font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --nf-font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+}
+
+.text-display    { font-size: 2.625rem; font-weight: 400; line-height: 1.15; letter-spacing: -0.02em; }
+.text-headline-1 { font-size: 2rem;    font-weight: 400; line-height: 1.20; letter-spacing: -0.01em; }
+.text-headline-2 { font-size: 1.5rem;  font-weight: 400; line-height: 1.25; }
+.text-headline-3 { font-size: 1.125rem; font-weight: 500; line-height: 1.35; letter-spacing: -0.01em; }
+.text-body-lg    { font-size: 1rem;    font-weight: 300; line-height: 1.65; letter-spacing: -0.005em; }
+.text-body-reg   { font-size: 0.875rem; font-weight: 300; line-height: 1.60; }
+.text-caption    { font-size: 0.75rem;  font-weight: 500; line-height: 1.50; letter-spacing: 0.05em; text-transform: uppercase; }
+.text-code       { font-size: 0.8125rem; font-weight: 400; line-height: 1.70; font-family: var(--nf-font-mono); }
+```
+
+### Rules
+
+- **Display & Headlines** : tight letter-spacing, lighter weights — elegant yet technical.
+- **Body** : light weight (300), generous line-height (1.6x+) — maximum readability for long-form research content. *Vérifier le rendu sur écran non-Retina avant de généraliser ce poids : à 14px/weight 300 sur fond `#141313`, la lisibilité peut se dégrader.*
+- **Captions/Labels** : always uppercase + increased letter-spacing (0.05em) — metadata and navigation.
+- **Code** : sans-serif but wider line-height — technical figure labels and timestamps.
+
+**Adaptive Layout** — les tokens ne changent pas, seul leur usage se restreint (voir section Adaptive Layout).
+
+---
+
+## Spacing
+
+```yaml
+spacing:
+  xxs: 4px
+  xs: 8px
+  sm: 12px
+  md: 16px
+  lg: 24px
+  xl: 32px
+  2xl: 48px
+  3xl: 64px
+```
+
+### Règles d'usage par contexte
+
+| Espacement | Popup | Side Panel | App Mode |
 |---|---|---|---|
-| display | system-ui | 26px | 700 |
-| h1 | system-ui | 20px | 600 |
-| h2 | system-ui | 18px | 600 |
-| h3 | system-ui | 16px | 600 |
-| body | system-ui | 14px | 400 |
-| body_sm | system-ui | 12px | 400 |
-| caption | system-ui | 11px | 500 |
-| mono | ui-monospace | 12px | 400 |
+| `xxs` (4px) | ✅ | ✅ | ✅ |
+| `xs` (8px) | ✅ | ✅ | ✅ |
+| `sm` (12px) | ✅ | ✅ | ✅ |
+| `md` (16px) | ✅ | ✅ | ✅ |
+| `lg` (24px) | ⚠️ limiter | ✅ | ✅ |
+| `xl` (32px) | ❌ | ⚠️ limiter | ✅ |
+| `2xl` (48px) | ❌ | ❌ | ✅ |
+| `3xl` (64px) | ❌ | ❌ | ✅ |
 
-Letter spacing: body/caption 0.01em.
-Line height: heading 1.25, body 1.5.
+**Commun aux contextes étroits (Popup / Side Panel)** : privilégier `xxs`/`xs`/`sm`/`md`, réserver `xl`/`2xl`/`3xl` au seul App Mode.
 
-## Layout & Spacing
+---
 
-Popover: 480x600px. Side panel: 400px fixed.
-Space scale: 4, 8, 12, 16, 20, 24, 32, 40, 48, 64.
+## Rounded
 
-| Token | Value |
+```yaml
+rounded:
+  sm: 0.125rem   /* 2px */
+  DEFAULT: 0.25rem  /* 4px */
+  md: 0.375rem   /* 6px */
+  lg: 0.5rem     /* 8px */
+  xl: 0.75rem    /* 12px */
+  full: 9999px
+```
+
+| Élément | Radius |
 |---|---|
-| space-1 | 4px |
-| space-2 | 8px |
-| space-3 | 12px |
-| space-4 | 16px |
-| space-5 | 20px |
-| space-6 | 24px |
-| space-7 | 32px |
-| space-8 | 40px |
-| space-9 | 48px |
-| space-10 | 64px |
+| Boutons, petits conteneurs | `rounded-sm` (2px) |
+| Figures, callout blocks | `rounded-lg` (8px) |
+| Navigation active items, chips | `rounded-full` (pill) |
+
+**Language "Soft-Technical"** — precise but not aggressive.
+
+---
 
 ## Elevation & Depth
 
-| Token | Value |
-|---|---|
-| card | 0 1px 3px rgba(0,0,0,0.35) |
-| elevated | 0 4px 14px rgba(0,0,0,0.45) |
+Depth créé par **Tonal Layering** + **Glassmorphism** (pas d'ombres portées traditionnelles). Commun aux trois contextes.
 
-## Shapes
+| Niveau | Token | Valeur | Usage |
+|---|---|---|---|
+| Surface 0 | `--nf-bg` | `#141313` | Canvas principal |
+| Surface 1 | `--nf-surface-low` | `#1c1b1b` | Sidebar, navigation, hover states |
+| Surface 2a | `--nf-surface` | `#201f1f` | Containers, modals, dialogs |
+| Surface 2b | `--nf-surface-high` | `#2a2a2a` | Séparation forte |
+| Surface 3 | `--nf-surface-highest` | `#353434` | Éléments flottants, popovers |
 
-| Token | Value |
-|---|---|
-| sm | 6px |
-| md | 10px |
-| lg | 14px |
-| touch_target_min | 44px |
+### Glassmorphism
 
-| Token | Value |
-|---|---|
-| border_1px | 1px solid border-subtle |
-| border_2px | 2px solid primary |
+```css
+.glass-header {
+  background: rgba(20, 19, 19, 0.80);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+```
 
-## Motion
+- **Translucidity** : header à 80% opacity + `backdrop-blur-md` — maintain spatial awareness of content scrolling beneath. Applies at all header heights (48px in Popup, 64px elsewhere).
+- **Decorative depth** : backgrounds of figures/callouts use `--nf-surface` (`#201f1f`).
+- **Active focus** : sections highlightées utilisent une bordure verticale 2px en `--nf-primary` (`#ffffff`) — "reading line" ou zone de focus actif.
 
-| Token | Value |
-|---|---|
-| duration_fast | 120ms |
-| duration_normal | 200ms |
-| duration_slow | 350ms |
-| easing_standard | ease |
-| easing_decel | cubic-bezier(0.2, 0, 0, 1) |
-| easing_accel | cubic-bezier(0.4, 0, 1, 1) |
+---
 
-prefers-reduced-motion: transition none, spinner instant.
+## Adaptive Layout
+
+### App Mode (≥800px)
+
+Layout **Fixed-Width Content** — contenu centré dans interface fluide.
+
+- **Sidebar** : fixe à 240px pour la navigation.
+- **Header** : hauteur fixe 64px (`spacing.3xl`) avec `backdrop-blur`.
+- **Main Content** : `max-width: 720px` — optimise la longueur de ligne (70-80 caractères).
+- **Rythme** : échelle linéaire 8px. Grands espacements verticaux (64px) séparent les sections majeures; petits espacements (12-16px) gèrent les relations composants.
+- **Grid** : à partir de 1100px de large, colonne margin-metadata de 120px apparaît à droite pour les "Key Insights". En dessous, masquée plutôt que compressée.
+
+### Side Panel (320–560px de large, hauteur généreuse)
+
+- **Pas de sidebar 240px** — trop large même à 560px.
+- **Rail d'icônes vertical étroit** (~56px) plutôt que barre basse — hauteur généreuse le permet.
+- **Header** : conserve 64px (`spacing.3xl`) — hauteur non contrainte.
+- **Contenu principal** : largeur fluide (100% moins gutters), jamais `max-width: 720px` tant que le panneau reste sous 800px.
+- **Margin-metadata** : absente en dessous de 800px, comme en App Mode sous 1100px.
+- **Typographie** : `headline-1` (32px) utilisable si panneau élargi au-delà de ~450px; en dessous, se limiter à `headline-2`.
+
+### Popup (400px × ≤600px, fixe)
+
+- **Pas de sidebar** — navigation compressée en barre d'onglets basse (icônes + label court).
+- **Header** : réduit à 48px (`spacing.2xl`) pour préserver l'espace vertical.
+- **Contenu principal** : largeur 100% moins gutter `spacing.md` (16px) de chaque côté — jamais de `max-width: 720px`.
+- **Margin-metadata** : absente, sans exception.
+- **Typographie** : ne PAS utiliser `display` (42px) ni `headline-1` (32px). Le plus grand titre visible en Popup est `headline-2` (24px).
+
+---
+
+## Viewports
+
+```yaml
+viewports:
+  popup:
+    width: 400px
+    max-height: 600px
+    note: Fenêtre popup classique — dimensions imposées par Chrome, non redimensionnable.
+  sidepanel:
+    min-width: 320px
+    max-width: 560px
+    note: Panneau latéral natif Chrome — largeur redimensionnable, hauteur = hauteur fenêtre navigateur.
+  app:
+    min-width: 800px
+    note: Mode app — ouvert dans un onglet complet, viewport desktop classique.
+```
+
+---
 
 ## Components
 
-### Icon
+Commun aux trois contextes sauf mention contraire.
+
+### Button
 
 ```typescript
-type IconProps = {
-  name: 'flame' | 'spark' | 'book' | 'search' | 'settings' | 'download' | 'play' | 'pause' | 'chevronDown' | 'chevronLeft' | 'chevronRight' | 'x' | 'check' | 'alertTriangle' | 'info' | 'helpCircle' | 'clock' | 'tag' | 'lock' | 'unlock' | 'externalLink' | 'share2' | 'copy' | 'refresh' | 'wifi' | 'wifiOff';
-  size?: 'sm' | 'md' | 'lg';
-  color?: 'primary' | 'muted' | 'danger' | 'success';
-  strokeWidth?: number;
-};
-```
+type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'destructive';
+type ButtonSize = 'sm' | 'md' | 'lg';
 
-Sizes: sm 16px, md 20px, lg 24px.
-Colors: primary=#7C3AED, muted=#A5A0B8, danger=#EF4444, success=#22C55E.
-Stroke width: 1.5 default.
-
----
-
-### Badge
-
-```typescript
-type BadgeProps = {
-  variant: 'forge' | 'privacy-public' | 'privacy-personal' | 'count' | 'status-dot';
-  label?: string;
-  count?: number;
-  status?: 'online' | 'offline';
-};
-```
-
-| Variant | bg | text | shape |
-|---|---|---|---|
-| forge | primary | surface-base | pill |
-| privacy-public | surface-3 | text-muted | pill |
-| privacy-personal | accent-warm | surface-base | pill |
-| count | surface-3 | text-muted | rounded, count only |
-| status-dot | 8px dot, online=state-forged / offline=state-leech | — | circle |
-
----
-
-### Tag
-
-```typescript
-type TagProps = {
-  label: string;
-  removable?: boolean;
-  onRemove?: () => void;
-  variant?: 'default' | 'success' | 'warning';
-};
-```
-
-Height 28px; padding 6px 10px; radius sm.
-Default: surface-3 bg, text-muted.
-Success: state-forged bg, surface-base text.
-Warning: accent-warm bg, surface-base text.
-Removable: x icon 14px right, hover bg surface-2.
-
----
-
-### Spinner
-
-```typescript
-type SpinnerProps = {
-  size?: 'sm' | 'md' | 'lg';
-  color?: 'primary' | 'white' | 'muted';
-  label?: string;
-};
-```
-
-Sizes: sm 16px, md 20px, lg 24px.
-Colors: primary border-top #7C3AED, white border-top #FFFFFF, muted border-top #A5A0B8.
-Reduced motion: instant opacity pulse, no rotation.
-Accessibility: parent has role status + aria-live polite; label sr-only.
-
----
-
-### Divider
-
-```typescript
-type DividerProps = {
-  orientation?: 'horizontal' | 'vertical';
-  spacing?: 'sm' | 'md';
-  color?: 'subtle' | 'default';
-};
-```
-
-Horizontal: 100% width, height border_1px.
-Vertical: 1px width, height 100%.
-Color: subtle=border-subtle, default=border-default.
-Vertical spacing: sm=space-2, md=space-4.
-Accessibility: role separator + aria-orientation, or aria-hidden if purely decorative.
-
----
-
-### SourceCard
-
-```typescript
-type SourceCardProps = {
-  id: string;
-  sourceType: 'web_article' | 'youtube' | 'pdf';
-  title: string;
-  privacyLevel: 'public' | 'personal' | 'enterprise';
-  status: 'captured' | 'summarized' | 'imprinted' | 'gap';
-  wordCount?: number;
-  capturedAt?: string;
-  onForge?: () => void;
-  onPreview?: () => void;
-  compact?: boolean;
-};
-```
-
-Layout 400px width:
-```
-┌─[icon 20px] [title h3 text-primary]─────[privacy dot 8px]─┐
-│ [source_type · wordCount · captured_at body_sm muted]     │
-│               [Forge primary] [Preview ghost]             │
-└───────────────────────────────────────────────────────────┘
-```
-
-Radius md, elevation card, padding normal space-4 / compact space-3.
-Hover: elevation elevated, actions row visible.
-Loading: title shimmer sweep, Spinner 20px, meta hidden.
-Error: top border 2px state-leech, inline message.
-Accessibility: role article + aria-labelledby → title; privacy dot role img + aria-label.
-
----
-
-### CaptureProgress
-
-```typescript
-type CaptureProgressProps = {
-  current: number;
-  total: number;
-  statusText: string;
-};
-```
-
-Bar height 3px; track bg border-subtle; fill bg primary.
-Fill width = (current / total) x 100%.
-Transition duration_slow 350ms easing_standard.
-
-| State | Fill color | Text |
-|---|---|---|
-| Default | primary | statusText |
-| Complete | state-forged | "Done" — visible 2000ms then fade out |
-| Error | state-leech | "Extraction failed" — bar red shimmer once |
-
-Accessibility: role progressbar + aria-valuenow/min/max + aria-label statusText; aria-live polite on status text.
-
----
-
-### EmptyState
-
-```typescript
-type EmptyStateProps = {
-  icon?: 'flame' | 'book' | 'search';
-  headline: string;
-  body: string;
-  ctaLabel?: string;
-  onCta?: () => void;
-};
-```
-
-Centered, max-width 260px, padding space-5.
-Icon 40px, text-muted.
-Headline h3 text-muted, margin space-3 top.
-Body body_sm text-muted, max 200 chars.
-CTA ForgeButton, space-5 margin-top.
-Accessibility: role status if informative.
-
----
-
-### ErrorState
-
-```typescript
-type ErrorStateProps = {
-  headline: string;
-  body: string;
-  ctaPrimary?: { label: string; onClick: () => void };
-  ctaSecondary?: { label: string; onClick: () => void };
-};
-```
-
-Icon 40px state-leech.
-Headline h3 state-leech, margin space-3 top.
-Body body_sm text-muted, max 220 chars.
-CTA row space-2 gap; side-by-side >=300px else stacked.
-
-| CTA | Style |
-|---|---|
-| Primary (Retry) | button_secondary, hover tint state-leech 15% |
-| Secondary (Dismiss) | ghost |
-
-Accessibility: role alert; CTA Primary focusable; Escape closes if dismiss present.
-
----
-
-### Toast
-
-```typescript
-type ToastVariant = 'info' | 'success' | 'warning' | 'leech';
-type ToastProps = {
-  id: string;
-  message: string;
-  variant: ToastVariant;
-  onClose?: () => void;
-};
-```
-
-| Variant | bg | left border | icon | text |
-|---|---|---|---|---|
-| info | surface-2 | primary | info 18px | text-primary |
-| success | surface-2 | state-forged | check 18px | text-primary |
-| warning | surface-2 | accent-warm | alertTriangle 18px | text-primary |
-| leech | surface-2 | state-leech | x 18px | text-primary |
-
-Height 44px; padding space-3 space-4; radius md; shadow card.
-Enter: translateX(100%) -> translateX(0) duration_normal easing_decel.
-Hold: auto-dismiss 4000ms.
-Exit: opacity 0 duration_normal easing_accel.
-Queue: max 3 stacked, oldest dismissed on overflow.
-Accessibility: role status + aria-live polite; close button aria-label "Dismiss notification".
-
----
-
-### SidePanelHeader
-
-```typescript
-type SidePanelHeaderProps = {
-  activeTab: 'home' | 'review' | 'cosmos';
-  isOnline: boolean;
-  queuedAI: number;
-  onTabChange: (tab: 'home' | 'review' | 'cosmos') => void;
-  onSettingsOpen: () => void;
-};
-```
-
-Height 44px fixed; bg surface-1; border-bottom border_1px solid border-subtle.
-Left: Flame 20px + "NainoForge" h3 text-primary, gap space-2.
-Center tabs: inactive caption medium 500 text-muted no underline; active caption medium 500 primary-light underline 2px primary duration_fast; hover text-body underline 2px transparent.
-Right: Settings2 18px text-muted ghost; network dot 8px badge shape green/red + optional caption count accent-warm.
-
-Network dot: online -> state-forged (#22C55E), offline -> state-leech (#EF4444). If queuedAI > 0 -> caption accent-warm count right of dot.
-Accessibility: tabs role tablist/tab + aria-selected + aria-controls. Settings aria-label "Settings". Network dot aria-label "Online — n AI tasks queued" / "Offline".
-
----
-
-### SourcesList
-
-```typescript
-type SourcesListProps = {
-  sources: CapturedSource[];
-  loading?: boolean;
-  onSourceClick: (id: string) => void;
-};
-```
-
-Header height 36px; typo h2 text-primary.
-Count badge caption bg surface-3 text-muted padding space-1 horiz space-2.
-List gap space-2 (8px); scroll overflow-y auto, padding-bottom space-5.
-
-| State | Visual |
-|---|---|
-| Default | scrollable list, space-2 gap |
-| Loading | 3 placeholder SourceCards shimmer surface-2 -> surface-3 sweep duration_slow 350ms repeat 1.5s |
-| Empty | EmptyState centered, "No sources captured yet. Browse to an article and click Forge." |
-
-Accessibility: list role list, item role listitem. Loading container aria-busy true.
-
----
-
-### SourceDetail
-
-```typescript
-type SourceDetailProps = {
-  source: CapturedSource;
-  onBack: () => void;
-  onOpenImprint?: () => void;
-  onGenerateCards?: () => void; // disabled if IQS < 30
-};
-```
-
-Back CTA body_sm text-muted ghost.
-Title h1 text-primary, space-4 bottom padding.
-Badges gap space-2, tag shape.
-Content pane bg surface-2, radius md, max-height 60vh, overflow-y scroll, padding space-4; typo body_sm text-body.
-Actions row gap space-2, space-4 top margin.
-Generate cards disabled reason: body_sm text-muted right "IQS {n} < 30 minimum".
-
-| State | Visual |
-|---|---|
-| Default | content scrollable, Generate enabled |
-| Loading | shimmer content placeholder |
-| Error | state-leech inline, retry CTA |
-| Disabled | actions dimmed, generate blocked |
-
-Accessibility: main landmark; back button aria-label "Back to sources"; title aria-labelledby; actions sequential tab order.
-
-Button
-
-```typescript
-type ButtonProps = {
-  variant?: 'primary' | 'secondary' | 'ghost';
-  size?: 'sm' | 'md' | 'lg';
+interface ButtonProps {
+  variant?: ButtonVariant;
+  size?: ButtonSize;
   disabled?: boolean;
   loading?: boolean;
   children: React.ReactNode;
-};
+  onClick?: () => void;
+}
 ```
 
-| State | primary bg | text |
-|---|---|---|
-| default | primary | surface-base |
-| hover | primary-dark | surface-base |
-| active | primary-darkest | surface-base |
-| loading | primary-dark | surface-base |
-| disabled | surface-3 | text-disabled |
+| Variant | Background | Text | Hover | Focus |
+|---|---|---|---|---|
+| `primary` | `--nf-primary` (`#ffffff`) | `--nf-on-primary` (`#2f3131`) | opacity 0.9 | ring 2px `--nf-primary` |
+| `secondary` | `--nf-secondary-container` (`#484646`) | `--nf-on-secondary-container` (`#b8b4b4`) | `--nf-surface-high` | ring 2px `--nf-primary` |
+| `ghost` | transparent | `--nf-on-surface` (`#e5e2e1`) | `--nf-surface-low` | ring 2px `--nf-primary` |
+| `destructive` | `--nf-error-container` (`#93000a`) | `--nf-on-error` (`#690005`) | `#7f0009` | ring 2px `--nf-error` |
 
-Accessibility: focus ring 2px primary offset 2px.
+**Sizes :** sm `h-9 px-3 text-caption`, md `h-11 px-4 text-body-reg`, lg `h-12 px-6 text-headline-3`.
+**Text:** uppercase caption text for buttons to distinguish from body content.
+**Focus ring:** `0 0 0 2px var(--nf-bg), 0 0 0 4px var(--nf-primary)`.
 
-### ForgeButton
+### Navigation Links
 
-```typescript
-type ForgeButtonProps = {
-  label: string;
-  loading?: boolean;
-  disabled?: boolean;
-  icon?: 'flame' | 'spark' | 'none';
-  onClick: () => void;
-  fullWidth?: boolean; // default true
-};
+Feature a 2px left border in App Mode. When active: `--nf-surface-low` background shift + solid `--nf-primary` border. *En Popup, ce composant n'est pas utilisé — voir barre d'onglets basse dans Adaptive Layout.*
+
+### Chips / Tags
+
+Small, pill-shaped containers.
+- Background: `--nf-secondary-container` (`#484646`)
+- Text: `--nf-on-secondary-container` (`#b8b4b4`)
+- Hover: increase text contrast
+
+### Quote Blocks
+
+Large, italicized typography with solid 2px left `--nf-primary` border and `--nf-surface` background tint.
+
+### Charts / Figures
+
+- Always include a technical caption in uppercase code-style font.
+- Use `--nf-primary` for data visualization paths.
+- *En Popup/Side Panel : figures fluides (`width: 100%`), jamais en largeur fixe. Légende peut passer sur deux lignes.*
+
+### Avatar
+
+Circular icons using `--nf-primary` as background and `--nf-on-primary` for icon/initials.
+
+---
+
+## Motion
+
+```css
+:root {
+  --nf-duration-snap: 80ms;
+  --nf-duration-fast: 120ms;
+  --nf-duration-normal: 200ms;
+  --nf-duration-slow: 350ms;
+  --nf-duration-long: 600ms;
+
+  --nf-easing-standard: ease;
+  --nf-easing-decel: cubic-bezier(0.2, 0, 0, 1);
+  --nf-easing-accel: cubic-bezier(0.4, 0, 1, 1);
+  --nf-easing-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
 ```
 
-Width 100%; height 44px; radius 14px; padding 12px 16px; bg primary; text surface-base; body_sm semibold.
-Icon Flame 18px right, surface-base at 85% opacity.
+| Interaction | Trigger | Animation | Duration | Easing |
+|---|---|---|---|---|
+| Button press | Tap/click | Scale 1→0.97→1 | 120ms | `easing-accel` |
+| Tab switch | Tab tap | underline slide + fade content | 200ms | `easing-decel` |
+| Toast enter | Event fired | slide from edge, opacity 0→1 | 200ms | `easing-decel` |
+| Toast exit | Timeout/dismiss | opacity 1→0, scale 0.95 | 150ms | `easing-accel` |
+| Card hover | Mouse enter | elevation shift (tonal lift) | 150ms | `easing-standard` |
+| Bottom sheet open | Tap card | translateY 100%→0, scale 0.95→1 | 350ms | `easing-smooth` |
+| Page transition | Route change | fade 200ms | 200ms | `easing-decel` |
 
-| State | bg | text |
+---
+
+## Accessibility Floor
+
+### WCAG 2.1 AA Checklist
+
+| Critère | Implémentation | Statut |
 |---|---|---|
-| default | primary | surface-base |
-| hover | primary-dark | surface-base |
-| active | primary-darkest | surface-base |
-| loading | primary-dark | surface-base |
-| disabled | surface-3 | text-disabled |
+| Contrast ≥ 4.5:1 | `#e5e2e1` sur `#141313` = ~14:1 | ✅ |
+| Contrast ≥ 3:1 (large text) | `#c4c7c8` sur `#141313` = ~8:1 | ✅ |
+| Touch target ≥ 44×44 | Boutons min 44px height | ✅ |
+| Focus visible | Ring 2px primary + 4px surface | ✅ |
+| Reduced motion | `prefers-reduced-motion` → 0.01ms | ✅ |
+| Dynamic type 200% | Font scaling, lineHeight 1.5 min | ✅ |
+| Color not sole indicator | Icons + text + color combined | ✅ |
 
-Loading: Spinner 18px left + label "Forging...", duration_normal transition.
-Accessibility: aria-busy true loading, aria-disabled true disabled.
+### ARIA Patterns
 
-## UI Tooling
-
-Ces briques sont retenues pour aller vite sans sacrifier l'identité produit.
-
-| Brique | Usage NainoForge | Pourquoi |
+| Élément | Role | Attributs |
 |---|---|---|
-| shadcn/ui | App shell, composants UI, design system | Composants React copiés dans le projet, customisables, accessibles |
-| assistant-ui | Interface Student AI / chat premium | Primitives React pour conversations, streaming, interruptions |
-| BlockNote | IMPRINT éditeur bloc premium | Éditeur Notion-like rapide pour un workspace premium |
-| Tiptap | Alternative IMPRINT si UX très custom | Plus flexible si BlockNote ne suffit plus |
-| React Flow | COSMOS graphes conceptuels | Flows/graphes interactifs React |
-| Refine | Dashboards data-heavy / settings / admin | scaffolding rapide pour vues administratives |
+| Tab bar | `role="tablist"` | `aria-label="Navigation"` |
+| Tab item | `role="tab"` | `aria-selected`, `aria-controls` |
+| Tab panel | `role="tabpanel"` | `aria-labelledby` |
+| Dialog/Sheet | `role="dialog"` | `aria-modal="true"`, `aria-labelledby` |
+| Toast | `role="status"` | `aria-live="polite"` |
+| Alert | `role="alert"` | `aria-live="assertive"` |
+| Progress bar | `role="progressbar"` | `aria-valuenow/min/max` |
+| Spinner | `role="status"` | `aria-live="polite"`, sr-only label |
+| Card | `role="article"` | `aria-labelledby` → title |
 
-### Translation directe
-
-- **IMPRINT** : BlockNote/Tiptap + shadcn/ui + moteur métier local
-- **Student AI** : assistant-ui + shadcn/ui + engines locaux
-- **COSMOS** : React Flow + shadcn/ui + projections conceptuelles
-- **Dashboard/Settings** : shadcn/ui + Refine si besoin
-
-### Licences rappel
-
-- shadcn/ui : MIT
-- assistant-ui : MIT core
-- BlockNote : core open source, vigilance sur modules XL commerciaux
-- Tiptap : licence pro/com séparée du core
-- React Flow : MIT
-- Refine : MIT
+---
 
 ## Do's and Don'ts
 
-- Do use CSS Modules only.
-- Don't use runtime style strings.
-- Don't use purple lighter than primary for large surfaces.
+- ✅ Use CSS tokens (`var(--nf-*)`) everywhere
+- ✅ Use Tailwind class names derived from tokens
+- ✅ Hardcode colors only in `globals.css` token definitions
+- ✅ Use `currentColor` for icon fills where appropriate
+- ✅ Respect adaptive layout rules per context (Popup/Side Panel/App)
+- ✅ Keep primary accent usage to 5-10% of screen real estate
+- ✅ Use `backdrop-blur` on headers for spatial awareness
+- ✅ Support `prefers-reduced-motion` on all animations
+- ❌ Never use hardcoded hex values in JSX components
+- ❌ Never use runtime style strings for colors
+- ❌ Don't use `display` (42px) or `headline-1` (32px) in Popup context
+- ❌ Don't mix glow effects with tonal layering — choose one depth strategy
+- ❌ Don't use tertiary as a second accent yet (reserved slot)
+- ❌ Don't reference "mobile app" or "mobile UX" — NainoForge is a Chrome extension
+
+---
+
+## Migration v2 → Neuro-Technical
+
+| v2 token | Neuro-Technical | Change |
+|---|---|---|
+| `--color-primary` `#8B5CF6` | `--nf-primary` `#ffffff` | Violet → white accent (monochromatic shift) |
+| `--color-surface-base` `#121212` | `--nf-bg` `#141313` | Slightly warmer black |
+| `--color-surface-1` `#1A1A2E` | `--nf-surface-low` `#1c1b1b` | MD3 tonal mapping |
+| `--color-surface-2` `#22223A` | `--nf-surface` `#201f1f` | MD3 tonal mapping |
+| `--color-surface-3` `#2A2A45` | `--nf-surface-high` `#2a2a2a` | MD3 tonal mapping |
+| `--color-text-primary` `#F8FAFC` | `--nf-on-surface` `#e5e2e1` | Slightly warmer off-white |
+| `--color-text-muted` `#94A3B8` | `--nf-on-surface-variant` `#c4c7c8` | MD3 on-surface-variant |
+| `--color-state-forged` `#22C55E` | `--nf-secondary-container` `#484646` | Monochromatic substitution |
+| `--color-state-leech` `#EF4444` | `--nf-error-container` `#93000a` | MD3 error mapping |
+| `--color-state-partial` `#F59E0B` | `--nf-on-secondary-container` `#b8b4b4` | Monochromatic substitution |
+| `--color-state-lacune` `#F97316` | `--nf-outline` `#8e9192` | Monochromatic substitution |
+
+**Note :** Les états cognitifs (forged/leech/partial/lacune) perdaient leur signification sémantique dans une palette strictement monochromatique. Dans le modèle Neuro-Technical, ils sont substitués par les tokens MD3 correspondants (secondary-container, error-container, etc.). Si la sémantique colorée est nécessaire, ajouter un token d'accent séparé (ex: `--nf-state-forged`) tout en gardant la monochromie dominante.
+
+---
+
+## Suppression des fichiers redondants
+
+Les fichiers suivants ont été consolidés dans ce DESIGN.md unique :
+
+| Ancien fichier | Statut |
+|---|---|
+| `DESIGN.md` (v2.0 "Forge") | ❌ Supprimé — remplacé par ce fichier |
+| `PALETTE_RULES.md` | ❌ Supprimé — règles intégrées dans ce DESIGN.md |
+| `PROMPT_REFONTE_DESIGN_SYSTEM_v2.md` | ❌ Supprimé — mission accomplie |
+| `REPORT_PremiumDesign_CodeOnly_2026.md` | ❌ Supprimé — historique, archiver si nécessaire |
+| `packages/extension/DESIGN_SYSTEM_PREVIEW.html` | ⚠️ À archiver dans `_archive/design-system-previews/` |
+| `DESIGN_SYSTEM_PREVIEW.html` | ⚠️ À archiver dans `_archive/design-system-previews/` |
+
+---
+
+## Architecture CSS finale attendue
+
+```
+packages/extension/src/styles/
+├── globals.css          ← Tokens + base + composants + effets
+└── (aucun autre fichier de tokens)
+```
+
+```
+tailwind.config.ts       ← Mappage des tokens CSS vers classes Tailwind
+DESIGN.md                ← Source de vérité unique (ce fichier)
+```
+
+Tout le code doit referencing `var(--nf-*)` ou les classes Tailwind dérivées. Aucune couleur hardcodée dans le JSX.

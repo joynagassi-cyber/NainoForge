@@ -3,7 +3,8 @@ title: "Implémenter le bloc 'Idée clé' pour BlockNote"
 type: 'feature'
 created: '2026-07-29'
 baseline_revision: '47bf6a6e28af20593d00d85e21b655d1479b32fc'
-status: 'in-review'
+final_revision: 'b4722b8'
+status: 'done'
 review_loop_iteration: 0
 followup_review_recommended: false
 warnings: []

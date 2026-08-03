@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "../ui/button";
-import { cn } from "../lib/utils";
+import { cn } from "../../lib/utils.ts";
 
 // Props pour InterruptionBubble
 interface InterruptionBubbleProps {

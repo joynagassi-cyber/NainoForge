@@ -2,7 +2,8 @@
 title: "Implémenter des node types custom pour COSMOS (ConceptNode)"
 type: 'feature'
 created: '2026-07-29'
-status: 'in-review'
+status: 'done'
+final_revision: '4c943c9'
 review_loop_iteration: 0
 followup_review_recommended: false
 baseline_revision: '28f8947'

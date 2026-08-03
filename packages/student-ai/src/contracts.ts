@@ -1,31 +1,17 @@
 // ─── Student AI domain contracts ───────────────────────────────
 // Feature-flagged premium module. 6 engine contracts.
-// Local interfaces avoid cross-package build coupling (same pattern as imprint).
+// SourceLike and NoteLike are imported from @nainoforge/core.
+
+import type { SourceLike, NoteLike } from '@nainoforge/core';
+
+// Re-export for backwards compatibility
+export type { SourceLike, NoteLike };
 
 export type StudentAIFeatureFlag = {
   enabled: boolean;
   tier: 'free' | 'premium';
   quota: number; // max sessions per day
 };
-
-// Minimal source/note shapes used by Student AI engines.
-export interface SourceLike {
-  id: string;
-  title?: string;
-}
-
-export interface NoteLike {
-  id: string;
-  source_id: string;
-  concept_id: string;
-  content: string;
-  word_count: number;
-  cran_level: number;
-  quality_score: number;
-  bloom_level?: string;
-  concept_coverage_pct?: number;
-  created_at: number;
-}
 
 // ─── RelationalStateEngine ─────────────────────────────────────
 

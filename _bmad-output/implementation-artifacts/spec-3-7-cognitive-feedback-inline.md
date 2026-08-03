@@ -2,7 +2,8 @@
 title: "Implémenter le feedback cognitif inline (Cran + IQS)"
 type: 'feature'
 created: '2026-07-29'
-status: 'in-review'
+status: 'done'
+final_revision: '58b673f'
 review_loop_iteration: 0
 followup_review_recommended: false
 baseline_revision: 'ec5d61a'

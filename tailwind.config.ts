@@ -1,80 +1,128 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  darkMode: ["class"],
-  content: [
-    "./packages/extension/src/**/*.{ts,tsx}",
-  ],
+  darkMode: "class",
+  content: ["./packages/extension/src/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
+        // Background
+        background: "#141313",
+        "on-background": "#e5e2e1",
+
+        // Surface elevation
+        "surface-lowest": "#0e0e0e",
+        "surface-low": "#1c1b1b",
+        surface: "#201f1f",
+        "surface-high": "#2a2a2a",
+        "surface-highest": "#353434",
+        "surface-variant": "#353434",
+        "surface-dim": "#141313",
+        "surface-bright": "#3a3939",
+
+        // Text
+        "on-surface": "#e5e2e1",
+        "on-surface-variant": "#c4c7c8",
+        "inverse-surface": "#e5e2e1",
+        "inverse-on-surface": "#313030",
+
+        // Outline
+        outline: "#8e9192",
+        "outline-variant": "#444748",
+        "surface-tint": "#c6c6c7",
+
+        // Primary (white accent)
         primary: {
-          DEFAULT: "#7C3AED",
-          dark: "#6D28D9",
-          darkest: "#5B21B6",
+          DEFAULT: "#ffffff",
+          foreground: "#2f3131",
+          container: "#e2e2e2",
+          "on-container": "#636565",
+          inverse: "#5d5f5f",
         },
-        "accent-warm": "#F59E0B",
-        surface: {
-          base: "#0A0A0F",
-          "1": "#12101C",
-          "2": "#1A1726",
-          "3": "#201D2E",
+
+        // Secondary
+        secondary: {
+          DEFAULT: "#cac6c5",
+          foreground: "#313030",
+          container: "#484646",
+          "on-container": "#b8b4b4",
+          fixed: "#e6e1e1",
+          "fixed-dim": "#cac6c5",
+          "on-fixed": "#1c1b1b",
+          "on-fixed-variant": "#484646",
         },
-        "text-primary": "#F0F2F5",
-        "text-muted": "#A5A0B8",
-        "text-disabled": "#5E5A6E",
-        "border-subtle": "rgba(255,255,255,0.08)",
-        "border-default": "rgba(255,255,255,0.14)",
-        "state-forged": "#22C55E",
-        "state-leech": "#EF4444",
+
+        // Tertiary (reserved)
+        tertiary: {
+          DEFAULT: "#ffffff",
+          foreground: "#342f2d",
+          container: "#eae1dd",
+          "on-container": "#696360",
+          fixed: "#eae1dd",
+          "fixed-dim": "#cec5c1",
+          "on-fixed": "#1f1b19",
+          "on-fixed-variant": "#4b4643",
+        },
+
+        // Error
+        error: {
+          DEFAULT: "#ffb4ab",
+          foreground: "#690005",
+          container: "#93000a",
+          "on-container": "#ffdad6",
+        },
+
+        // Primary fixed
+        "primary-fixed": "#e2e2e2",
+        "primary-fixed-dim": "#c6c6c7",
+        "on-primary-fixed": "#1a1c1c",
+        "on-primary-fixed-variant": "#454747",
       },
       fontFamily: {
-        sans: ["system-ui", "sans-serif"],
-        mono: ["ui-monospace", "monospace"],
+        sans: ["Inter", "system-ui", "-apple-system", "Segoe UI", "Roboto", "sans-serif"],
+        mono: ["JetBrains Mono", "Fira Code", "Cascadia Code", "monospace"],
       },
       fontSize: {
-        display: ["26px", { lineHeight: "1.25", fontWeight: "700" }],
-        h1: ["20px", { lineHeight: "1.25", fontWeight: "600" }],
-        h2: ["18px", { lineHeight: "1.25", fontWeight: "600" }],
-        h3: ["16px", { lineHeight: "1.25", fontWeight: "600" }],
-        body: ["14px", { lineHeight: "1.5", fontWeight: "400" }],
-        "body-sm": ["12px", { lineHeight: "1.5", fontWeight: "400" }],
-        caption: ["11px", { lineHeight: "1.5", fontWeight: "500" }],
-        mono: ["12px", { lineHeight: "1.5", fontWeight: "400" }],
+        display: ["2.625rem", { lineHeight: "1.15", fontWeight: "400", letterSpacing: "-0.02em" }],
+        h1: ["2rem", { lineHeight: "1.20", fontWeight: "400", letterSpacing: "-0.01em" }],
+        h2: ["1.5rem", { lineHeight: "1.25", fontWeight: "400" }],
+        h3: ["1.125rem", { lineHeight: "1.35", fontWeight: "500", letterSpacing: "-0.01em" }],
+        "body-lg": ["1rem", { lineHeight: "1.65", fontWeight: "300", letterSpacing: "-0.005em" }],
+        body: ["0.875rem", { lineHeight: "1.60", fontWeight: "300" }],
+        "body-sm": ["0.75rem", { lineHeight: "1.50", fontWeight: "500", letterSpacing: "0.05em" }],
+        code: ["0.8125rem", { lineHeight: "1.70", fontWeight: "400" }],
       },
       spacing: {
-        space: {
-          1: "4px",
-          2: "8px",
-          3: "12px",
-          4: "16px",
-          5: "20px",
-          6: "24px",
-          7: "32px",
-          8: "40px",
-          9: "48px",
-          10: "64px",
-        },
+        xxs: "4px",
+        xs: "8px",
+        sm: "12px",
+        md: "16px",
+        lg: "24px",
+        xl: "32px",
+        "2xl": "48px",
+        "3xl": "64px",
       },
       borderRadius: {
-        sm: "6px",
-        md: "10px",
-        lg: "14px",
+        sm: "0.125rem",
+        DEFAULT: "0.25rem",
+        md: "0.375rem",
+        lg: "0.5rem",
+        xl: "0.75rem",
+        full: "9999px",
       },
-      boxShadow: {
-        card: "0 1px 3px rgba(0,0,0,0.35)",
-        elevated: "0 4px 14px rgba(0,0,0,0.45)",
+      animation: {
+        shimmer: "shimmer 1.5s ease-in-out infinite",
       },
-      letterSpacing: {
-        tighter: "-0.02em",
-        tight: "-0.01em",
-        normal: "0",
-        wide: "0.01em",
-        wider: "0.05em",
+      keyframes: {
+        shimmer: {
+          "0%": { backgroundPosition: "-200% 0" },
+          "100%": { backgroundPosition: "200% 0" },
+        },
       },
       maxWidth: {
-        "panel": "400px",
-        "popover": "480px",
+        panel: "400px",
+        popover: "480px",
+        content: "720px",
       },
       zIndex: {
         base: "0",

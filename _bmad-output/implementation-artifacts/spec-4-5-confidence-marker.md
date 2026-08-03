@@ -2,7 +2,8 @@
 title: "Implémenter le marqueur de confiance (jauge Cran)"
 type: 'feature'
 created: '2026-07-29'
-status: 'in-review'
+status: 'done'
+final_revision: '294c960'
 review_loop_iteration: 0
 followup_review_recommended: false
 baseline_revision: 'ca18064'

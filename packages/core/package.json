@@ -11,5 +11,6 @@
   "dependencies": {
     "@nainoforge/shared": "workspace:*"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "type": "module"
 }

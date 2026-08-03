@@ -1,24 +1,12 @@
 // ─── Bundle export contracts ──────────────────────────────────
 // Serialise captured content + learned artefacts for offline/portable use.
-// Local interfaces avoid cross-package build coupling (same pattern as imprint).
+
+import type { SourceLike, NoteLike } from '@nainoforge/core';
+
+// Re-export for backwards compatibility
+export type { SourceLike, NoteLike };
 
 export type BundleFormat = 'json' | 'markdown' | 'anki' | 'pdf';
-
-export interface SourceLike {
-  id: string;
-  title?: string;
-  content_markdown?: string;
-  source_type?: string;
-}
-
-export interface NoteLike {
-  id: string;
-  source_id: string;
-  concept_id: string;
-  content: string;
-  cran_level: number;
-  quality_score: number;
-}
 
 export interface ExportBundle {
   format: BundleFormat;

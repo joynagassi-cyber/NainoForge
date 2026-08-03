@@ -22,7 +22,7 @@ export function SettingsDialog({ onClose }) {
 
         <div className="border-t pt-4">
           <h3 className="text-subtitle text-text-primary">Version</h3>
-          <p className="text-sm text-text-muted">v1.0.0 (MVP)</p>
+          <p className="text-caption text-text-muted">v1.0.0 (MVP)</p>
         </div>
       </div>
 

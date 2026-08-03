@@ -1,10 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.ImprintEngine = void 0;
-const contracts_js_1 = require("./contracts.js");
-class ImprintEngine {
+import { evaluateCrank } from './contracts.js';
+export class ImprintEngine {
     async generateImprint(source, content) {
-        const evaluation = (0, contracts_js_1.evaluateCrank)({ content, conceptCount: 1 });
+        const evaluation = evaluateCrank({ content, conceptCount: 1 });
         const word_count = content.split(/\s+/).filter(Boolean).length;
         return {
             id: crypto.randomUUID(),
@@ -20,9 +17,8 @@ class ImprintEngine {
         };
     }
     async evaluateCrank(content) {
-        const evaluation = (0, contracts_js_1.evaluateCrank)({ content });
+        const evaluation = evaluateCrank({ content });
         return { level: evaluation.cran, wordCount: evaluation.word_count };
     }
 }
-exports.ImprintEngine = ImprintEngine;
 //# sourceMappingURL=engine.js.map

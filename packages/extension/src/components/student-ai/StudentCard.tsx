@@ -1,5 +1,5 @@
 import { Badge, BadgeVariant } from "../ui/badge";
-import { cn } from "../lib/utils";
+import { cn } from "../../lib/utils.ts";
 
 // Statuts de maîtrise
 type MasteryStatus = "forged" | "partial" | "lacune" | "leech";

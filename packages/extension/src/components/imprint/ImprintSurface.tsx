@@ -6,7 +6,7 @@ import { Button } from "../ui/button";
 import { useImprint } from "../../hooks/use-imprint.js";
 import { nfCustomBlocks } from "./custom-blocks";
 import { ImprintCard } from "./ImprintCard";
-import { ConfidenceMarker } from "../ConfidenceMarker";
+import { ConfidenceMarker } from "../ConfidenceMarker.tsx";
 
 /**
  * Surface IMPRINT — editor BlockNote habillé NainoForge.

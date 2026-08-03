@@ -1,10 +1,10 @@
 // packages/extension/src/lib/engine-bridge.ts
 // Bridges the background SW EventBus to React component state.
-// In MV3, the SW and side panel share IndexedDB but NOT JS context.
-// Communication is via chrome.runtime.sendMessage + chrome.storage.
+// Sources and imprints are persisted in chrome.storage.local so they
+// survive side panel close/reopen cycles.
 
-import { Storage } from '../background/storage.js';
 import type { DCM } from '@nainoforge/shared';
+import type { ImprintNote } from '@nainoforge/imprint';
 
 export interface ImprintResult {
   id: string;
@@ -19,29 +19,50 @@ export interface ImprintResult {
 }
 
 export class EngineBridge {
-  private static readonly MAX_SOURCES = 100;
-  private storage: Storage;
   private sources: DCM[] = [];
+  private imprints: ImprintNote[] = [];
   private listeners = new Map<string, Set<(data: unknown) => void>>();
+  private initialized = false;
 
-  constructor() {
-    this.storage = new Storage();
+  /** Load persisted data from chrome.storage.local. */
+  async initialize(): Promise<void> {
+    if (this.initialized) return;
+    this.initialized = true;
+
+    try {
+      const sourcesResp = await chrome.runtime.sendMessage({
+        type: 'nf:sources:load',
+      } as chrome.runtime.Message);
+      if (sourcesResp.ok && sourcesResp.data) {
+        this.sources = (sourcesResp.data as { sources: DCM[] }).sources ?? [];
+      }
+    } catch {
+      // Storage unavailable — start empty
+    }
+
+    try {
+      const imprintsResp = await chrome.runtime.sendMessage({
+        type: 'nf:imprints:load',
+      } as chrome.runtime.Message);
+      if (imprintsResp.ok && imprintsResp.data) {
+        this.imprints = (imprintsResp.data as { imprints: ImprintNote[] }).imprints ?? [];
+      }
+    } catch {
+      // Storage unavailable — start empty
+    }
   }
 
-  async captureSource(dcm: DCM): Promise<{ ok: true; data?: unknown } | { ok: false; error: string }> {
+  async captureSource(dcm: DCM): Promise<{ ok: true; data?: unknown } | { ok: false, error: string }> {
     try {
       const result = await chrome.runtime.sendMessage({
         type: 'nf:capture:request',
         payload: { dcm },
-      });
+      } as chrome.runtime.Message);
       if (result.ok) {
         this.sources.push(dcm);
-        if (this.sources.length > EngineBridge.MAX_SOURCES) {
-          this.sources = this.sources.slice(-EngineBridge.MAX_SOURCES);
-        }
         this.notify('source:captured', dcm);
       }
-      return result;
+      return result as { ok: true; data?: unknown } | { ok: false; error: string };
     } catch (err) {
       return { ok: false, error: err instanceof Error ? err.message : String(err) };
     }
@@ -51,8 +72,9 @@ export class EngineBridge {
     const result = await chrome.runtime.sendMessage({
       type: 'nf:imprint:save',
       payload: { sourceId, conceptId, content },
-    });
+    } as chrome.runtime.Message);
     if (result.ok && result.data) {
+      this.imprints.push(result.data as ImprintNote);
       this.notify('imprint:validated', result.data);
     }
     return result.data as ImprintResult;
@@ -72,6 +94,10 @@ export class EngineBridge {
     return this.sources;
   }
 
+  getImprints(): readonly ImprintNote[] {
+    return this.imprints;
+  }
+
   private notify(event: string, data: unknown): void {
     const set = this.listeners.get(event);
     if (!set) return;
@@ -79,11 +105,7 @@ export class EngineBridge {
       try { handler(data); } catch { /* ignore handler errors */ }
     }
   }
-
-  dispose(): void {
-    this.storage.dispose();
-  }
 }
 
-// ponytail: singleton instance shared across the app
+// Singleton — initialized on first use
 export const engineBridge = new EngineBridge();

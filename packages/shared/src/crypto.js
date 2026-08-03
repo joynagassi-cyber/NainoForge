@@ -1,8 +1,5 @@
-"use strict";
 // ─── Crypto helpers — Web Crypto API only ────────────────────
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.hashMessage = hashMessage;
-async function hashMessage(message) {
+export async function hashMessage(message) {
     const data = new TextEncoder().encode(message);
     const hashBuf = await crypto.subtle.digest('SHA-256', data);
     const bytes = new Uint8Array(hashBuf);

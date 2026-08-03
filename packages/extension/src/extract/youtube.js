@@ -1,10 +1,7 @@
-"use strict";
 // ─── YouTube transcript extraction ────────────────────────────
 // Reads ytInitialPlayerResponse, fetches caption JSON3, normalises
 // into DCM + Chapter[] + TranscriptSegment[].
 // Zéro dépendance externe, zéro any.
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.extractYouTubeTranscript = extractYouTubeTranscript;
 // Priority order for caption selection
 const LAN_PRIORITY = [
     (t) => t.kind === 'asr' && t.langCode.startsWith('fr'),
@@ -36,7 +33,7 @@ function estimateWordCount(text) {
         return 0;
     return text.split(/[\s\n]+/).filter(Boolean).length;
 }
-async function extractYouTubeTranscript(playerResponse, preferredLang) {
+export async function extractYouTubeTranscript(playerResponse, preferredLang) {
     const pr = playerResponse.player_response;
     const vd = pr.videoDetails;
     const captionTracks = (pr.captions?.playerCaptionsTracklistRenderer?.captionTracks ?? []);

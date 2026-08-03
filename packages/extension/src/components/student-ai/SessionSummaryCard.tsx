@@ -1,6 +1,6 @@
 import { useMemo } from "react";
-import { cn } from "../lib/utils";
-import { ConfidenceMarker } from "../ConfidenceMarker";
+import { cn } from "../../lib/utils.ts";
+import { ConfidenceMarker } from "../ConfidenceMarker.tsx";
 
 // Props pour SessionSummaryCard
 interface SessionSummaryCardProps {

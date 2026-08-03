@@ -25,35 +25,31 @@ const CSS = `
   padding: 12px 16px;
   border-radius: 14px;
   border: none;
-  background: #7C3AED;
-  color: #FFFFFF;
-  font: 500 14px/1 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, sans-serif;
-  letter-spacing: 0.01em;
+  background: linear-gradient(135deg, #ffffff 0%, #e2e2e2 100%);
+  color: #2f3131;
+  font: 500 14px/1 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+  letter-spacing: 0.05em;
   cursor: pointer;
-  box-shadow: none;
-  transition: background-color 120ms ease, transform 120ms ease, box-shadow 120ms ease;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.3), 0 4px 12px rgba(0,0,0,0.4);
+  transition: background 120ms ease, transform 120ms ease, box-shadow 200ms ease;
   min-width: 140px;
 }
 .nf-forge-btn:hover:not(:disabled):not(.nf-forge-btn--loading) {
-  background: #6D28D9;
   transform: translateY(-1px);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4), 0 4px 16px rgba(0,0,0,0.5);
 }
 .nf-forge-btn:active:not(:disabled):not(.nf-forge-btn--loading) {
-  background: #5B21B6;
   transform: translateY(0);
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.2), inset 0 1px 2px rgba(0,0,0,0.25);
 }
 .nf-forge-btn.nf-forge-btn--loading,
 .nf-forge-btn:disabled {
-  background: #6D28D9;
-  color: #FFFFFF;
-  cursor: not-allowed;
   opacity: 0.85;
+  cursor: not-allowed;
 }
 .nf-forge-btn:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 2px #7C3AED, 0 0 0 4px #13111C;
+  box-shadow: 0 0 0 2px #141313, 0 0 0 4px #ffffff, 0 0 12px rgba(255, 255, 255, 0.3);
 }
 .nf-forge-btn .nf-forge-spinner {
   width: 18px;

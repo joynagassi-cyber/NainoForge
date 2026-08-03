@@ -55,13 +55,13 @@ development_status:
   6-5-dark-mode-toggle: done
   epic-6-retrospective: optional
 
-  epic-7: backlog
-  7-1-transition-effects: backlog
-  7-2-toast-notifications: backlog
-  7-3-microcopy-wording: backlog
-  7-4-touch-target-validation: backlog
-  7-5-icon-consistency: backlog
-  7-6-typography-final-hierarchy: backlog
+  epic-7: done
+  7-1-transition-effects: done
+  7-2-toast-notifications: done
+  7-3-microcopy-wording: done
+  7-4-touch-target-validation: done
+  7-5-icon-consistency: done
+  7-6-typography-final-hierarchy: done
   epic-7-retrospective: optional
 
 action_items:

@@ -1,25 +1,6 @@
 import type { CrankEvaluation } from './contracts.js';
 import { evaluateCrank } from './contracts.js';
-
-// ponytail: minimal SourceLike — avoids cross-package import at build time.
-// Matches CapturedSource fields used by generateImprint.
-interface SourceLike {
-  id: string;
-  title?: string;
-}
-
-export interface ImprintNote {
-  id: string;
-  source_id: string;
-  concept_id: string;
-  content: string;
-  word_count: number;
-  cran_level: number; // 1-5
-  quality_score: number; // 0-100
-  bloom_level?: string;
-  concept_coverage_pct?: number;
-  created_at: number;
-}
+import type { ImprintNote, SourceLike } from '@nainoforge/core';
 
 export class ImprintEngine {
   async generateImprint(source: SourceLike, content: string): Promise<ImprintNote> {

@@ -2,7 +2,11 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "./dist",
-    "rootDir": "./src"
+    "rootDir": "./src",
+    "paths": {
+      "@nainoforge/core": ["../core/dist/index.d.ts"],
+      "@nainoforge/core/*": ["../core/dist/*.d.ts"]
+    }
   },
   "include": ["src/**/*"],
   "exclude": ["**/__tests__/**", "dist", "node_modules"]

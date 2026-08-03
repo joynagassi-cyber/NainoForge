@@ -2,7 +2,8 @@
 title: "Implémenter le composant StudentCard avec statut de maîtrise"
 type: 'feature'
 created: '2026-07-29'
-status: 'in-review'
+status: 'done'
+final_revision: 'fa49dcf'
 review_loop_iteration: 0
 followup_review_recommended: false
 baseline_revision: 'abbe788'

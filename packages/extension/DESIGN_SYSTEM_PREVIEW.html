@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NainoForge — Design System v2.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ── Reset ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Tokens ────────────────────────────────────────── */
+    :root {
+      --surface-base: #121212;
+      --surface-1:    #1A1A2E;
+      --surface-2:    #22223A;
+      --surface-3:    #2A2A45;
+      --surface-elev: #252540;
+      --surface-hl:   #2D2D4A;
+
+      --primary:      #8B5CF6;
+      --primary-dark: #7C3AED;
+      --primary-darkest: #6D28D9;
+      --primary-light:#A78BFA;
+      --accent-warm:  #F59E0B;
+
+      --text:         #F8FAFC;
+      --text-sec:     #E2E8F0;
+      --text-muted:   #94A3B8;
+      --text-dis:     #475569;
+
+      --border-sub:   rgba(255,255,255,0.05);
+      --border-def:   rgba(255,255,255,0.09);
+      --border-elo:   rgba(255,255,255,0.13);
+      --border-prim:  rgba(139,92,246,0.3);
+
+      --forged:       #22C55E;
+      --leech:        #EF4444;
+      --partial:      #F59E0B;
+      --lacune:       #F97316;
+
+      --r-sm: 6px; --r-md: 10px; --r-lg: 14px; --r-xl: 20px;
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    /* ── Base ──────────────────────────────────────────── */
+    body {
+      background: var(--surface-base);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection { background: rgba(139,92,246,0.3); }
+
+    /* ── Scrollbar ─────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--surface-base); }
+    ::-webkit-scrollbar-thumb { background: var(--surface-3); border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
+    /* ── Layout ────────────────────────────────────────── */
+    .page { max-width: 900px; margin: 0 auto; padding: 64px 32px 120px; }
+
+    /* ── Typography ────────────────────────────────────── */
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: 42px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    h1 span { color: var(--primary); }
+
+    .subtitle {
+      font-size: 18px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      max-width: 520px;
+      margin-bottom: 48px;
+    }
+
+    h2 {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-sub);
+    }
+
+    /* ── Sections ──────────────────────────────────────── */
+    section { margin-bottom: 72px; }
+
+    /* ── Surface grid ──────────────────────────────────── */
+    .surface-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 1px;
+      background: var(--border-sub);
+      border: 1px solid var(--border-sub);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+    }
+
+    .surface-cell {
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .surface-swatch {
+      height: 64px;
+      border-radius: var(--r-sm);
+      border: 1px solid var(--border-def);
+    }
+
+    .surface-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .surface-token {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* ── Color grid ────────────────────────────────────── */
+    .color-row { margin-bottom: 24px; }
+    .color-row-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 10px;
+    }
+    .color-swatches {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .color-swatch {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .color-swatch .swatch {
+      width: 72px;
+      height: 56px;
+      border-radius: var(--r-sm);
+      border: 1px solid var(--border-def);
+    }
+    .color-swatch .label {
+      font-size: 11px;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      max-width: 72px;
+    }
+    .color-swatch .value {
+      font-size: 11px;
+      font-family: var(--font-mono);
+      color: var(--text-dis);
+    }
+
+    /* ── Type scale ────────────────────────────────────── */
+    .type-row {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 24px;
+      align-items: baseline;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border-sub);
+    }
+    .type-row:last-child { border-bottom: none; }
+    .type-meta {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .type-meta span { color: var(--primary); }
+
+    /* ── Buttons ───────────────────────────────────────── */
+    .btn-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 18px;
+      border-radius: var(--r-md);
+      border: 1px solid transparent;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 120ms, border-color 120ms, transform 120ms;
+    }
+    .btn:active { transform: translateY(0px); }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+    .btn-primary:hover { background: var(--primary-dark); border-color: var(--primary-dark); }
+
+    .btn-forge {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 50%, var(--primary-darkest) 100%);
+      color: #fff;
+    }
+    .btn-forge:hover { opacity: 0.9; }
+
+    .btn-secondary {
+      background: var(--surface-2);
+      color: var(--text);
+      border-color: var(--border-def);
+    }
+    .btn-secondary:hover { background: var(--surface-3); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-muted);
+      border-color: transparent;
+    }
+    .btn-ghost:hover { color: var(--text); background: var(--surface-2); }
+
+    .btn-destructive {
+      background: var(--leech);
+      color: #fff;
+    }
+    .btn-destructive:hover { background: #dc2626; }
+
+    .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    /* ── Badges ────────────────────────────────────────── */
+    .badge-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 10px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 500;
+      gap: 5px;
+    }
+    .badge-forged    { background: rgba(34,197,94,0.12); color: var(--forged); }
+    .badge-leech     { background: rgba(239,68,68,0.12); color: var(--leech); }
+    .badge-partial   { background: rgba(245,158,11,0.12); color: var(--partial); }
+    .badge-lacune    { background: rgba(249,115,22,0.12); color: var(--lacune); }
+    .badge-primary   { background: rgba(139,92,246,0.15); color: var(--primary-light); }
+    .badge-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* ── Cards ─────────────────────────────────────────── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 12px;
+    }
+    .card {
+      background: var(--surface-1);
+      border: 1px solid var(--border-sub);
+      border-radius: var(--r-lg);
+      padding: 20px;
+    }
+    .card:hover { border-color: var(--border-elo); }
+    .card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .card-body {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+    .card-meta {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-dis);
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-sub);
+    }
+
+    /* ── Progress bar ──────────────────────────────────── */
+    .progress { margin-bottom: 16px; }
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      margin-bottom: 6px;
+      color: var(--text-muted);
+    }
+    .progress-label strong { color: var(--text); font-weight: 600; }
+    .progress-track {
+      height: 4px;
+      background: var(--surface-3);
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      border-radius: 9999px;
+      background: var(--primary);
+    }
+    .progress-fill.forged  { background: var(--forged); }
+    .progress-fill.partial { background: var(--partial); }
+    .progress-fill.leech   { background: var(--leech); }
+
+    /* ── Confidence marker ─────────────────────────────── */
+    .marker-row {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .marker {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      border: 2px solid currentColor;
+      font-size: 13px;
+      font-weight: 700;
+      color: currentColor;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .marker-sm { width: 32px; height: 32px; font-size: 11px; }
+    .marker-md { width: 40px; height: 40px; }
+    .marker-lg { width: 48px; height: 48px; font-size: 15px; }
+    .marker::after {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.12;
+    }
+    .m-forged  { color: var(--forged); }
+    .m-partial { color: var(--partial); }
+    .m-lacune  { color: var(--lacune); }
+    .m-leech   { color: var(--leech); }
+    .m-muted   { color: var(--text-muted); }
+
+    /* ── Toast ─────────────────────────────────────────── */
+    .toast {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 16px;
+      background: var(--surface-2);
+      border: 1px solid var(--border-def);
+      border-radius: var(--r-md);
+      font-size: 14px;
+      color: var(--text);
+      max-width: 340px;
+    }
+    .toast-icon { flex-shrink: 0; width: 20px; text-align: center; }
+    .toast-title { font-weight: 600; margin-bottom: 2px; }
+    .toast-desc { font-size: 13px; color: var(--text-muted); }
+
+    /* ── Section header label ──────────────────────────── */
+    .sec-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 24px;
+    }
+    .sec-label::before {
+      content: '';
+      width: 16px;
+      height: 1px;
+      background: var(--border-elo);
+    }
+
+    /* ── Horizontal rule ───────────────────────────────── */
+    hr {
+      border: none;
+      border-top: 1px solid var(--border-sub);
+      margin: 56px 0;
+    }
+
+    /* ── Footer ────────────────────────────────────────── */
+    .page-footer {
+      margin-top: 80px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-sub);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--text-dis);
+      font-family: var(--font-mono);
+    }
+    .page-footer a { color: var(--primary); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- Header -->
+    <div class="eyebrow">Design System v2.0</div>
+    <h1>Naino<span>Forge</span></h1>
+    <p class="subtitle">
+      Un design system sombre, précis — violet électrique sur canvas profond.
+      Chaque élément a un rôle. Rien n'est décoratif.
+    </p>
+
+    <!-- ── SURFACES ──────────────────────────────────── -->
+    <section>
+      <div class="sec-label">Surfaces</div>
+      <div class="surface-grid">
+        <div class="surface-cell" style="background:var(--surface-base)">
+          <div class="surface-swatch" style="background:var(--surface-base)"></div>
+          <span class="surface-name">Base</span>
+          <span class="surface-token">#121212</span>
+        </div>
+        <div class="surface-cell" style="background:var(--surface-1)">
+          <div class="surface-swatch" style="background:var(--surface-1)"></div>
+          <span class="surface-name">Surface 1</span>
+          <span class="surface-token">#1A1A2E</span>
+        </div>
+        <div class="surface-cell" style="background:var(--surface-2)">
+          <div class="surface-swatch" style="background:var(--surface-2)"></div>
+          <span class="surface-name">Surface 2</span>
+          <span class="surface-token">#22223A</span>
+        </div>
+        <div class="surface-cell" style="background:var(--surface-3)">
+          <div class="surface-swatch" style="background:var(--surface-3)"></div>
+          <span class="surface-name">Surface 3</span>
+          <span class="surface-token">#2A2A45</span>
+        </div>
+        <div class="surface-cell" style="background:var(--surface-elev)">
+          <div class="surface-swatch" style="background:var(--surface-elev)"></div>
+          <span class="surface-name">Élevé</span>
+          <span class="surface-token">#252540</span>
+        </div>
+        <div class="surface-cell" style="background:var(--surface-hl)">
+          <div class="surface-swatch" style="background:var(--surface-hl)"></div>
+          <span class="surface-name">Highlight</span>
+          <span class="surface-token">#2D2D4A</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── COLORS ───────────────────────────────────── -->
+    <section>
+      <div class="sec-label">Couleurs</div>
+
+      <div class="color-row">
+        <div class="color-row-label">Primary — violet électrique</div>
+        <div class="color-swatches">
+          <div class="color-swatch"><div class="swatch" style="background:#8B5CF6"></div><span class="label">Primary</span><span class="value">#8B5CF6</span></div>
+          <div class="color-swatch"><div class="swatch" style="background:#7C3AED"></div><span class="label">Dark</span><span class="value">#7C3AED</span></div>
+          <div class="color-swatch"><div class="swatch" style="background:#6D28D9"></div><span class="label">Darkest</span><span class="value">#6D28D9</span></div>
+          <div class="color-swatch"><div class="swatch" style="background:#A78BFA"></div><span class="label">Light</span><span class="value">#A78BFA</span></div>
+        </div>
+      </div>
+
+      <div class="color-row">
+        <div class="color-row-label">States — maîtrise cognitive</div>
+        <div class="color-swatches">
+          <div class="color-swatch"><div class="swatch" style="background:#22C55E"></div><span class="label">Forged</span><span class="value">#22C55E</span></div>
+          <div class="color-swatch"><div class="swatch" style="background:#EF4444"></div><span class="label">Leech</span><span class="value">#EF4444</span></div>
+          <div class="color-swatch"><div class="swatch" style="background:#F59E0B"></div><span class="label">Partial</span><span class="value">#F59E0B</span></div>
+          <div class="color-swatch"><div class="swatch" style="background:#F97316"></div><span class="label">Lacune</span><span class="value">#F97316</span></div>
+        </div>
+      </div>
+
+      <div class="color-row">
+        <div class="color-row-label">Texte</div>
+        <div class="color-swatches">
+          <div class="color-swatch"><div class="swatch" style="background:#F8FAFC"></div><span class="label">Primary</span><span class="value">#F8FAFC</span></div>
+          <div class="color-swatch"><div class="swatch" style="background:#E2E8F0"></div><span class="label">Secondary</span><span class="value">#E2E8F0</span></div>
+          <div class="color-swatch"><div class="swatch" style="background:#94A3B8"></div><span class="label">Muted</span><span class="value">#94A3B8</span></div>
+          <div class="color-swatch"><div class="swatch" style="background:#475569"></div><span class="label">Disabled</span><span class="value">#475569</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── TYPOGRAPHY ──────────────────────────────── -->
+    <section>
+      <div class="sec-label">Typographie</div>
+      <div class="type-row">
+        <span class="type-meta">H1 <span>2.5rem</span></span>
+        <span style="font-size:40px;font-weight:700;letter-spacing:-0.03em;line-height:1.05">La forge cognitive</span>
+      </div>
+      <div class="type-row">
+        <span class="type-meta">H2 <span>2rem</span></span>
+        <span style="font-size:28px;font-weight:700;letter-spacing:-0.02em;line-height:1.15">Votre compréhension, rendue visible</span>
+      </div>
+      <div class="type-row">
+        <span class="type-meta">H3 <span>1.5rem</span></span>
+        <span style="font-size:22px;font-weight:600;letter-spacing:-0.01em;line-height:1.25">Concepts maîtrisés</span>
+      </div>
+      <div class="type-row">
+        <span class="type-meta">Body <span>0.94rem</span></span>
+        <span style="font-size:15px;line-height:1.6;color:var(--text-sec)">
+          NainoForge transforme chaque page web en opportunité d'apprentissage actif.
+          Capturez, imprignez, révisez.
+        </span>
+      </div>
+      <div class="type-row">
+        <span class="type-meta">Body-sm <span>0.81rem</span></span>
+        <span style="font-size:13px;line-height:1.5;color:var(--text-muted)">
+          Utilisez le bouton Forger pour extraire les idées clés de n'importe quel contenu.
+        </span>
+      </div>
+      <div class="type-row">
+        <span class="type-meta">Caption <span>0.69rem</span></span>
+        <span style="font-size:11px;text-transform:uppercase;letter-spacing:0.06em;font-weight:600;color:var(--text-muted)">
+          Métadonnée · 2 août 2026 · public
+        </span>
+      </div>
+    </section>
+
+    <hr>
+
+    <!-- ── BUTTONS ─────────────────────────────────── -->
+    <section>
+      <div class="sec-label">Boutons</div>
+      <div class="btn-row" style="margin-bottom:16px">
+        <button class="btn btn-primary">Primaire</button>
+        <button class="btn btn-forge">Forger</button>
+        <button class="btn btn-secondary">Secondaire</button>
+        <button class="btn btn-ghost">Effacer</button>
+        <button class="btn btn-destructive">Supprimer</button>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary" disabled>Primaire (désactivé)</button>
+        <button class="btn btn-forge" disabled>Forger</button>
+      </div>
+    </section>
+
+    <!-- ── BADGES ──────────────────────────────────── -->
+    <section>
+      <div class="sec-label">Badges &amp; États</div>
+      <div class="badge-row" style="margin-bottom:12px">
+        <span class="badge badge-forged"><span class="badge-dot" style="background:var(--forged)"></span> Maîtrisé</span>
+        <span class="badge badge-partial"><span class="badge-dot" style="background:var(--partial)"></span> Partiel</span>
+        <span class="badge badge-lacune"><span class="badge-dot" style="background:var(--lacune)"></span> À revoir</span>
+        <span class="badge badge-leech"><span class="badge-dot" style="background:var(--leech)"></span> Difficile</span>
+        <span class="badge badge-primary">Badge violet</span>
+      </div>
+    </section>
+
+    <!-- ── CONFIDENCE MARKER ───────────────────────── -->
+    <section>
+      <div class="sec-label">Confidence Marker — Cran 1 à 5</div>
+      <div class="marker-row">
+        <div style="text-align:center"><div class="marker marker-sm m-muted">1</div><div style="font-size:11px;color:var(--text-muted);margin-top:6px">Inexistant</div></div>
+        <div style="text-align:center"><div class="marker marker-sm m-lacune">2</div><div style="font-size:11px;color:var(--text-muted);margin-top:6px">Lacune</div></div>
+        <div style="text-align:center"><div class="marker marker-sm m-partial">3</div><div style="font-size:11px;color:var(--text-muted);margin-top:6px">Ébauche</div></div>
+        <div style="text-align:center"><div class="marker marker-sm m-forged">4</div><div style="font-size:11px;color:var(--text-muted);margin-top:6px">Solide</div></div>
+        <div style="text-align:center"><div class="marker marker-sm" style="color:var(--forged)">5</div><div style="font-size:11px;color:var(--text-muted);margin-top:6px">Maîtrisé</div></div>
+      </div>
+      <div style="display:flex;gap:24px;align-items:flex-end;margin-top:24px">
+        <div class="marker marker-lg m-forged" style="margin-right:8px">4</div>
+        <div>
+          <div style="font-size:13px;font-weight:600;color:var(--text)">Cran 4 — Solide</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:2px">Le concept est bien compris, quelques rappels nécessaires.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PROGRESS ───────────────────────────────── -->
+    <section>
+      <div class="sec-label">Barres de progression</div>
+      <div style="max-width:400px">
+        <div class="progress">
+          <div class="progress-label"><span>Algorithmes de tri</span><strong>95%</strong></div>
+          <div class="progress-track"><div class="progress-fill forged" style="width:95%"></div></div>
+        </div>
+        <div class="progress">
+          <div class="progress-label"><span>Complexité algorithmique</span><strong>65%</strong></div>
+          <div class="progress-track"><div class="progress-fill partial" style="width:65%"></div></div>
+        </div>
+        <div class="progress">
+          <div class="progress-label"><span>Structures de données</span><strong>30%</strong></div>
+          <div class="progress-track"><div class="progress-fill" style="width:30%"></div></div>
+        </div>
+        <div class="progress">
+          <div class="progress-label"><span>Réseaux de neurones</span><strong>15%</strong></div>
+          <div class="progress-track"><div class="progress-fill leech" style="width:15%"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CARDS ───────────────────────────────────── -->
+    <section>
+      <div class="sec-label">Cartes</div>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-head">
+            <span class="card-title">Streak</span>
+            <span class="badge badge-forged"><span class="badge-dot" style="background:var(--forged)"></span> Actif</span>
+          </div>
+          <div class="card-body" style="font-size:32px;font-weight:700;color:var(--text);line-height:1.1;margin-bottom:4px">7</div>
+          <div style="font-size:12px;color:var(--text-muted)">jours consécutifs</div>
+          <div class="card-meta">Chaîne continue de révision</div>
+        </div>
+        <div class="card">
+          <div class="card-head">
+            <span class="card-title">Cartes à réviser</span>
+          </div>
+          <div class="card-body" style="font-size:32px;font-weight:700;color:var(--text);line-height:1.1;margin-bottom:4px">3</div>
+          <div style="font-size:12px;color:var(--text-muted)">à réviser aujourd'hui</div>
+          <div class="card-meta">Prochaine révision dans 2h</div>
+        </div>
+        <div class="card">
+          <div class="card-head">
+            <span class="card-title">IMPRINT</span>
+            <span class="badge badge-partial">Partiel</span>
+          </div>
+          <div class="card-body">
+            L'importance du feedback cognitif dans l'apprentissage
+          </div>
+          <div class="card-meta">web_article · 1 245 mots · 28 juil. 2026</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── TOAST ───────────────────────────────────── -->
+    <section>
+      <div class="sec-label">Notifications</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div class="toast">
+          <span class="toast-icon" style="color:var(--forged)">✓</span>
+          <div>
+            <div class="toast-title">Forge terminé</div>
+            <div class="toast-desc">3 idées clés extraites de la page.</div>
+          </div>
+        </div>
+        <div class="toast">
+          <span class="toast-icon" style="color:var(--leech)">✕</span>
+          <div>
+            <div class="toast-title">Erreur de capture</div>
+            <div class="toast-desc">Impossible de lire le contenu. Vérifiez la page.</div>
+          </div>
+        </div>
+        <div class="toast">
+          <span class="toast-icon" style="color:var(--accent-warm)">!</span>
+          <div>
+            <div class="toast-title">Session préservée</div>
+            <div class="toast-desc">Votre imprint n'a pas été sauvegardé. Que faites-vous ?</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── LAYOUT SHELL ───────────────────────────── -->
+    <section>
+      <div class="sec-label">App Shell — maquette</div>
+      <div style="display:flex;border:1px solid var(--border-def);border-radius:var(--r-lg);overflow:hidden;max-width:640px">
+        <!-- Sidebar -->
+        <div style="width:48px;background:var(--surface-1);border-right:1px solid var(--border-sub);display:flex;flex-direction:column;align-items:center;padding:12px 0;gap:6px;flex-shrink:0">
+          <div style="width:28px;height:28px;background:rgba(139,92,246,0.15);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px">🏠</div>
+          <div style="width:28px;height:28px;border-radius:6px;background:transparent"></div>
+          <div style="width:28px;height:28px;border-radius:6px;background:transparent"></div>
+          <div style="margin-top:auto;width:28px;height:28px;border-radius:6px;background:transparent"></div>
+        </div>
+        <!-- Main -->
+        <div style="flex:1;display:flex;flex-direction:column;min-width:0">
+          <!-- Header -->
+          <div style="height:40px;background:var(--surface-1);border-bottom:1px solid var(--border-sub);display:flex;align-items:center;padding:0 16px;gap:12px;flex-shrink:0">
+            <span style="font-size:13px;font-weight:600;color:var(--text)">NainoForge</span>
+            <span style="margin-left:auto;font-size:11px;color:var(--text-muted);display:flex;align-items:center;gap:6px">
+              <span style="width:6px;height:6px;border-radius:50%;background:var(--forged);display:inline-block"></span>
+              En ligne
+            </span>
+          </div>
+          <!-- Content -->
+          <div style="flex:1;background:var(--surface-base);padding:20px;overflow:hidden">
+            <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:12px">Accueil</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+              <div style="background:var(--surface-1);border:1px solid var(--border-sub);border-radius:var(--r-md);padding:14px">
+                <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px">Streak</div>
+                <div style="font-size:22px;font-weight:700;color:var(--text)">7</div>
+              </div>
+              <div style="background:var(--surface-1);border:1px solid var(--border-sub);border-radius:var(--r-md);padding:14px">
+                <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px">À réviser</div>
+                <div style="font-size:22px;font-weight:700;color:var(--text)">3</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── BORDERS ─────────────────────────────────── -->
+    <section>
+      <div class="sec-label">Bordures</div>
+      <div style="display:flex;gap:24px;flex-wrap:wrap">
+        <div>
+          <div style="height:48px;width:120px;border:1px solid var(--border-sub);border-radius:var(--r-sm);margin-bottom:6px"></div>
+          <div style="font-size:11px;color:var(--text-muted);font-family:var(--font-mono)">subtle 5%</div>
+        </div>
+        <div>
+          <div style="height:48px;width:120px;border:1px solid var(--border-def);border-radius:var(--r-sm);margin-bottom:6px"></div>
+          <div style="font-size:11px;color:var(--text-muted);font-family:var(--font-mono)">default 9%</div>
+        </div>
+        <div>
+          <div style="height:48px;width:120px;border:1px solid var(--border-elo);border-radius:var(--r-sm);margin-bottom:6px"></div>
+          <div style="font-size:11px;color:var(--text-muted);font-family:var(--font-mono)">elevated 13%</div>
+        </div>
+        <div>
+          <div style="height:48px;width:120px;border:1px solid var(--border-prim);border-radius:var(--r-sm);margin-bottom:6px"></div>
+          <div style="font-size:11px;color:var(--text-muted);font-family:var(--font-mono)">primary 30%</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <div class="page-footer">
+      <span>NainoForge v2.0 — Design System</span>
+      <span>Canvas <span style="color:var(--surface-1);background:var(--surface-1);padding:1px 4px;border-radius:3px">#121212</span> · Primary <span style="color:var(--primary);background:rgba(139,92,246,0.15);padding:1px 4px;border-radius:3px">#8B5CF6</span></span>
+    </div>
+
+  </div>
+</body>
+</html>

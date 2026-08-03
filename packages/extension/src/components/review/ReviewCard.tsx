@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Card } from "../ui/card";
 import { Button } from "../ui/button";
-import { ConfidenceMarker } from "../components/ConfidenceMarker";
+import { ConfidenceMarker } from "../ConfidenceMarker.tsx";
 
 interface ReviewCardProps {
   question: string;

@@ -1,10 +1,6 @@
-"use strict";
 // ─── EventBus — simple pub/sub, no external deps ─────────────
 // Used for cross-module communication inside the extension.
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.EventBus = void 0;
-exports.namespace = namespace;
-class EventBus {
+export class EventBus {
     listeners = new Map();
     on(event, handler) {
         const set = this.listeners.get(event) ?? new Set();
@@ -41,7 +37,6 @@ class EventBus {
         this.listeners.clear();
     }
 }
-exports.EventBus = EventBus;
 /**
  * Create a namespaced event name helper to avoid collisions:
  *
@@ -49,7 +44,7 @@ exports.EventBus = EventBus;
  *   bus.on(ev('source:captured'), handler);
  *   bus.emit(ev('source:captured'), payload);
  */
-function namespace(prefix) {
+export function namespace(prefix) {
     return (name) => `${prefix}:${name}`;
 }
 //# sourceMappingURL=event-bus.js.map

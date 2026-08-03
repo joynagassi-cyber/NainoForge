@@ -62,10 +62,10 @@ export function ImprintCard({
   const variant = getBadgeVariant(status);
   const icon = getSourceIcon(sourceType);
 
+  const compactClass = compact ? 'p-2' : 'p-3';
+
   return (
-    <div
-      className={`imprint-card bg-surface-1 border border-border-subtle rounded-md p-3 transition-all duration-normal hover:shadow-lg ${compact ? 'p-2'}`}
-    >
+    <div className={`imprint-card bg-surface-1 border border-border-subtle rounded-md transition-all duration-normal hover:shadow-lg ${compactClass}`}>
       {/* Header */}
       <div className="flex items-start justify-between mb-2">
         <div className="flex items-center gap-2 flex-1">
@@ -75,7 +75,7 @@ export function ImprintCard({
           </h3>
         </div>
         {/* Privacy dot */}
-        <Badge variant={variant as any} size="sm" className="ml-2">
+        <Badge variant={variant as any} className="ml-2">
           {privacyLevel}
         </Badge>
       </div>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NainoForge Mobile — ImprintEditorScreen</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#8B5CF6',
+            'primary-dark': '#7C3AED',
+            'surface-base': '#121212',
+            'surface-1': '#1A1A2E',
+            'surface-2': '#22223A',
+            'surface-3': '#2A2A45',
+            'text-primary': '#F8FAFC',
+            'text-muted': '#94A3B8',
+            'state-forged': '#22C55E',
+            'state-partial': '#F59E0B',
+            'state-lacune': '#F97316',
+            'state-leech': '#EF4444',
+            'border-subtle': 'rgba(255,255,255,0.05)',
+            'border-default': 'rgba(255,255,255,0.09)',
+          },
+          fontFamily: {
+            sans: ['system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    .cran-dot { width: 32px; height: 32px; border-radius: 50%; border: 2px solid; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; }
+    .cran-1 { border-color: #94A3B8; color: #94A3B8; }
+    .cran-2 { border-color: #F97316; color: #F97316; }
+    .cran-3 { border-color: #F59E0B; color: #F59E0B; }
+    .cran-4 { border-color: #22C55E; color: #22C55E; }
+    .cran-5 { border-color: #22C55E; color: #22C55E; background: rgba(34,197,94,0.12); }
+    .editor-content { min-height: 200px; }
+    .editor-content:focus { outline: none; }
+    .blocknote-block { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .blocknote-block:last-child { border-bottom: none; }
+  </style>
+</head>
+<body class="bg-surface-base min-h-screen font-sans text-text-primary">
+  <div class="max-w-[430px] mx-auto min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-10 bg-surface-1/95 backdrop-blur-md border-b border-border-subtle px-4 py-3 flex items-center justify-between">
+      <button class="w-11 h-11 flex items-center justify-center text-text-muted hover:text-text-primary transition-colors" aria-label="Retour">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M15.75 19.5 8.25 12l7.5-7.5"/></svg>
+      </button>
+      <h1 class="text-h3 font-semibold text-text-primary">IMPRINT</h1>
+      <button class="w-11 h-11 flex items-center justify-center text-state-forged hover:bg-state-forged/10 rounded-lg transition-colors" aria-label="Enregistrer">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4.5 12.75l6 6 9-13.5"/></svg>
+      </button>
+    </header>
+
+    <!-- Cran Indicator -->
+    <div class="bg-surface-1 border-b border-border-subtle px-4 py-3">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="text-caption text-text-muted uppercase tracking-wider">Cran atteint</span>
+        </div>
+        <div class="flex items-center gap-1">
+          <span class="cran-dot cran-3">3</span>
+          <span class="text-body-sm text-state-partial font-medium">Ébauche</span>
+        </div>
+      </div>
+      <div class="flex items-center gap-1 mt-2">
+        <div class="w-full h-1.5 bg-surface-3 rounded-full overflow-hidden">
+          <div class="h-full bg-state-partial rounded-full" style="width: 60%"></div>
+        </div>
+      </div>
+      <div class="flex justify-between mt-1">
+        <span class="text-caption text-text-disabled">1</span>
+        <span class="text-caption text-text-disabled">2</span>
+        <span class="text-caption text-state-partial font-medium">3</span>
+        <span class="text-caption text-text-disabled">4</span>
+        <span class="text-caption text-text-disabled">5</span>
+      </div>
+    </div>
+
+    <!-- Two-panel Layout -->
+    <div class="flex-1 flex flex-col">
+
+      <!-- Source Panel (top on mobile) -->
+      <div class="border-b border-border-subtle">
+        <div class="px-4 py-2 bg-surface-2 flex items-center gap-2">
+          <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3.5.512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3.5.512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/></svg>
+          <span class="text-caption text-text-muted uppercase tracking-wider">Source — Chunk 2/5</span>
+          <div class="ml-auto flex items-center gap-1">
+            <button class="w-8 h-8 flex items-center justify-center text-text-muted hover:text-text-primary rounded" aria-label="Chunk précédent">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15.75 19.5 8.25 12l7.5-7.5"/></svg>
+            </button>
+            <button class="w-8 h-8 flex items-center justify-center text-text-muted hover:text-text-primary rounded" aria-label="Chunk suivant">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8.25 4.5 15.75 12 8.25 19.5"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="px-4 py-3 bg-surface-1 max-h-[200px] overflow-y-auto">
+          <h3 class="text-body-sm font-semibold text-text-primary mb-2">Section: Embeddings</h3>
+          <p class="text-body-sm text-text-muted leading-relaxed">
+            Les embeddings sont des représentations vectorielles de mots ou de phrases dans un espace continu. Chaque token est mappé à un vecteur de dimension fixe (typiquement 768 ou 1536 dimensions) qui capture son sens sémantique...
+          </p>
+          <div class="mt-2 flex items-center gap-2">
+            <span class="text-caption text-text-disabled bg-surface-3 px-2 py-0.5 rounded">~340 mots</span>
+            <span class="text-caption text-text-disabled">extrait auto</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Editor Panel -->
+      <div class="flex-1 flex flex-col bg-surface-base">
+        <div class="px-4 py-2 bg-surface-2 border-b border-border-subtle flex items-center gap-2">
+          <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M16.862 4.487l1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"/></svg>
+          <span class="text-caption text-text-muted uppercase tracking-wider">Votre IMPRINT</span>
+          <div class="ml-auto flex items-center gap-2">
+            <span class="text-caption text-text-disabled">Auto-save ✓</span>
+          </div>
+        </div>
+
+        <!-- Editor Content -->
+        <div class="flex-1 px-4 py-4 editor-content">
+          <div class="blocknote-block">
+            <p class="text-body text-text-primary leading-relaxed">
+              <span class="text-primary font-medium">Embeddings</span> sont des représentations vectorielles qui Capturent le sens sémantique des mots...
+            </p>
+          </div>
+          <div class="blocknote-block">
+            <p class="text-body text-text-muted leading-relaxed italic">
+              <!-- Cursor blink -->
+              <span class="inline-block w-0.5 h-4 bg-primary animate-pulse"></span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="border-t border-border-subtle px-4 py-3 bg-surface-1">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-3">
+              <span class="text-body-sm text-text-muted">Mots : <span class="text-text-primary font-medium">47</span> / <span class="text-state-partial font-medium">80 min.</span></span>
+            </div>
+            <div class="flex items-center gap-1">
+              <span class="text-caption text-text-disabled">Bloom:</span>
+              <span class="text-caption bg-surface-3 px-2 py-0.5 rounded text-text-muted">Understand</span>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex gap-2">
+            <button class="flex-1 h-12 bg-primary hover:bg-primary-dark text-surface-base font-semibold text-body rounded-xl transition-colors flex items-center justify-center gap-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3.5.512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3.5.512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"/></svg>
+              Enregistrer l'IMPRINT
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Anti-hallucination Warning (collapsed) -->
+    <div class="mx-4 mb-3 bg-state-lacune/10 border border-state-lacune/30 rounded-xl p-3 flex items-start gap-3">
+      <svg class="w-5 h-5 text-state-lacune flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg>
+      <div class="flex-1">
+        <p class="text-body-sm text-state-lacune font-medium">Point potentiellement halluciné</p>
+        <p class="text-body-sm text-text-muted mt-0.5">Ce passage semble différer de votre source. Vérifiez ?</p>
+      </div>
+      <div class="flex gap-1">
+        <button class="h-8 px-3 text-caption font-medium text-state-lacune bg-state-lacune/10 rounded-lg hover:bg-state-lacune/20 transition-colors">Corriger</button>
+        <button class="h-8 px-3 text-caption font-medium text-text-muted hover:bg-surface-2 rounded-lg transition-colors">Ignorer</button>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

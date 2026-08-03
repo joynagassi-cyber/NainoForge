@@ -1,6 +1,7 @@
-import { Flame, Settings2 } from "lucide-react";
-import { cn } from "../../lib/utils";
+import { Settings2, Maximize2, X } from "lucide-react";
+import { cn } from "../../lib/utils.ts";
 import { Badge } from "../ui/badge";
+import { LogoIcon } from "../ui/LogoIcon.tsx";
 
 export type Tab = "home" | "review" | "cosmos";
 
@@ -10,6 +11,8 @@ interface SidePanelHeaderProps {
   queuedAI: number;
   onTabChange: (tab: Tab) => void;
   onSettingsOpen: () => void;
+  onAppModeToggle: () => void;
+  onClose: () => void;
 }
 
 export function SidePanelHeader({
@@ -18,11 +21,13 @@ export function SidePanelHeader({
   queuedAI,
   onTabChange,
   onSettingsOpen,
+  onAppModeToggle,
+  onClose,
 }: SidePanelHeaderProps) {
   return (
     <header className="flex h-11 shrink-0 items-center border-b border-border-subtle bg-surface-1 px-3">
       <div className="flex items-center gap-2">
-        <Flame className="h-5 w-5 text-primary" aria-hidden="true" />
+        <LogoIcon className="h-6 w-6" />
         <span className="text-h3 font-semibold text-text-primary">
           NainoForge
         </span>
@@ -52,7 +57,7 @@ export function SidePanelHeader({
         ))}
       </nav>
 
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1">
         {queuedAI > 0 && (
           <Badge variant="count" className="mr-1">
             {queuedAI}
@@ -73,11 +78,28 @@ export function SidePanelHeader({
           />
         </span>
         <button
+          onClick={onAppModeToggle}
+          aria-label="Mode Application"
+          className="flex h-11 w-11 items-center justify-center rounded-md text-text-muted hover:text-text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+          title="Ouvrir en mode application"
+        >
+          <Maximize2 className="h-5 w-5" />
+        </button>
+        <button
           onClick={onSettingsOpen}
           aria-label="Paramètres"
-          className="text-text-muted hover:text-text-primary transition-colors"
+          className="flex h-11 w-11 items-center justify-center rounded-md text-text-muted hover:text-text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+          title="Paramètres"
         >
-          <Settings2 className="h-4 w-4" />
+          <Settings2 className="h-5 w-5" />
+        </button>
+        <button
+          onClick={onClose}
+          aria-label="Fermer le side panel"
+          className="flex h-11 w-11 items-center justify-center rounded-md text-text-muted hover:text-text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+          title="Fermer"
+        >
+          <X className="h-5 w-5" />
         </button>
       </div>
     </header>

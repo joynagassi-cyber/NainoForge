@@ -2,7 +2,8 @@
 title: "Implémenter le mapping des termes cognitifs vers le Cran"
 type: 'feature'
 created: '2026-07-29'
-status: 'in-review'
+status: 'done'
+final_revision: 'ad70e66'
 review_loop_iteration: 0
 followup_review_recommended: false
 baseline_revision: '77aa61e'

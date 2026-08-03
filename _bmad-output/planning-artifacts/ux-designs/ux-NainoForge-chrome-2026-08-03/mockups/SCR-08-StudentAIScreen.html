@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NainoForge Mobile — StudentAIScreen</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#8B5CF6',
+            'primary-dark': '#7C3AED',
+            'surface-base': '#121212',
+            'surface-1': '#1A1A2E',
+            'surface-2': '#22223A',
+            'surface-3': '#2A2A45',
+            'text-primary': '#F8FAFC',
+            'text-muted': '#94A3B8',
+            'state-forged': '#22C55E',
+            'state-partial': '#F59E0B',
+            'state-lacune': '#F97316',
+            'border-subtle': 'rgba(255,255,255,0.05)',
+            'border-default': 'rgba(255,255,255,0.09)',
+          },
+          fontFamily: {
+            sans: ['system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    .chat-bubble-user { background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.3); border-radius: 16px 16px 4px 16px; }
+    .chat-bubble-ai { background: var(--color-surface-2, #22223A); border: 1px solid var(--color-border-subtle, rgba(255,255,255,0.05)); border-radius: 16px 16px 16px 4px; }
+    .typing-dot { animation: typing-dot 1.4s infinite; }
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typing-dot {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+      30% { transform: translateY(-4px); opacity: 1; }
+    }
+    .result-card { animation: slide-up 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+    @keyframes slide-up {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body class="bg-surface-base min-h-screen font-sans text-text-primary">
+  <div class="max-w-[430px] mx-auto min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-10 bg-surface-base/95 backdrop-blur-md border-b border-border-subtle px-4 py-3 flex items-center justify-between">
+      <button class="w-11 h-11 flex items-center justify-center text-text-muted hover:text-text-primary transition-colors" aria-label="Retour">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M15.75 19.5 8.25 12l7.5-7.5"/></svg>
+      </button>
+      <h1 class="text-h3 font-semibold text-text-primary">Student AI</h1>
+      <button class="w-11 h-11 flex items-center justify-center text-text-muted hover:text-text-primary transition-colors" aria-label="Paramètres">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.38.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.941-1.11.941h-2.593c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124a6.52 6.52 0 0 1 .22-.128c.332-.183.582-.495.644-.869l.214-1.28z"/><path d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/></svg>
+      </button>
+    </header>
+
+    <!-- Concept Badge -->
+    <div class="px-4 py-3 bg-surface-1 border-b border-border-subtle">
+      <div class="flex items-center gap-2 flex-wrap">
+        <span class="text-caption bg-state-partial/10 text-state-partial px-2.5 py-1 rounded-full font-medium">Attention Mechanisms</span>
+        <span class="text-caption bg-surface-3 text-text-muted px-2.5 py-1 rounded-full">SMI: 55%</span>
+        <span class="text-caption bg-surface-3 text-text-muted px-2.5 py-1 rounded-full">Partiel</span>
+      </div>
+    </div>
+
+    <!-- Chat Messages -->
+    <main class="flex-1 overflow-y-auto px-4 py-4 space-y-4">
+
+      <!-- AI Message 1 -->
+      <div class="flex items-start gap-2">
+        <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+          <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"/></svg>
+        </div>
+        <div class="chat-bubble-ai px-4 py-3 max-w-[85%]">
+          <p class="text-body-sm text-text-primary leading-relaxed">
+            Salut ! Je suis ton camarade de classe. 😄<br><br>
+            J'ai du mal à comprendre la différence entre <span class="text-primary font-medium">l'attention</span> et le <span class="text-primary font-medium">self-attention</span>. Tu peux m'expliquer avec tes propres mots ?
+          </p>
+          <p class="text-caption text-text-muted mt-1">Persona: Classmate</p>
+        </div>
+      </div>
+
+      <!-- User Message 1 -->
+      <div class="flex items-start gap-2 justify-end">
+        <div class="chat-bubble-user px-4 py-3 max-w-[85%]">
+          <p class="text-body-sm text-text-primary leading-relaxed">
+            L'attention c'est quand le modèle se focalise sur les parties importantes du texte, et le self-attention c'est quand il regarde à l'intérieur de la même séquence...
+          </p>
+        </div>
+        <div class="w-8 h-8 rounded-full bg-surface-3 flex items-center justify-center flex-shrink-0 mt-0.5">
+          <span class="text-body-sm font-medium text-text-muted">M</span>
+        </div>
+      </div>
+
+      <!-- AI Message 2 -->
+      <div class="flex items-start gap-2">
+        <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+          <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"/></svg>
+        </div>
+        <div class="chat-bubble-ai px-4 py-3 max-w-[85%]">
+          <p class="text-body-sm text-text-primary leading-relaxed">
+            C'est un bon début ! Mais attends — est-ce que le self-attention regarde <strong>uniquement</strong> à l'intérieur de la même séquence, ou peut-il aussi regarder ailleurs ? 🤔
+          </p>
+        </div>
+      </div>
+
+      <!-- User Message 2 (voice) -->
+      <div class="flex items-start gap-2 justify-end">
+        <div class="chat-bubble-user px-4 py-3 max-w-[85%]">
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 7.5a6 6 0 0 1-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 0 1-3-3V4.5a3 3 0 1 1 6 0v8.25a3 3 0 0 1-3 3z"/></svg>
+            <span class="text-body-sm text-text-muted">🎤 Enregistrement vocal — 12s</span>
+          </div>
+        </div>
+        <div class="w-8 h-8 rounded-full bg-surface-3 flex items-center justify-center flex-shrink-0 mt-0.5">
+          <span class="text-body-sm font-medium text-text-muted">M</span>
+        </div>
+      </div>
+
+      <!-- Analyzing State -->
+      <div class="flex items-start gap-2">
+        <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+          <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"/></svg>
+        </div>
+        <div class="chat-bubble-ai px-4 py-3">
+          <div class="flex items-center gap-1">
+            <span class="typing-dot w-2 h-2 bg-text-muted rounded-full inline-block"></span>
+            <span class="typing-dot w-2 h-2 bg-text-muted rounded-full inline-block"></span>
+            <span class="typing-dot w-2 h-2 bg-text-muted rounded-full inline-block"></span>
+            <span class="text-caption text-text-muted ml-2">Analyse en cours...</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Result Card (shown after analysis) -->
+      <div class="result-card bg-surface-1 border border-state-lacune/30 rounded-xl p-4 mt-2">
+        <div class="flex items-center gap-2 mb-3">
+          <svg class="w-5 h-5 text-state-lacune" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg>
+          <span class="text-body-sm text-state-lacune font-medium">⚠️ Lacune détectée</span>
+        </div>
+        <div class="space-y-2 mb-3">
+          <div class="flex items-center justify-between">
+            <span class="text-body-sm text-text-muted">Coverage</span>
+            <div class="flex items-center gap-2">
+              <div class="w-20 h-1.5 bg-surface-3 rounded-full overflow-hidden">
+                <div class="h-full bg-state-partial rounded-full" style="width: 65%"></div>
+              </div>
+              <span class="text-caption text-state-partial">65%</span>
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-body-sm text-text-muted">Cran atteint</span>
+            <div class="flex items-center gap-1">
+              <span class="cran-dot cran-2" style="width:24px;height:24px;font-size:10px;">2</span>
+              <span class="text-caption text-state-lacune">Lacune</span>
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-body-sm text-text-muted">Confiance déclarée</span>
+            <span class="text-caption text-text-muted">4/5 ⚠️</span>
+          </div>
+        </div>
+        <div class="bg-state-lacune/10 border border-state-lacune/20 rounded-lg p-3 mb-3">
+          <p class="text-body-sm text-state-lacune">
+            <strong>Contradiction interne détectée :</strong> Vous confondez probablement attention et self-attention. Ces deux concepts sont liés mais distincts.
+          </p>
+        </div>
+        <div class="flex gap-2">
+          <button class="flex-1 h-11 bg-primary hover:bg-primary-dark text-surface-base text-body-sm font-semibold rounded-lg transition-colors">
+            Reprendre l'IMPRINT
+          </button>
+          <button class="flex-1 h-11 bg-surface-2 hover:bg-surface-3 text-text-primary text-body-sm font-semibold rounded-lg transition-colors">
+            Questions socratiques
+          </button>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Input Bar -->
+    <div class="border-t border-border-subtle px-4 py-3 bg-surface-1">
+      <div class="flex items-center gap-2">
+        <button class="w-11 h-11 flex items-center justify-center text-text-muted hover:text-primary rounded-full transition-colors flex-shrink-0" aria-label="Voice input">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 7.5a6 6 0 0 1-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 0 1-3-3V4.5a3 3 0 1 1 6 0v8.25a3 3 0 0 1-3 3z"/></svg>
+        </button>
+        <div class="flex-1 relative">
+          <input type="text" placeholder="Votre explication..." class="w-full h-11 bg-surface-2 border border-border-default rounded-xl px-4 text-body text-text-primary placeholder-text-disabled focus:outline-none focus:border-primary transition-colors" aria-label="Zone de texte">
+        </div>
+        <button class="w-11 h-11 bg-primary hover:bg-primary-dark text-surface-base rounded-full flex items-center justify-center transition-colors flex-shrink-0" aria-label="Envoyer">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"/></svg>
+        </button>
+      </div>
+      <p class="text-caption text-text-disabled text-center mt-2">
+        Appuyez sur 🎤 pour parler ou tapez votre explication
+      </p>
+    </div>
+
+  </div>
+</body>
+</html>

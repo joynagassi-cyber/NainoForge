@@ -1,5 +1,5 @@
-"use strict";
 // ─── Core domain interfaces ──────────────────────────────────
-// Shared vocabulary used across extension, fsrs, cosmos, ai, etc.
-Object.defineProperty(exports, "__esModule", { value: true });
+// Single source of truth for domain types.
+// Other packages import from here to avoid duplication.
+export {};
 //# sourceMappingURL=domain.js.map

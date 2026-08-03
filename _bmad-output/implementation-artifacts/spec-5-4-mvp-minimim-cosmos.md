@@ -2,7 +2,8 @@
 title: "Mini-COSMOS MVP : vue liste + graphe + overlay densité"
 type: 'feature'
 created: '2026-07-29'
-status: 'in-review'
+status: 'done'
+final_revision: '695403c'
 review_loop_iteration: 0
 followup_review_recommended: false
 baseline_revision: 'a4d3b8d'

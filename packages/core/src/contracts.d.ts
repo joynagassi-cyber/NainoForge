@@ -1,5 +1,4 @@
-import type { DCM } from '../../shared/src/types.js';
-import type { CapturedSource, Chapter, TranscriptSegment, ImprintNote } from './domain.js';
+import type { DCM, CapturedSource, Chapter, TranscriptSegment, ImprintNote } from './domain.js';
 export interface IWebArticleExtractor {
     extract(doc: Document, url: string): Promise<DCM>;
     isArticlePage(doc: Document): boolean;

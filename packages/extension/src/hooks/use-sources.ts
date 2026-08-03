@@ -4,14 +4,17 @@ import { engineBridge } from '../lib/engine-bridge.js';
 import type { DCM } from '@nainoforge/shared';
 
 export function useSources() {
-  const [sources, setSources] = useState<DCM[]>(() => engineBridge.getSources());
+  const [sources, setSources] = useState<DCM[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Initial load already done via lazy useState initializer above.
-    setLoading(false);
+    // Initialize: load persisted sources from chrome.storage.local
+    engineBridge.initialize().then(() => {
+      setSources(engineBridge.getSources());
+      setLoading(false);
+    });
 
-    // Subscribe to new sources
+    // Subscribe to new sources arriving in real-time
     const unsub = engineBridge.subscribe('source:captured', (data) => {
       setSources((prev) => [...prev, data as DCM]);
     });

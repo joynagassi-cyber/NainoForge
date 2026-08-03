@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { ReactFlow } from "@xyflow/react";
+import { ReactFlow, Background } from "@xyflow/react";
 import { ConceptNodeBase } from "./node-types";
 import { DensityOverlay } from "./DensityOverlay";
-import { Badge, BadgeVariant } from "../ui/badge";
+import { Badge } from "../ui/badge";
 
 // Type pour une entrée de liste
 interface ConceptListItem {
@@ -49,7 +49,7 @@ export function MvpCosmos() {
               {conceptList.map((concept) => (
                 <div
                   key={concept.id}
-                  className="flex items-center justify-between p-2 rounded hover:bg-surface-2"
+                  className="flex items-center justify-between p-3 rounded hover:bg-surface-2 transition-colors min-h-[48px]"
                 >
                   <span className="text-text-primary">{concept.label}</span>
                   <Badge
@@ -83,7 +83,7 @@ export function MvpCosmos() {
           fitView={true}
           zoomable={true}
           panable={true}
-          defaultEdgeOptions={{ type: "prerequisite", stroke: "#666" }}
+          defaultEdgeOptions={{ type: "prerequisite" }}
         >
           <Background variant="dots" gap={25} size={10} />
         </ReactFlow>
