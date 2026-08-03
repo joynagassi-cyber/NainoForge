@@ -14,7 +14,15 @@
     "noEmit": true,
     "skipLibCheck": true,
     "paths": {
-      "@extension/*": ["src/*"]
+      "@extension/*": ["./src/*"],
+      "@nainoforge/shared": ["../shared/src/index.ts"],
+      "@nainoforge/shared/*": ["../shared/src/*"],
+      "@nainoforge/core": ["../core/src/index.ts"],
+      "@nainoforge/core/*": ["../core/src/*"],
+      "@nainoforge/imprint": ["../imprint/src/index.ts"],
+      "@nainoforge/imprint/*": ["../imprint/src/*"],
+      "@nainoforge/fsrs": ["../fsrs/src/index.ts"],
+      "@nainoforge/fsrs/*": ["../fsrs/src/*"]
     }
   },
   "include": [
@@ -26,6 +34,12 @@
     },
     {
       "path": "../shared"
+    },
+    {
+      "path": "../fsrs"
+    },
+    {
+      "path": "../imprint"
     }
   ]
 }
