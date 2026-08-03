@@ -1,7 +1,7 @@
 # Graph Report - NainoForge  (2026-08-03)
 
 ## Corpus Check
-- 253 files · ~234,629 words
+- 253 files · ~239,521 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
