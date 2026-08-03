@@ -8,3 +8,9 @@ sh.exe.stackdump
 .bmad-loop/runs/
 .bmad-loop/cache/
 .bmad-loop/policy.toml
+
+# Stale TypeScript build artifacts (emit only to dist/)
+packages/*/src/**/*.js
+packages/*/src/**/*.js.map
+packages/*/src/**/*.d.ts
+packages/*/src/**/*.tsbuildinfo
